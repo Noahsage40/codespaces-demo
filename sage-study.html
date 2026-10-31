@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stryker Sage Study Plan</title>
+<style>
+:root{
+  --bg:#f7f7f5;--surface:#ffffff;--surface-2:#f0f0ec;--text:#1c1c1a;--muted:#5f5f5a;
+  --border:#deded8;--accent:#a8590f;--accent-soft:#f6e8da;--good:#2f7d4a;--good-soft:#e2f2e7;
+  --bad:#b23a3a;--bad-soft:#f8e3e3;--radius:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#161614;--surface:#1f1f1c;--surface-2:#2a2a26;--text:#ecece6;--muted:#a3a39b;
+    --border:#38382f;--accent:#e59a4f;--accent-soft:#3a2a1b;--good:#6cc58b;--good-soft:#1c3324;
+    --bad:#ef8a8a;--bad-soft:#3a1e1e;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#161614;--surface:#1f1f1c;--surface-2:#2a2a26;--text:#ecece6;--muted:#a3a39b;
+  --border:#38382f;--accent:#e59a4f;--accent-soft:#3a2a1b;--good:#6cc58b;--good-soft:#1c3324;
+  --bad:#ef8a8a;--bad-soft:#3a1e1e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.7rem;margin:0 0 4px}
+h2{font-size:1.25rem;margin:0 0 6px}
+h3{font-size:1rem;margin:20px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+p{margin:0 0 10px}
+a{color:var(--accent);word-break:break-word}
+.sub{color:var(--muted);margin-bottom:18px}
+.progress{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:18px}
+.bar{height:10px;background:var(--surface-2);border-radius:99px;overflow:hidden;margin-top:8px}
+.bar>div{height:100%;background:var(--accent);width:0;transition:width .3s}
+nav.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:16px;scrollbar-width:thin}
+nav.tabs button{flex:0 0 auto;border:1px solid var(--border);background:var(--surface);color:var(--text);padding:8px 12px;border-radius:99px;cursor:pointer;font:inherit;font-size:.9rem}
+nav.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+nav.tabs button .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--good);margin-left:6px;vertical-align:middle}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:16px}
+ul.tasks{list-style:none;padding:0;margin:0}
+ul.tasks li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--border)}
+ul.tasks li:last-child{border-bottom:0}
+ul.tasks input{margin-top:5px;width:18px;height:18px;accent-color:var(--accent);flex:0 0 auto}
+ul.tasks label{cursor:pointer}
+ul.tasks li.done label{color:var(--muted);text-decoration:line-through}
+table{width:100%;border-collapse:collapse;font-size:.93rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--border);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+.tablewrap{overflow-x:auto}
+ul.facts{padding-left:20px;margin:0}
+ul.facts li{margin-bottom:6px}
+.flash{perspective:900px;margin:8px 0 12px}
+.flash .inner{position:relative;min-height:170px;transition:transform .45s;transform-style:preserve-3d;cursor:pointer}
+.flash.flipped .inner{transform:rotateY(180deg)}
+.flash .face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:flex;align-items:center;justify-content:center;text-align:center;background:var(--surface-2)}
+.flash .back{transform:rotateY(180deg);background:var(--accent-soft)}
+.flash .front{font-size:1.4rem;font-weight:700}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{text-decoration:none;display:inline-block;border:1px solid var(--border);background:var(--surface);color:var(--text);padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button.btn:disabled{opacity:.5;cursor:default}
+.q{margin-bottom:18px}
+.q p{font-weight:600}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;border:1px solid var(--border);background:var(--surface-2);color:var(--text);padding:9px 12px;border-radius:8px;cursor:pointer;font:inherit}
+.opt.correct{background:var(--good-soft);border-color:var(--good)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.explain{font-size:.9rem;color:var(--muted);margin-top:4px}
+.score{font-weight:700}
+.note{font-size:.88rem;color:var(--muted);border-left:3px solid var(--accent);padding-left:10px}
+.counter{color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Stryker Sage, from the ground up</h1>
+  <p class="sub">A 6-week interactive study plan: the company, the clinical problems, every product family, and how it's sold. Check off tasks, flip flashcards, and take the quiz for each week.</p>
+
+  <div class="progress">
+    <div class="row" style="justify-content:space-between"><strong>Your progress</strong><span id="progText" class="counter"></span></div>
+    <div class="bar"><div id="progBar"></div></div>
+  </div>
+
+  <nav class="tabs" id="tabs" role="tablist"></nav>
+  <main id="view"></main>
+
+  <p class="note">Facts link to official Stryker pages or SEC filings. Product names, reorder numbers and claims vary by country and change over time, so check the current Stryker page or IFU before relying on a detail. Clinical outcome figures are Stryker's own marketing claims.</p>
+</div>
+
+<script>
+const S = "https://www.stryker.com";
+const WEEKS = [
+{ id:"week-1", tab:"Wk 1 · Company", title:"Week 1 — Stryker, Sage, and why they joined",
+  facts:[
+    "<b>What Sage is:</b> Sage Products, LLC, a maker of single-use, disposable patient-care products that help prevent hospital-acquired conditions.",
+    "<b>HQ:</b> Cary, Illinois (about a 600,000 sq ft facility).",
+    "<b>Deal:</b> Stryker bought Sage from <b>Madison Dearborn Partners</b> for <b>$2.775 billion</b> cash (signed Jan 31, 2016).",
+    "<b>Closed:</b> <b>April 1, 2016</b>. Sage became a wholly owned Stryker subsidiary.",
+    "<b>Size then:</b> about <b>$430M</b> in FY2015 sales, up about 13%.",
+    "<b>Fit:</b> Stryker said Sage \"fits well with our <b>Medical</b> division\". Its disposables complement Stryker Medical's beds, stretchers and patient-handling equipment.",
+    "<b>Where it sits:</b> Stryker reports two segments, <b>MedSurg &amp; Neurotechnology</b> and <b>Orthopaedics</b>. Sage is in MedSurg &amp; Neurotechnology.",
+    "<b>Parent scale (FY2025):</b> about $25.1B total sales, with MedSurg &amp; Neurotechnology about $15.6B and Orthopaedics about $9.5B.",
+    "<b>Business model:</b> Medical sells capital equipment that hospitals buy rarely. Sage sells consumables that hospitals reorder every day, which brings recurring revenue, protocol stickiness and GPO contracts (e.g., Sage's sole-source oral-care contract with HealthTrust)."
+  ],
+  read:[
+    ["Business-unit site map (find Sage)","https://stryker.com/us/en/site-map/all-bus.html"],
+    ["Example regional Sage page",S+"/dk/en/sage/sage.html"],
+    ["Acquisition announcement","https://investors.stryker.com/press-releases/news-details/2016/Stryker-Announces-Definitive-Agreement-to-Acquire-Sage-Products-LLC-from-Madison-Dearborn-Partners-for-2775-Billion/default.aspx"],
+    ["Acquisition completed","https://investors.stryker.com/press-releases/news-details/2016/Stryker-completes-acquisition-of-Sage-Products-LLC/default.aspx"],
+    ["SEC 8-K on closing","https://www.sec.gov/Archives/edgar/data/0000310764/000031076416000298/syk8k412016.htm"],
+    ["Stryker FY2025 10-K","https://www.sec.gov/Archives/edgar/data/310764/000031076426000010/syk-20251231.htm"],
+    ["HealthTrust sole-source oral-care contract","https://www.infectioncontroltoday.com/view/sage-products-awarded-sole-source-oral-care-contract-healthtrust"]
+  ],
+  tasks:["Read the acquisition announcement and completion releases","Write a 5-sentence elevator pitch for Sage","Draw the org tree: Stryker → MedSurg & Neurotechnology → Medical → Sage"],
+  cards:[["$2.775B","Price Stryker paid for Sage (cash), from Madison Dearborn Partners"],["April 1, 2016","Date the Sage acquisition closed"],["Cary, Illinois","Sage's headquarters"],["Consumables vs. capital","Sage sells daily-use disposables; Stryker Medical sells beds and stretchers. Together: recurring revenue + equipment"]],
+  quiz:[
+    {q:"Who sold Sage to Stryker?",o:["Madison Dearborn Partners","Hill-Rom","Medline","Johnson & Johnson"],a:0,e:"Stryker bought Sage from private-equity firm Madison Dearborn Partners."},
+    {q:"When did the acquisition close?",o:["January 31, 2016","April 1, 2016","October 1, 2015","April 1, 2017"],a:1,e:"Signed Jan 31, 2016; closed April 1, 2016."},
+    {q:"Which Stryker segment reports Sage's sales?",o:["Orthopaedics","Spine","MedSurg & Neurotechnology","Neurovascular"],a:2,e:"Sage sits in Medical, part of MedSurg & Neurotechnology."},
+    {q:"Why is a consumables business valuable next to capital equipment?",o:["It has no regulatory oversight","Hospitals reorder it constantly, creating recurring revenue","It replaces the need for beds","It's sold only to patients"],a:1,e:"Daily reorders and standardized protocols create recurring, sticky revenue."}
+  ]},
+{ id:"week-2", tab:"Wk 2 · Clinical problems", title:"Week 2 — The clinical problems (the \"why\")",
+  table:{head:["Acronym","Meaning","Sage product family"],rows:[
+    ["VAP","Ventilator-associated pneumonia","Oral care for ventilated patients (Q•Care)"],
+    ["HAP / NV-HAP","(Non-ventilator) hospital-acquired pneumonia","Continue Care, Self Oral Care"],
+    ["SSI","Surgical site infection","2% CHG pre-op skin prep cloths"],
+    ["CLABSI","Central line-associated bloodstream infection","2% CHG cloths per facility ICU protocol"],
+    ["CAUTI","Catheter-associated urinary tract infection","PrimoFit / PrimaFit external urine management"],
+    ["HAPI","Hospital-acquired pressure injury","Prevalon heel protectors, TAP / AirTAP"],
+    ["IAD","Incontinence-associated dermatitis","Comfort Shield barrier cream cloths"],
+    ["SPHM","Safe patient handling & mobility","AirTAP, MATS air transfer"],
+    ["Basin contamination","Reusable bath basins as infection reservoir","Comfort Bath / Essential Bath washcloths"]]},
+  read:[
+    ["HAP fact sheet",S+"/content/dam/stryker/sage/resources/Uncover-and-quantify-hospital-acquired-pneumonia-HAP-fact-sheet.pdf"],
+    ["Skin integrity & infection prevention (2025)",S+"/us/en/sage/news/2025/patient-skin-integrity-a-critical-factor-in-infection-prevention.html"]
+  ],
+  tasks:["Read the HAP fact sheet","Make a flashcard for every acronym in the table","Explain why NV-HAP matters on every hospital unit"],
+  cards:[["VAP","Ventilator-associated pneumonia → Q•Care oral care"],["NV-HAP","Non-ventilator hospital-acquired pneumonia → Continue Care / Self Oral Care"],["SSI","Surgical site infection → 2% CHG pre-op cloths"],["CLABSI","Central line bloodstream infection → CHG cloths in ICU protocols"],["CAUTI","Catheter-associated UTI → PrimoFit / PrimaFit (avoid the indwelling catheter)"],["HAPI","Hospital-acquired pressure injury → Prevalon heel protectors, TAP, AirTAP"],["IAD","Incontinence-associated dermatitis → Comfort Shield"],["SPHM","Safe patient handling & mobility → AirTAP, MATS"]],
+  quiz:[
+    {q:"An external urine management device mainly supports reducing which HAC?",o:["SSI","CAUTI","VAP","CLABSI"],a:1,e:"It's a non-invasive alternative to indwelling catheters, the source of CAUTI."},
+    {q:"IAD stands for…",o:["Infection-acquired disease","Incontinence-associated dermatitis","Intensive airway device","Indwelling access device"],a:1,e:"Comfort Shield targets IAD."},
+    {q:"Which product family addresses SPHM?",o:["Oral care","CHG cloths","AirTAP and MATS","Comfort Bath"],a:2,e:"Air-assisted repositioning and transfer protect caregivers."}
+  ]},
+{ id:"week-3", tab:"Wk 3 · Oral care", title:"Week 3 — Oral care (pneumonia prevention)",
+  facts:[
+    "<b>Q•Care:</b> 24-hour oral cleansing and suctioning systems for <b>ventilated</b> patients, designed to remove plaque, debris and secretions. They're built around <b>Corinz</b>, an all-in-one antiseptic rinse.",
+    "<b>Continue Care:</b> kits for <b>non-ventilated</b> patients at risk of aspiration pneumonia.",
+    "<b>Sage Self Oral Care:</b> a toothbrush with Corinz antiseptic cleansing, for patients who can brush on their own.",
+    "<b>Toothette:</b> Sage's long-standing suction / non-suction swab brand.",
+    "<b>Claims:</b> 70% NV-HAP decrease and $5.9M cost avoidance (attributed to an <i>AJIC</i> study); 66.7% HAP reduction at an NHS stroke ward (AU sheet, single site)."
+  ],
+  read:[
+    ["Oral care tools",S+"/us/en/sage/products/sage-oral-hygiene-tools.html"],
+    ["Systems for ventilated patients",S+"/us/en/sage/products/sage-oral-hygiene-systems-for-ventilated-patients.html"],
+    ["Systems for non-ventilated patients",S+"/us/en/sage/products/sage-oral-hygiene-systems-for-non-ventilated-patients.html"],
+    ["Oral care brochure",S+"/content/dam/stryker/sage/resources/Sage-Oral-Care-Brochure.pdf"],
+    ["HAP sell sheet (AU)",S+"/content/dam/stryker/sage/products/sage-oral-care-systems-for-mechanically-ventilated-patients/au/HAP%20Sell%20Sheet_2825.pdf"]
+  ],
+  tasks:["Read the ventilated and non-ventilated product pages","Fill in a product card for Q•Care, Continue Care, Self Oral Care","Write how you'd cite the 70% NV-HAP claim, with caveats"],
+  cards:[["Q•Care","24-hr oral care system for ventilated patients (VAP)"],["Corinz","All-in-one antiseptic oral rinse used in Sage systems"],["Continue Care","Oral care kits for non-ventilated patients at aspiration risk"],["Self Oral Care","Toothbrush with Corinz for patients who can brush themselves"]],
+  quiz:[
+    {q:"A ventilated ICU patient needs oral care. Which system?",o:["Continue Care","Q•Care","Comfort Bath","Self Oral Care"],a:1,e:"Q•Care is for ventilated patients."},
+    {q:"What is Corinz?",o:["A heel boot","An antiseptic oral rinse","A CHG cloth","A suction canister"],a:1,e:"Corinz is Sage's all-in-one antiseptic rinse."},
+    {q:"Stryker's cited NV-HAP reduction figure is…",o:["25%","45%","70%","95%"],a:2,e:"70% decrease, with $5.9M cost avoidance (AJIC study, as cited by Stryker)."}
+  ]},
+{ id:"week-4", tab:"Wk 4 · Skin & bathing", title:"Week 4 — Skin, bathing and infection prevention",
+  facts:[
+    "<b>Sage 2% CHG cloths:</b> premoistened with an FDA-approved antiseptic, rinse-free, <b>500 mg CHG</b> per cloth, active on the skin up to <b>6 hours</b>, and free of benzalkonium chloride (BZK). Applied the night before and morning of surgery (SSI) and per ICU protocol. Reorder #9717 (6-pack), #9705 (2-pack).",
+    "<b>Comfort Bath / Essential Bath / Impreva Bath:</b> rinse-free disposable bathing washcloths (Comfort Bath has aloe and vitamin E). They replace basin baths. <b>Not CHG.</b>",
+    "<b>Comfort Shield:</b> one-step perineal cleansing, deodorizing and protection with <b>3% dimethicone</b>, for IAD. Reorder #7502, #7503, #7905, #7924. Don't flush.",
+    "<b>Comfort Rinse-free Shampoo Cap:</b> waterless hair washing."
+  ],
+  read:[
+    ["2% CHG cloths brochure",S+"/content/dam/stryker/sage/products/chg-cloths/resources/2023%20Sage%202%20percent%20CHG%20cloths%20brochure.pdf"],
+    ["CHG cloths & SSI evidence (2024)",S+"/us/en/sage/news/2024/2-percent-chlorhexidine-gluconate-cloth-ssi-prevention.html"],
+    ["Surgery prep (Home Care)","https://homecare.stryker.com/surgery-prep"],
+    ["Comfort Shield",S+"/us/en/sage/products/sage-barrier-cream-cloths.html"],
+    ["Comfort Bath (Home Care store)","https://homecare.stryker.com/store/c/33-Comfort-Bath.aspx"],
+    ["Spine surgery trial using Sage CHG cloths","https://clinicaltrials.gov/study/NCT02490631"]
+  ],
+  tasks:["Read the CHG cloths brochure","Explain the difference between Comfort Bath and CHG bathing","Fill in product cards for CHG cloths, Comfort Bath, Comfort Shield"],
+  cards:[["500 mg","CHG dose per Sage 2% CHG cloth"],["6 hours","How long the CHG stays active on skin"],["3% dimethicone","Active protectant in Comfort Shield"],["Comfort Bath ≠ CHG","Comfort Bath is a non-antiseptic bathing cloth; CHG cloths are the antiseptic line"]],
+  quiz:[
+    {q:"Is Comfort Bath a CHG product?",o:["Yes, 2% CHG","Yes, 4% CHG","No, it's a non-antiseptic bathing cloth","Only in the ICU version"],a:2,e:"CHG cloths are a separate Sage line."},
+    {q:"When are pre-op CHG cloths typically applied?",o:["Only in the OR","Night before and morning of surgery","A week before","After surgery only"],a:1,e:"Stryker cites a review recommending the night before and morning of surgery."},
+    {q:"Comfort Shield is designed to protect against…",o:["VAP","IAD","CLABSI","Falls"],a:1,e:"Incontinence-associated dermatitis."}
+  ]},
+{ id:"week-5", tab:"Wk 5 · Pressure & urine", title:"Week 5 — Pressure injury, patient handling, urine management",
+  facts:[
+    "<b>Heel Protector II / III:</b> the heel is the 2nd most common pressure-injury site. They offload the heel, reduce plantar flexion contracture risk and are SCD-compatible. III adds help against lateral rotation (peroneal nerve risk). In-bed use only, because walking in them is a fall risk.",
+    "<b>TAP 1.0 / 2.0 / XL / XXL / LC:</b> turn-and-position systems that reduce skin-injury risk factors. LC is lift-compatible.",
+    "<b>AirTAP:</b> air-assisted repositioning that significantly reduces the force needed to move patients, combining pressure-injury prevention with caregiver safety.",
+    "<b>MATS:</b> air-assisted lateral transfers. Multi-Position MATS repositions and transfers on the OR table.",
+    "<b>PrimoFit (male):</b> continuous low suction diverts urine to a canister, and the adhesive base needs no sizing. The 2022 redesign added 65% more adhesive area. PrimoFit+ (EU/UK) can stay in place up to 24 hrs.",
+    "<b>PrimoFit Flow (2026):</b> a foam stabilizer prevents tube twisting. Stryker claims 2.8× better diversion vs PrimoFit+ in internal testing.",
+    "<b>PrimaFit (female):</b> replace every 12–24 hrs or when soiled. Contraindicated with urinary retention."
+  ],
+  read:[
+    ["Heel Protector II","https://stryker.com/us/en/sage/products/sage-heel-protector-ii.html"],
+    ["Heel Protector III (EU)",S+"/fi/en/sage/products/sage-heel-protector-iii/index-eu.html"],
+    ["AirTAP XXL",S+"/us/en/sage/products/sage-airtap-xxl.html"],
+    ["TAP LC",S+"/us/en/sage/products/sage-tap-lc.html"],
+    ["Injury prevention catalog",S+"/content/dam/stryker/sage/resources/Sage-Product-Catalog-Injury-Prevention.pdf"],
+    ["Multi-Position MATS brochure",S+"/content/dam/stryker/sage/products/multi-position-mats/resources/Sage-Multi-Position-MATS-brochure.pdf"],
+    ["PrimaFit",S+"/us/en/sage/products/sage-primafit.html"],
+    ["PrimoFit brochure",S+"/content/dam/stryker/sage/products/primofit/resources/Sage-PrimoFit-Brochure.pdf"],
+    ["PrimoFit redesign (2022)",S+"/us/en/sage/news/2022/sage-primofit-redesign.html"],
+    ["PrimoFit Flow (2026)",S+"/us/en/sage/news/2026/primofit-flow-advances-urinary-management-performance.html"]
+  ],
+  tasks:["Read the Heel Protector II and AirTAP pages","Compare TAP vs AirTAP vs MATS in your own words","Read the PrimoFit Flow news post"],
+  cards:[["Heel","2nd most common pressure-injury site"],["AirTAP","Air-assisted repositioning: protects patient skin AND caregiver backs"],["PrimoFit vs PrimaFit","PrimoFit = male anatomy; PrimaFit = female anatomy"],["2.8×","PrimoFit Flow's claimed diversion improvement vs PrimoFit+ (internal testing)"]],
+  quiz:[
+    {q:"Why shouldn't a patient walk in a Prevalon heel protector?",o:["It voids the warranty","Fall risk","It deflates","It's single-use"],a:1,e:"Spec sheet: in-bed use only due to fall risk."},
+    {q:"What did Heel Protector III add?",o:["Air inflation","Help preventing lateral rotation","CHG coating","Bluetooth sensors"],a:1,e:"Reduces lateral rotation and peroneal nerve damage risk."},
+    {q:"PrimaFit is designed for…",o:["Male anatomy","Female anatomy","Pediatric only","Ventilated patients"],a:1,e:"PrimoFit is male; PrimaFit is female."},
+    {q:"AirTAP solves which two problems?",o:["SSI and VAP","Pressure injury and caregiver injury","CAUTI and IAD","Falls and CLABSI"],a:1,e:"Repositioning reduces skin injury; air assist reduces caregiver force."}
+  ]},
+{ id:"week-6", tab:"Wk 6 · Selling & capstone", title:"Week 6 — Customers, selling and capstone",
+  facts:[
+    "<b>Users:</b> bedside nurses, CNAs and patient-care techs, OR / pre-op staff.",
+    "<b>Influencers:</b> infection preventionists, WOC nurses, nurse educators, SPHM coordinators, respiratory therapists.",
+    "<b>Economic buyers:</b> CNO and nursing leadership, value analysis committees, supply chain, GPOs (e.g., HealthTrust).",
+    "<b>Value story:</b> prevent a costly HAC → avoid extra cost and length of stay → standardize a protocol → reorder daily."
+  ],
+  read:[
+    ["Customer-success role description","https://careers.stryker.com/customer-success-associate-cleveland-injury-infection-prevention/job/4E2B8BB722702EAF89C9B2D53DDD1A45"],
+    ["Sage product catalogue (CA)",S+"/content/dam/stryker/sage/resources/ca/Sage-product-catalogue.pdf"],
+    ["Product disclaimer statement",S+"/es/en/sage/product-disclaimer-statement.html"]
+  ],
+  tasks:["Capstone: one-page portfolio map (family → HAC → product → claim → URL)","Capstone: 5-minute value-analysis pitch for Sage oral care","Capstone: write answers to 3 common objections","Teach Sage to a friend in 10 minutes with no notes"],
+  cards:[["VAC","Value analysis committee: approves new products in a hospital"],["GPO","Group purchasing organization (e.g., HealthTrust)"],["WOC nurse","Wound, ostomy & continence nurse: key influencer for skin products"],["IFU","Instructions for use: the authoritative product document"]],
+  quiz:[
+    {q:"A value analysis committee is best described as…",o:["A product user","An influencer","An economic decision body","A competitor"],a:2,e:"VACs approve and standardize product purchases."},
+    {q:"Which stakeholder is a key influencer for Comfort Shield?",o:["Respiratory therapist","WOC nurse","Anesthesiologist","Pharmacist"],a:1,e:"Wound, ostomy & continence nurses own skin-injury protocols."},
+    {q:"The core Sage value story starts with…",o:["Lowest unit price","Preventing a costly hospital-acquired condition","Capital financing","Brand awareness"],a:1,e:"Prevent the HAC → avoid cost → standardize → reorder."}
+  ]}
+];
+
+// --- storage (per-viewer convenience only) ---
+const KEY="sage-study-v1";
+let state={done:{}};
+try{ state=JSON.parse(localStorage.getItem(KEY))||state; }catch(e){}
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} }
+
+const allTasks=WEEKS.flatMap(w=>w.tasks.map((t,i)=>w.id+":"+i));
+function weekDone(w){ return w.tasks.every((t,i)=>state.done[w.id+":"+i]); }
+function updateProgress(){
+  const n=allTasks.filter(k=>state.done[k]).length;
+  document.getElementById("progText").textContent=n+" / "+allTasks.length+" tasks";
+  document.getElementById("progBar").style.width=(100*n/allTasks.length)+"%";
+  renderTabs();
+}
+
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function renderTabs(){
+  const cur=current();
+  document.getElementById("tabs").innerHTML=WEEKS.map(w=>
+    `<button role="tab" aria-selected="${w.id===cur}" data-id="${w.id}">${esc(w.tab)}${weekDone(w)?'<span class="dot" title="Complete"></span>':''}</button>`).join("");
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(b) location.hash=b.dataset.id;
+});
+
+function current(){ const h=location.hash.slice(1); return WEEKS.some(w=>w.id===h)?h:WEEKS[0].id; }
+
+function render(){
+  const w=WEEKS.find(x=>x.id===current());
+  let h=`<section class="card"><h2>${esc(w.title)}</h2>`;
+  if(w.facts) h+=`<h3>Key facts</h3><ul class="facts">${w.facts.map(f=>`<li>${f}</li>`).join("")}</ul>`;
+  if(w.table) h+=`<h3>Know these cold</h3><div class="tablewrap"><table><thead><tr>${w.table.head.map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${w.table.rows.map(r=>`<tr>${r.map((c,i)=>`<td>${i?esc(c):"<b>"+esc(c)+"</b>"}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  h+=`<h3>Read (official sources)</h3><ul class="facts">${w.read.map(([t,u])=>`<li><a href="${u}" target="_blank" rel="noopener">${esc(t)}</a></li>`).join("")}</ul></section>`;
+
+  h+=`<section class="card"><h2>Checklist</h2><ul class="tasks">${w.tasks.map((t,i)=>{
+      const k=w.id+":"+i, d=!!state.done[k];
+      return `<li class="${d?"done":""}"><input type="checkbox" id="t-${k}" data-k="${k}" ${d?"checked":""}><label for="t-${k}">${esc(t)}</label></li>`;}).join("")}</ul></section>`;
+
+  h+=`<section class="card"><h2>Flashcards</h2><p class="counter">Tap the card to flip it.</p>
+      <div class="flash" id="flash"><div class="inner"><div class="face front" id="fFront"></div><div class="face back" id="fBack"></div></div></div>
+      <div class="row"><button class="btn" id="fPrev">← Prev</button><button class="btn" id="fNext">Next →</button><button class="btn" id="fShuf">Shuffle</button><span class="counter" id="fCount"></span></div></section>`;
+
+  h+=`<section class="card"><h2>Quiz</h2><div id="quiz"></div><div class="row"><span class="score" id="qScore"></span><button class="btn" id="qReset">Retake</button></div></section>`;
+
+  h+=`<div class="row" style="justify-content:space-between">${prevNext(w)}</div>`;
+  document.getElementById("view").innerHTML=h;
+  bindTasks(); bindFlash(w); renderQuiz(w); renderTabs();
+  window.scrollTo(0,0);
+}
+function prevNext(w){
+  const i=WEEKS.indexOf(w);
+  return (i>0?`<a class="btn" href="#${WEEKS[i-1].id}">← ${esc(WEEKS[i-1].tab)}</a>`:"<span></span>")+
+         (i<WEEKS.length-1?`<a class="btn" href="#${WEEKS[i+1].id}">${esc(WEEKS[i+1].tab)} →</a>`:"");
+}
+
+function bindTasks(){
+  document.querySelectorAll(".tasks input").forEach(cb=>cb.addEventListener("change",()=>{
+    if(cb.checked) state.done[cb.dataset.k]=true; else delete state.done[cb.dataset.k];
+    cb.closest("li").classList.toggle("done",cb.checked); save(); updateProgress();
+  }));
+}
+
+function bindFlash(w){
+  let cards=w.cards.slice(), i=0;
+  const el=document.getElementById("flash");
+  const show=()=>{ el.classList.remove("flipped");
+    document.getElementById("fFront").textContent=cards[i][0];
+    document.getElementById("fBack").textContent=cards[i][1];
+    document.getElementById("fCount").textContent=(i+1)+" / "+cards.length; };
+  el.addEventListener("click",()=>el.classList.toggle("flipped"));
+  document.getElementById("fNext").onclick=()=>{i=(i+1)%cards.length;show();};
+  document.getElementById("fPrev").onclick=()=>{i=(i-1+cards.length)%cards.length;show();};
+  document.getElementById("fShuf").onclick=()=>{cards.sort(()=>Math.random()-.5);i=0;show();};
+  show();
+}
+
+function renderQuiz(w){
+  const box=document.getElementById("quiz"); let answered=0, right=0;
+  box.innerHTML=w.quiz.map((q,qi)=>`<div class="q" data-q="${qi}"><p>${qi+1}. ${esc(q.q)}</p>${q.o.map((o,oi)=>`<button class="opt" data-o="${oi}">${esc(o)}</button>`).join("")}<div class="explain" hidden></div></div>`).join("");
+  const score=()=>document.getElementById("qScore").textContent=answered?`Score: ${right} / ${w.quiz.length}`+(answered===w.quiz.length&&right===w.quiz.length?" — perfect!":""):"";
+  box.querySelectorAll(".q").forEach(div=>{
+    const q=w.quiz[div.dataset.q];
+    div.addEventListener("click",e=>{
+      const b=e.target.closest(".opt"); if(!b||div.dataset.done) return;
+      div.dataset.done=1; answered++;
+      const pick=+b.dataset.o;
+      if(pick===q.a) right++; else b.classList.add("wrong");
+      div.querySelectorAll(".opt")[q.a].classList.add("correct");
+      div.querySelectorAll(".opt").forEach(x=>x.disabled=true);
+      const ex=div.querySelector(".explain"); ex.textContent=(pick===q.a?"Correct. ":"Not quite. ")+q.e; ex.hidden=false;
+      score();
+    });
+  });
+  document.getElementById("qReset").onclick=()=>renderQuiz(w);
+  score();
+}
+
+window.addEventListener("hashchange",render);
+updateProgress(); render();
+</script>
+</body>
+</html>
