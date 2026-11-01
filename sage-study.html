@@ -3,294 +3,494 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stryker Sage Rep Trainer</title>
+<title>Stryker Sage Interview Prep</title>
 <style>
 :root{
   --bg:#f7f7f5;--surface:#ffffff;--surface-2:#f0f0ec;--text:#1c1c1a;--muted:#5f5f5a;
   --border:#deded8;--accent:#a8590f;--accent-soft:#f6e8da;--good:#2f7d4a;--good-soft:#e2f2e7;
-  --nurse:#e8eef6;--nurse-text:#1c2a3a;--radius:12px;
+  --bad:#b23a3a;--bad-soft:#f8e3e3;--nurse:#e8eef6;--nurse-text:#1c2a3a;--radius:12px;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#161614;--surface:#1f1f1c;--surface-2:#2a2a26;--text:#ecece6;--muted:#a3a39b;
     --border:#38382f;--accent:#e59a4f;--accent-soft:#3a2a1b;--good:#6cc58b;--good-soft:#1c3324;
-    --nurse:#1f2a38;--nurse-text:#dce6f2;
+    --bad:#ef8a8a;--bad-soft:#3a1e1e;--nurse:#1f2a38;--nurse-text:#dce6f2;
   }
 }
 :root[data-theme="dark"]{
   --bg:#161614;--surface:#1f1f1c;--surface-2:#2a2a26;--text:#ecece6;--muted:#a3a39b;
   --border:#38382f;--accent:#e59a4f;--accent-soft:#3a2a1b;--good:#6cc58b;--good-soft:#1c3324;
-  --nurse:#1f2a38;--nurse-text:#dce6f2;
+  --bad:#ef8a8a;--bad-soft:#3a1e1e;--nurse:#1f2a38;--nurse-text:#dce6f2;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
-.wrap{max-width:780px;margin:0 auto;padding:24px 16px 64px}
+.wrap{max-width:820px;margin:0 auto;padding:24px 16px 64px}
 h1{font-size:1.6rem;margin:0 0 4px}
 h2{font-size:1.2rem;margin:0 0 10px}
 h3{font-size:1rem;margin:16px 0 6px}
 p{margin:0 0 10px}
 a{color:var(--accent)}
-.sub{color:var(--muted);margin-bottom:18px}
-nav.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:18px;padding-bottom:4px}
-nav.tabs a{flex:0 0 auto;border:1px solid var(--border);background:var(--surface);color:var(--text);padding:8px 14px;border-radius:99px;text-decoration:none;font-size:.92rem}
+.sub{color:var(--muted);margin-bottom:14px}
+.progress{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;margin-bottom:14px}
+.bar{height:8px;background:var(--surface-2);border-radius:99px;overflow:hidden;margin-top:6px}
+.bar>div{height:100%;background:var(--accent);width:0;transition:width .3s}
+nav.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:16px;padding-bottom:4px}
+nav.tabs a{flex:0 0 auto;border:1px solid var(--border);background:var(--surface);color:var(--text);padding:8px 13px;border-radius:99px;text-decoration:none;font-size:.9rem}
 nav.tabs a[aria-current="page"]{background:var(--accent);border-color:var(--accent);color:#fff}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:14px}
-.big{font-size:1.1rem}
-.pill{display:inline-block;background:var(--accent-soft);color:var(--text);border-radius:99px;padding:2px 10px;font-size:.85rem;margin:2px 4px 2px 0}
-.prod{border-top:1px solid var(--border);padding:12px 0}
-.prod:first-of-type{border-top:0}
-.prod b{font-size:1.02rem}
-.prod .why{color:var(--muted);font-size:.93rem}
+.big{font-size:1.08rem}
 .script{background:var(--surface-2);border-left:3px solid var(--accent);padding:12px 14px;border-radius:8px;margin:8px 0}
+.pill{display:inline-block;background:var(--accent-soft);border-radius:99px;padding:2px 10px;font-size:.85rem;margin:2px 4px 2px 0}
 ol,ul{padding-left:20px;margin:0 0 8px}
 li{margin-bottom:4px}
-.btn{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:9px 14px;border-radius:8px;cursor:pointer;font:inherit}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--border);vertical-align:top}
+th{color:var(--muted)}
+.tablewrap{overflow-x:auto}
+details{border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin:8px 0;background:var(--surface)}
+details summary{cursor:pointer;font-weight:600}
+details[open] summary{margin-bottom:8px}
+.k{color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;font-weight:700;margin-top:8px}
+.btn{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:9px 14px;border-radius:8px;cursor:pointer;font:inherit;text-decoration:none;display:inline-block}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn:disabled{opacity:.55;cursor:default}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.check{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:.92rem;color:var(--muted)}
+.check input{width:18px;height:18px;accent-color:var(--accent)}
+.flash{perspective:900px;margin:8px 0 12px}
+.flash .inner{position:relative;min-height:180px;transition:transform .45s;transform-style:preserve-3d;cursor:pointer}
+.flash.flipped .inner{transform:rotateY(180deg)}
+.flash .face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--border);border-radius:var(--radius);padding:18px;display:flex;align-items:center;justify-content:center;text-align:center;background:var(--surface-2)}
+.flash .back{transform:rotateY(180deg);background:var(--accent-soft);font-size:.97rem}
+.flash .front{font-size:1.3rem;font-weight:700}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;border:1px solid var(--border);background:var(--surface-2);color:var(--text);padding:9px 12px;border-radius:8px;cursor:pointer;font:inherit}
+.opt.correct{background:var(--good-soft);border-color:var(--good)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
 .scen{display:block;width:100%;text-align:left;margin:6px 0;border:1px solid var(--border);background:var(--surface);color:var(--text);padding:12px 14px;border-radius:10px;cursor:pointer;font:inherit}
 .scen small{display:block;color:var(--muted)}
+.modes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.modes button{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:7px 12px;border-radius:99px;cursor:pointer;font:inherit;font-size:.9rem}
+.modes button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
 .bubble{border-radius:12px;padding:10px 14px;margin:10px 0;max-width:92%}
-.bubble.nurse{background:var(--nurse);color:var(--nurse-text)}
+.bubble.other{background:var(--nurse);color:var(--nurse-text)}
 .bubble.me{background:var(--accent-soft);margin-left:auto}
-.bubble .who{font-size:.78rem;font-weight:700;opacity:.75;margin-bottom:2px;text-transform:uppercase;letter-spacing:.04em}
+.bubble .who{font-size:.76rem;font-weight:700;opacity:.75;margin-bottom:2px;text-transform:uppercase;letter-spacing:.04em}
 .fb{border:1px solid var(--border);border-radius:12px;padding:14px;margin:10px 0;background:var(--surface)}
 .fb .score{font-size:1.3rem;font-weight:800;color:var(--accent)}
 .fb h4{margin:10px 0 4px;font-size:.95rem}
 .fb .better{background:var(--good-soft);border-radius:8px;padding:10px 12px;font-style:italic}
-textarea{width:100%;min-height:96px;border:1px solid var(--border);border-radius:10px;padding:10px;font:inherit;background:var(--surface);color:var(--text);resize:vertical}
+textarea{width:100%;min-height:110px;border:1px solid var(--border);border-radius:10px;padding:10px;font:inherit;background:var(--surface);color:var(--text);resize:vertical}
 .muted{color:var(--muted);font-size:.9rem}
-.tip{font-size:.9rem;color:var(--muted)}
+.note{font-size:.86rem;color:var(--muted);border-left:3px solid var(--accent);padding-left:10px;margin-top:18px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Stryker Sage Rep Trainer</h1>
-  <p class="sub">Learn what Stryker Sage is and what it sells, then practice talking to nurses and get coached on every answer.</p>
-  <nav class="tabs" id="tabs">
-    <a href="#basics">1 · What is Sage?</a>
-    <a href="#products">2 · Products</a>
-    <a href="#intro">3 · Intro as a rep</a>
-    <a href="#practice">4 · Practice with a nurse</a>
-  </nav>
+  <h1>Stryker Sage Interview Prep</h1>
+  <p class="sub">Everything you need to walk into a Stryker Sage interview or panel and crush it: explain the business, know the products, handle nurse scenarios, and answer the interview questions.</p>
+  <div class="progress"><div class="row" style="justify-content:space-between"><strong>Your progress</strong><span class="muted" id="progText"></span></div><div class="bar"><div id="progBar"></div></div></div>
+  <nav class="tabs" id="tabs"></nav>
   <main id="view"></main>
+  <p class="note">Facts come from Stryker's own pages, press releases and SEC filings, found through web search. Competitor names are general industry knowledge. Check current Stryker pages before quoting a specific claim in an interview.</p>
 </div>
 
-<template id="t-basics">
+<!-- ========== 1. THE BUSINESS ========== -->
+<template id="t-business">
   <section class="card">
-    <h2>Stryker Sage in one sentence</h2>
-    <p class="big">Stryker Sage makes simple, single-use products that help nurses <b>prevent harm that patients can pick up in the hospital</b>, like pneumonia, infections, bedsores and skin damage, and that help keep caregivers safe when moving patients.</p>
+    <h2>Say this first: your 30-second answer</h2>
+    <p class="muted">"So, what do you know about Stryker Sage?" will come up. Practice saying this out loud until it's natural.</p>
+    <div class="script">"Stryker Sage is part of Stryker's Medical division. Sage makes single-use products that help hospitals prevent hospital-acquired conditions, things like pneumonia, surgical site infections, pressure injuries and catheter-related infections, and it also helps protect caregivers from injury when they move patients. The products are things nurses use every day, like oral care kits, CHG prep cloths, heel protectors and the AirTAP repositioning system, so the job is really about partnering with nursing teams to make prevention easier and more consistent."</div>
   </section>
+
   <section class="card">
-    <h2>The basics</h2>
+    <h2>The 2-minute version (for a panel)</h2>
+    <ol>
+      <li><b>Who they are:</b> Sage Products was founded in Cary, Illinois. Stryker bought it in <b>2016 for $2.775 billion</b> from Madison Dearborn Partners (closed April 1, 2016). Sage had about $430M in sales the year before.</li>
+      <li><b>Why Stryker bought it:</b> Stryker's Medical division sells <b>capital equipment</b> (beds, stretchers, patient-handling equipment). Sage adds <b>consumables</b>, products hospitals use and reorder every day. That pairs one-time equipment sales with steady, recurring revenue, and lets Stryker sell a complete patient-safety solution.</li>
+      <li><b>Where it fits:</b> Stryker has two segments, <b>MedSurg &amp; Neurotechnology</b> and <b>Orthopaedics</b>. Sage sits in MedSurg &amp; Neurotechnology, inside Medical. Stryker had about $25.1B in sales in 2025.</li>
+      <li><b>What problem it solves:</b> hospital-acquired conditions (HACs). These are harms patients pick up during a stay that hurt patients, add days to the stay, and cost hospitals money. Medicare also tracks them and penalizes hospitals with high rates.</li>
+      <li><b>How it wins:</b> by building products into the hospital's <b>protocol</b>. Once a unit standardizes on a Sage oral care or skin protocol, it reorders constantly. That's why clinical education and nurse relationships matter so much.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Stryker basics to drop in</h2>
     <ul>
-      <li><b>Who:</b> Sage Products started in Cary, Illinois. Stryker bought it in 2016 for $2.775 billion.</li>
-      <li><b>Where it fits:</b> Sage is part of Stryker's <b>Medical</b> division (hospital beds, stretchers, patient care).</li>
-      <li><b>What it sells:</b> disposable items that hospitals use every day, so customers reorder constantly.</li>
-      <li><b>Who uses it:</b> nurses, nurse aides, OR and pre-op staff.</li>
-      <li><b>Who decides:</b> nurse leaders, infection prevention, wound-care nurses, and the hospital's purchasing / value analysis committee.</li>
+      <li><b>Mission:</b> "Together with our customers, we make healthcare better."</li>
+      <li><b>Values:</b> Integrity, Accountability, People, Performance.</li>
+      <li><b>Size:</b> about $25.1B in sales (2025), one of the world's largest medical technology companies.</li>
+      <li><b>Culture:</b> known for being competitive and performance-driven. Show them you're coachable and hungry.</li>
     </ul>
   </section>
+
   <section class="card">
-    <h2>The problems Sage helps solve</h2>
-    <p>Learn these first. Every conversation is really about one of these problems.</p>
-    <ul>
-      <li><b>Hospital pneumonia</b> (VAP / HAP): germs in the mouth get into the lungs. → <i>Oral care</i></li>
-      <li><b>Surgical site infections</b> (SSI): germs on the skin infect a surgical wound. → <i>CHG prep cloths</i></li>
-      <li><b>Pressure injuries</b> (bedsores): skin breaks down from lying in one position, especially on the heels. → <i>Heel protectors, turning systems</i></li>
-      <li><b>Caregiver injuries</b>: nurses hurt their backs lifting and turning patients. → <i>AirTAP, air transfer mats</i></li>
-      <li><b>Urinary infections from catheters</b> (CAUTI). → <i>External urine devices</i></li>
-      <li><b>Skin damage from incontinence</b> (IAD). → <i>Barrier cream cloths</i></li>
-      <li><b>Germs in bath basins</b>. → <i>Disposable bathing cloths</i></li>
-    </ul>
-    <p class="tip">Why hospitals care: these problems hurt patients, add days to a stay, and cost the hospital money.</p>
+    <h2>The problems Sage solves (know these cold)</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Problem</th><th>What it is</th><th>Sage answer</th></tr></thead>
+      <tbody>
+        <tr><td><b>VAP / HAP</b></td><td>Hospital pneumonia. Germs in the mouth get into the lungs. NV-HAP (patients not on a ventilator) can happen on any unit.</td><td>Oral care: Q•Care, Toothette, Corinz</td></tr>
+        <tr><td><b>SSI</b></td><td>Surgical site infection: skin germs infect the surgical wound.</td><td>2% CHG prep cloths</td></tr>
+        <tr><td><b>Pressure injuries (HAPI)</b></td><td>Bedsores from staying in one position. The heel is the 2nd most common spot.</td><td>Prevalon heel protectors, TAP, AirTAP</td></tr>
+        <tr><td><b>Caregiver injury (SPHM)</b></td><td>Nurses hurting their backs lifting, turning and transferring patients.</td><td>AirTAP, MATS air transfer</td></tr>
+        <tr><td><b>CAUTI</b></td><td>Urinary infection from an indwelling catheter.</td><td>PrimoFit / PrimaFit external urine management</td></tr>
+        <tr><td><b>IAD</b></td><td>Skin breakdown from incontinence.</td><td>Comfort Shield, PrimoFit / PrimaFit</td></tr>
+        <tr><td><b>CLABSI</b></td><td>Bloodstream infection from a central line.</td><td>CHG cloths (per ICU protocol)</td></tr>
+        <tr><td><b>Basin contamination</b></td><td>Reusable bath basins can harbor germs.</td><td>Comfort Bath disposable washcloths</td></tr>
+      </tbody>
+    </table></div>
   </section>
+
+  <section class="card">
+    <h2>Who you'll sell to</h2>
+    <ul>
+      <li><b>Users:</b> bedside nurses, nurse aides (CNAs), OR and pre-op staff.</li>
+      <li><b>Influencers / champions:</b> infection preventionists, wound care (WOC) nurses, nurse educators, safe patient handling coordinators, respiratory therapists.</li>
+      <li><b>Decision makers:</b> CNO and nurse managers, the value analysis committee (VAC) that approves new products, supply chain, and GPOs (group purchasing organizations like HealthTrust, Vizient, Premier).</li>
+    </ul>
+    <h3>The value story in one line</h3>
+    <div class="script">Prevent a costly hospital-acquired condition → better patient outcomes and fewer extra days → lower cost → build it into the protocol so it's done consistently.</div>
+  </section>
+
+  <section class="card">
+    <h2>Competitors (know the names)</h2>
+    <ul>
+      <li><b>Medline:</b> broad competitor across bathing, skin care and incontinence.</li>
+      <li><b>BD:</b> PureWick external female catheter (competes with PrimaFit).</li>
+      <li><b>Mölnlycke:</b> pressure injury and positioning products.</li>
+      <li><b>HoverTech:</b> air transfer and repositioning (competes with MATS / AirTAP).</li>
+      <li><b>Solventum (formerly 3M Health Care):</b> skin prep and infection prevention.</li>
+    </ul>
+    <p class="muted">In an interview, never trash a competitor. Say "they make good products. Here's where we focus…"</p>
+  </section>
+  <div data-done="business"></div>
 </template>
 
+<!-- ========== 2. PRODUCTS ========== -->
 <template id="t-products">
   <section class="card">
-    <h2>The product families (simple version)</h2>
-    <div class="prod"><b>Oral care: Q•Care, Toothette, Corinz rinse</b><br>Kits for cleaning patients' mouths, including patients on ventilators.<div class="why">Problem: hospital pneumonia (VAP / HAP)</div></div>
-    <div class="prod"><b>2% CHG cloths</b><br>Antiseptic wipes patients use before surgery (night before and morning of). Rinse-free, active on skin for up to 6 hours.<div class="why">Problem: surgical site infections</div></div>
-    <div class="prod"><b>Comfort Bath</b><br>Pre-moistened, rinse-free bathing washcloths that replace basins and soap.<div class="why">Problem: germs in bath basins, nurse time</div></div>
-    <div class="prod"><b>Comfort Shield</b><br>Cleansing cloths with a barrier cream (3% dimethicone) for patients who are incontinent.<div class="why">Problem: skin damage from incontinence (IAD)</div></div>
-    <div class="prod"><b>Prevalon heel protectors</b><br>Soft boots that float the heel off the bed.<div class="why">Problem: heel pressure injuries (the heel is the 2nd most common spot)</div></div>
-    <div class="prod"><b>Prevalon TAP &amp; AirTAP</b><br>Turn-and-position systems. AirTAP uses air so staff can move patients with much less force.<div class="why">Problem: pressure injuries <i>and</i> caregiver back injuries</div></div>
-    <div class="prod"><b>MATS (Mobile Air Transfer System)</b><br>An air mattress that floats patients for bed-to-stretcher or OR-table transfers.<div class="why">Problem: caregiver injuries during transfers</div></div>
-    <div class="prod"><b>PrimoFit (men) &amp; PrimaFit (women)</b><br>External devices that use gentle suction to pull urine away, with no catheter inside the body.<div class="why">Problem: catheter infections (CAUTI) and wet skin</div></div>
+    <h2>Product families</h2>
+    <p class="muted">Tap a product to see what it does, the problem it solves, and a talking point.</p>
+    <div id="prodList"></div>
   </section>
   <section class="card">
-    <h2>Quick memory trick</h2>
-    <p><span class="pill">Mouth → Oral care</span><span class="pill">Skin before surgery → CHG</span><span class="pill">Bathing → Comfort Bath</span><span class="pill">Incontinence → Comfort Shield / PrimoFit</span><span class="pill">Heels → Prevalon boots</span><span class="pill">Turning &amp; moving → TAP / AirTAP / MATS</span></p>
-    <p class="tip">Want more depth? Product pages: <a href="https://www.stryker.com/us/en/sage/products/sage-oral-hygiene-tools.html" target="_blank" rel="noopener">oral care</a>, <a href="https://stryker.com/us/en/sage/products/sage-heel-protector-ii.html" target="_blank" rel="noopener">heel protector</a>, <a href="https://www.stryker.com/us/en/sage/products/sage-airtap-xxl.html" target="_blank" rel="noopener">AirTAP</a>, <a href="https://www.stryker.com/us/en/sage/products/sage-primafit.html" target="_blank" rel="noopener">PrimaFit</a>, <a href="https://www.stryker.com/us/en/sage/products/sage-barrier-cream-cloths.html" target="_blank" rel="noopener">Comfort Shield</a>.</p>
+    <h2>Flashcards</h2>
+    <div class="flash" id="flash"><div class="inner"><div class="face front" id="fFront"></div><div class="face back" id="fBack"></div></div></div>
+    <div class="row"><button class="btn" id="fPrev">← Prev</button><button class="btn" id="fNext">Next →</button><button class="btn" id="fShuf">Shuffle</button><span class="muted" id="fCount"></span></div>
   </section>
+  <div data-done="products"></div>
 </template>
 
-<template id="t-intro">
+<!-- ========== 3. SELLING ========== -->
+<template id="t-selling">
   <section class="card">
     <h2>Introducing yourself to a nurse</h2>
-    <p>Nurses are busy. Keep it short, respect their time, and make it about their patients, not your products.</p>
     <div class="script">"Hi, I'm [Name], I'm with Stryker Sage. We work with nursing teams on things like pressure injury prevention and safe patient handling. I know you're busy, so I won't take much time. Do you have two minutes, or is there a better time to catch you?"</div>
   </section>
   <section class="card">
     <h2>The 5-step conversation</h2>
     <ol>
-      <li><b>Respect their time.</b> Ask permission to talk.</li>
-      <li><b>Acknowledge what they already do.</b> "It's great you already have a protocol."</li>
-      <li><b>Ask, don't pitch.</b> One open question: "What's the hardest part of…?"</li>
-      <li><b>Connect to safety.</b> Tie their answer to patient safety <i>and</i> caregiver safety.</li>
-      <li><b>Earn the next step.</b> Offer something small: a demo, a trial, an in-service.</li>
+      <li><b>Respect their time.</b> Ask permission.</li>
+      <li><b>Acknowledge what they already do.</b> "It's great that you already have a protocol."</li>
+      <li><b>Discover before you pitch.</b> Ask one open question, then listen.</li>
+      <li><b>Connect to what matters.</b> Patient safety, caregiver safety, time, cost.</li>
+      <li><b>Earn a small next step.</b> Demo, trial, in-service, or meeting with the educator.</li>
     </ol>
   </section>
   <section class="card">
-    <h2>Good questions to have ready</h2>
+    <h2>Discovery questions</h2>
     <ul>
       <li>"What does your current process look like for…?"</li>
       <li>"Where does that process tend to break down on a busy shift?"</li>
       <li>"How many staff does it usually take to reposition a larger patient?"</li>
       <li>"Has your unit had any staff injuries from lifting or turning?"</li>
-      <li>"What would make this easier for your team?"</li>
+      <li>"How are your pressure injury / pneumonia rates trending?"</li>
+      <li>"If you could fix one thing about how your team does this, what would it be?"</li>
     </ul>
   </section>
   <section class="card">
-    <h2>Avoid</h2>
-    <ul>
-      <li>Leading with a product pitch before you know their problem.</li>
-      <li>Arguing when they say "we already have something."</li>
-      <li>Making clinical promises. Share what Stryker's materials say and offer to send the evidence.</li>
-    </ul>
+    <h2>Objection handling (Acknowledge → Ask → Answer → Advance)</h2>
+    <details><summary>"We already have a protocol."</summary><p>"That's great, and consistency is everything in prevention. Can I ask, are there any challenges your team still runs into following it on a busy shift?"</p></details>
+    <details><summary>"Your product costs more."</summary><p>"I understand, budgets are tight. Can I ask what one pressure injury or infection costs your unit in extra days and treatment? Our goal is to lower the total cost of care, not just the price of the item. Would it help to look at your numbers together?"</p></details>
+    <details><summary>"We use another brand and it's fine."</summary><p>"That makes sense, and if it's working I'd never want to disrupt that. What do you like most about it? Is there anything you'd change if you could?"</p></details>
+    <details><summary>"I don't have time."</summary><p>"Totally understand, patients come first. When's a better time, or could I join a staff huddle for five minutes this week?"</p></details>
+    <details><summary>"Nurses won't use it."</summary><p>"That's a real concern, and adoption is where most products fail. What's gotten in the way with new products before? We provide in-services and follow-up on every shift to make it easy."</p></details>
   </section>
+  <div data-done="selling"></div>
 </template>
 
+<!-- ========== 4. INTERVIEW Qs ========== -->
+<template id="t-interview">
+  <section class="card">
+    <h2>Panel interview questions</h2>
+    <p class="muted">Try answering out loud first, then open the question to see a strong framework and example. Use STAR for behavioral questions: <b>S</b>ituation, <b>T</b>ask, <b>A</b>ction, <b>R</b>esult.</p>
+    <div id="qList"></div>
+  </section>
+  <section class="card">
+    <h2>Questions to ask the panel</h2>
+    <ul>
+      <li>"What separates the top performers on this team from everyone else?"</li>
+      <li>"What does success look like in the first 90 days?"</li>
+      <li>"Which Sage products are growing fastest in this territory right now?"</li>
+      <li>"What's the biggest challenge facing the team this year?"</li>
+      <li>"How does the Sage team work with the Stryker Medical capital reps?"</li>
+      <li>Close: "Is there anything about my background that makes you hesitant? I'd love the chance to address it."</li>
+    </ul>
+  </section>
+  <section class="card">
+    <h2>Day-of checklist</h2>
+    <ul>
+      <li>Bring a printed 30-60-90 day plan.</li>
+      <li>Know your 30-second Sage pitch and 3 products cold.</li>
+      <li>Have 3 STAR stories ready: competition/winning, rejection/resilience, teamwork.</li>
+      <li>Research your panel on LinkedIn.</li>
+      <li>Ask for the job at the end, and send a thank-you within 24 hours.</li>
+    </ul>
+  </section>
+  <div data-done="interview"></div>
+</template>
+
+<!-- ========== 5. PRACTICE ========== -->
 <template id="t-practice">
   <section class="card" id="pick">
-    <h2>Practice with a nurse</h2>
-    <p>Pick a scenario. The nurse says something, you type how you'd respond, and your coach scores it out of 10, tells you what worked and how to make it stronger, then the nurse responds and you keep going.</p>
+    <h2>Practice with a coach</h2>
+    <p>Pick a mode and a scenario. You type your answer, the coach scores it out of 10, tells you what you did well and how to make it stronger, shows you a stronger version, and then the conversation continues.</p>
+    <div class="modes" id="modes"></div>
     <div id="scenList"></div>
   </section>
   <section class="card" id="chat" hidden>
-    <div class="row" style="justify-content:space-between"><h2 id="chatTitle" style="margin:0"></h2><button class="btn" id="back">← Scenarios</button></div>
+    <div class="row" style="justify-content:space-between"><h2 id="chatTitle" style="margin:0"></h2><button class="btn" id="back">← Back</button></div>
     <p class="muted" id="chatSetup"></p>
     <div id="log"></div>
     <form id="form">
-      <textarea id="answer" placeholder="Type what you'd say to the nurse…"></textarea>
+      <textarea id="answer" placeholder="Type your answer…"></textarea>
       <div class="row" style="margin-top:8px"><button class="btn primary" id="send" type="submit">Get feedback</button><button class="btn" type="button" id="hint">Show a tip</button><span class="muted" id="status"></span></div>
     </form>
   </section>
 </template>
 
+<!-- ========== 6. QUIZ ========== -->
+<template id="t-quiz">
+  <section class="card">
+    <h2>Knowledge check</h2>
+    <p class="muted">Get 100% before your interview.</p>
+    <div id="quiz"></div>
+    <div class="row"><strong id="qScore"></strong><button class="btn" id="qReset">Retake</button></div>
+  </section>
+</template>
+
 <script>
-const SCENARIOS=[
- {id:"cold",title:"First hello on the unit",setup:"You walk onto a med-surg floor and approach the charge nurse at the station.",
-  open:"Hi… can I help you? We're kind of in the middle of shift change.",tip:"Introduce yourself in one sentence, acknowledge they're busy, and ask for a better time or two minutes."},
- {id:"protocol",title:"\"We already have a protocol\"",setup:"You asked a med-surg nurse about pressure injury prevention.",
-  open:"We already have a turning protocol and our staff is trained on it. I'm not sure we need anything new.",tip:"Don't argue. Praise the protocol, then ask where it gets hard to follow on a busy shift."},
- {id:"heavy",title:"Heavier patients are hard to move",setup:"Follow-up conversation with an ICU nurse.",
-  open:"We sometimes struggle to reposition heavier patients because it takes multiple staff members, and it can be physically demanding.",tip:"Show empathy, ask one follow-up question (how many staff, any injuries?), and connect it to patient AND caregiver safety before mentioning a product."},
- {id:"what",title:"\"So what does Sage do?\"",setup:"A new nurse manager has never heard of Stryker Sage.",
-  open:"Sorry, I've heard of Stryker beds, but what's Sage? What do you guys actually do?",tip:"Give a simple one-to-two sentence answer about preventing hospital-acquired conditions, then ask about their unit's priorities."},
- {id:"oral",title:"Oral care isn't getting done",setup:"Talking with an infection preventionist.",
-  open:"Honestly, oral care for non-ventilated patients falls to the bottom of the list. Nurses just don't have time.",tip:"Agree it's hard, ask what gets in the way, and connect oral care to pneumonia risk on every unit."},
- {id:"price",title:"\"Your product costs more\"",setup:"A nurse manager is looking at a quote.",
-  open:"These look nice, but they cost more than what we're using now. Our budget is tight.",tip:"Acknowledge the budget, then shift to the cost of the problem (a pressure injury or infection) versus the cost of prevention. Ask what their current rates look like."},
- {id:"brand",title:"\"We use another brand\"",setup:"Wound care nurse who's happy with a competitor.",
-  open:"We already use another company's heel boots and they're fine.",tip:"Respect their choice, ask what they like about it and whether there's anything they'd change."},
- {id:"busy",title:"\"I don't have time for this\"",setup:"A busy bedside nurse mid-shift.",
-  open:"Look, I've got six patients right now. I really don't have time for a sales pitch.",tip:"Respect it immediately. Ask for a better time or offer to come to a huddle or staff meeting instead."}
+// ---------------- DATA ----------------
+const SG="https://www.stryker.com";
+const TABS=[["business","1 · The business"],["products","2 · Products"],["selling","3 · Selling"],["interview","4 · Interview Qs"],["practice","5 · Practice"],["quiz","6 · Quiz"]];
+
+const PRODUCTS=[
+ {n:"Oral care: Q•Care, Toothette, Corinz",what:"Oral cleansing and suction kits. Q•Care is a 24-hour system for ventilated patients. Continue Care and Self Oral Care are for non-ventilated patients. Corinz is the antiseptic rinse.",prob:"Hospital pneumonia (VAP, HAP, NV-HAP)",talk:"Stryker cites a study showing a 70% decrease in NV-HAP with an oral care protocol. Pneumonia can happen on every unit, not just the ICU.",url:SG+"/us/en/sage/products/sage-oral-hygiene-systems-for-non-ventilated-patients.html"},
+ {n:"Sage 2% CHG cloths",what:"Rinse-free antiseptic cloths patients use the night before and morning of surgery. 500 mg CHG per cloth, active on the skin up to 6 hours, no benzalkonium chloride.",prob:"Surgical site infections (SSI); CHG bathing in ICU protocols (CLABSI)",talk:"Pre-moistened cloths make dosing consistent and easy for patients to use at home.",url:SG+"/us/en/sage/news/2024/2-percent-chlorhexidine-gluconate-cloth-ssi-prevention.html"},
+ {n:"Comfort Bath",what:"Pre-moistened, rinse-free bathing washcloths with aloe and vitamin E. They replace soap, water and basins.",prob:"Basin contamination, nurse time, patient dignity",talk:"Reusable basins can harbor germs. Disposable cloths are faster and more consistent. (Not a CHG product.)",url:"https://homecare.stryker.com/store/c/33-Comfort-Bath.aspx"},
+ {n:"Comfort Shield",what:"Barrier cream cloths (3% dimethicone) that clean, deodorize and protect skin in one step.",prob:"Incontinence-associated dermatitis (IAD)",talk:"One step instead of three (cleanse, moisturize, protect) saves nurse time and improves consistency.",url:SG+"/us/en/sage/products/sage-barrier-cream-cloths.html"},
+ {n:"Prevalon heel protectors",what:"Soft boots that float the heel off the bed. Compatible with SCDs. Heel Protector III also helps prevent the leg rolling outward.",prob:"Heel pressure injuries (the heel is the 2nd most common site)",talk:"Offloads the heel and reduces the risk of foot drop. For in-bed use only.",url:"https://stryker.com/us/en/sage/products/sage-heel-protector-ii.html"},
+ {n:"Prevalon TAP (Turn and Position)",what:"A turning and positioning system with a glide sheet and wedges that keep patients in position.",prob:"Pressure injuries; inconsistent turning",talk:"Makes it easier to turn patients properly and keep them in position between turns.",url:SG+"/us/en/sage/products/sage-tap-lc.html"},
+ {n:"Prevalon AirTAP",what:"Air-assisted repositioning. Air reduces the force needed to move patients. XXL version for larger patients.",prob:"Pressure injuries AND caregiver back injuries",talk:"Solves two problems at once: protects patient skin and protects staff. Great for heavier patients that take multiple staff to move.",url:SG+"/us/en/sage/products/sage-airtap-xxl.html"},
+ {n:"MATS (Mobile Air Transfer System)",what:"An inflatable mattress that floats patients on air for lateral transfers, e.g., bed to stretcher. Multi-Position MATS works on the OR table.",prob:"Caregiver injuries during transfers",talk:"Fewer staff needed and less strain on every transfer.",url:SG+"/content/dam/stryker/sage/products/multi-position-mats/resources/Sage-Multi-Position-MATS-brochure.pdf"},
+ {n:"PrimoFit / PrimaFit / PrimoFit Flow",what:"External urine management with gentle suction, no catheter inside the body. PrimoFit is for male anatomy, PrimaFit for female anatomy. PrimoFit Flow (2026) adds a foam stabilizer.",prob:"CAUTI; wet skin and IAD",talk:"A non-invasive alternative to an indwelling catheter supports CAUTI-reduction programs.",url:SG+"/us/en/sage/products/sage-primafit.html"}
 ];
 
-const COACH=`You are a friendly, encouraging sales coach training a new Stryker Sage medical sales rep. Stryker Sage (part of Stryker's Medical division, acquired 2016) makes single-use products that help nurses prevent hospital-acquired conditions and protect caregivers: oral care (Q•Care, Toothette, Corinz) for pneumonia/VAP/HAP; 2% CHG cloths for surgical site infection; Comfort Bath bathing cloths; Comfort Shield barrier cream cloths for incontinence-associated dermatitis; Prevalon heel protectors and TAP / AirTAP turn-and-position systems for pressure injuries and caregiver safety; MATS air transfer; PrimoFit/PrimaFit external urine management for CAUTI.
-Good rep behaviour: respect the nurse's time, acknowledge what they already do, show empathy, ask ONE open discovery question before pitching, connect to patient safety AND caregiver safety and cost, avoid arguing and avoid unsupported clinical promises, earn a small next step.
-You also play the nurse. Keep the nurse realistic, busy, a bit skeptical but fair. The nurse's next line should react naturally to what the rep actually said and open a new, slightly harder challenge.
-Return ONLY JSON with these keys:
-{"score": number 1-10 (halves allowed, be honest: 9+ is excellent),
- "summary": one short sentence verdict,
- "did_well": array of 2-3 short bullet strings,
- "improve": 1-3 short sentences on how to make it stronger,
- "stronger": an example stronger response in quotes-free plain text, 2-4 sentences, sounding natural,
- "nurse_next": the nurse's next line of dialogue,
- "next_task": one sentence telling the rep what to aim for in their next reply}`;
+const QUESTIONS=[
+ {q:"Tell me about yourself.",f:"Present → Past → Future, in 60–90 seconds, ending on why this role.",a:"\"Right now I [current role], where I [one result with a number]. Before that I [relevant experience showing competitiveness, coachability or relationship-building]. What I've learned is that I'm at my best when I'm building relationships and driving results, and that's why I'm excited about Stryker Sage: I'd get to do that with nurses while preventing real harm to patients.\""},
+ {q:"What do you know about Stryker Sage?",f:"Use your 30-second pitch, then add one detail that shows you did homework.",a:"\"Sage is part of Stryker's Medical division and makes single-use products that help prevent hospital-acquired conditions like pneumonia, surgical site infections, pressure injuries and CAUTI, and that protect caregivers. Stryker acquired Sage in 2016, and I like that it pairs Medical's capital equipment with products hospitals use every day. I was especially interested in AirTAP because it protects both the patient and the nurse.\""},
+ {q:"Why Stryker? Why this role?",f:"Mission + culture + the specific role. Make it personal.",a:"\"Three reasons. First, the mission: 'Together with our customers, we make healthcare better.' With Sage, prevention is something you can actually measure. Second, the culture: Stryker is known for being competitive and performance-driven, and that's where I do my best work. Third, the role: I'd be in front of nurses every day, helping them solve real problems. That's the kind of selling I want to do.\""},
+ {q:"Why medical sales?",f:"Purpose + competition + relationships. Avoid saying 'money' first.",a:"\"I want a career where winning means something. In medical sales, if I do my job well, a patient avoids a bedsore or an infection. I'm also competitive, and I like that results are measurable. And I enjoy building long-term relationships, which is what this job is built on.\""},
+ {q:"Tell me about a time you faced rejection.",f:"STAR. Show resilience and what you changed.",a:"Situation: a goal or pitch that got a 'no'. Task: what you needed to achieve. Action: how you asked for feedback, adjusted your approach and followed up. Result: the eventual win or lesson, with a number if possible. End with: \"I learned a 'no' usually means 'not yet' or 'not like that'.\""},
+ {q:"Tell me about a time you were competitive / exceeded a goal.",f:"STAR with a number. Rank, %, or dollar figure.",a:"Pick a story where you were measured: sales, sports, rankings, school. Show the plan you made, the extra effort, and the measurable result (\"#1 of 12\", \"130% of target\")."},
+ {q:"Sell me this heel protector.",f:"Don't pitch first. Ask questions, then tie the features to their problem, then close.",a:"\"Before I tell you about it, can I ask a couple of questions? How often are you seeing heel pressure injuries on your unit? What are you using now? … So it sounds like consistency is the challenge. The Prevalon heel protector floats the heel completely off the bed, works with SCDs, and helps prevent foot drop, so it protects the heel even between turns. Would it make sense to trial it on your unit for 30 days?\""},
+ {q:"A nurse says she doesn't want to change products. What do you do?",f:"Acknowledge → Ask → Answer → Advance.",a:"\"I'd respect that. Nurses are busy and change is hard. I'd ask what she likes about her current process and whether there are any gaps. If there's a real need, I'd offer something small like a short in-service or trial, and get her input so it's her win, not my pitch.\""},
+ {q:"How would you get a product approved at a hospital?",f:"Show you understand the stakeholders and the VAC process.",a:"\"Start with the clinical champion, usually a nurse educator, wound care nurse or infection preventionist, who sees the problem. Build the clinical and financial case together: current rates, cost per event, and the evidence. Then bring it to the value analysis committee with supply chain, check the GPO contract, run a trial, and support adoption with in-services on every shift.\""},
+ {q:"What would your first 30-60-90 days look like?",f:"Learn → Build relationships → Win.",a:"\"30 days: learn the products, complete training, shadow top reps, and map my accounts and key contacts. 60 days: meet nurse leaders, educators and infection prevention at every key account, and find two or three opportunities. 90 days: run my first trials and in-services and have a pipeline with clear next steps.\""},
+ {q:"How do you handle a nurse who's too busy to talk?",f:"Respect, flexibility, persistence.",a:"\"Patients always come first, so I'd ask for a better time and come back when it works for her, for example at a huddle or a staff meeting. I'd be persistent but never pushy. Being helpful and showing up consistently is how you earn time with busy clinicians.\""},
+ {q:"What's your biggest weakness?",f:"A real weakness + what you're doing about it.",a:"\"I can be impatient to see results, so I sometimes want to move faster than the customer. I've learned to slow down, ask more questions and let the customer set the pace. It's made me a better listener.\""}
+];
 
-// ---------- routing ----------
-const VIEWS=["basics","products","intro","practice"];
-function cur(){const h=location.hash.slice(1);return VIEWS.includes(h)?h:"basics";}
+const SCENARIOS={
+ nurse:[
+  {id:"cold",title:"First hello on the unit",setup:"You walk onto a med-surg floor and approach the charge nurse.",open:"Hi… can I help you? We're kind of in the middle of shift change.",tip:"Introduce yourself in one sentence, acknowledge they're busy, and ask for a better time or two minutes."},
+  {id:"protocol",title:"\"We already have a protocol\"",setup:"You asked a med-surg nurse about pressure injury prevention.",open:"We already have a turning protocol and our staff is trained on it. I'm not sure we need anything new.",tip:"Don't argue. Praise the protocol, then ask where it gets hard to follow on a busy shift."},
+  {id:"heavy",title:"Heavier patients are hard to move",setup:"Follow-up conversation with an ICU nurse.",open:"We sometimes struggle to reposition heavier patients because it takes multiple staff members, and it can be physically demanding.",tip:"Show empathy, ask ONE follow-up question (how many staff? any injuries?), and connect it to patient AND caregiver safety before mentioning a product."},
+  {id:"what",title:"\"So what does Sage do?\"",setup:"A new nurse manager has never heard of Stryker Sage.",open:"I've heard of Stryker beds, but what's Sage? What do you guys actually do?",tip:"Simple one-to-two sentence answer about preventing hospital-acquired conditions, then ask about their unit's priorities."},
+  {id:"oral",title:"Oral care isn't getting done",setup:"Talking with an infection preventionist.",open:"Honestly, oral care for non-ventilated patients falls to the bottom of the list. Nurses just don't have time.",tip:"Agree it's hard, ask what gets in the way, and connect oral care to pneumonia risk on every unit."},
+  {id:"price",title:"\"Your product costs more\"",setup:"A nurse manager is looking at a quote.",open:"These look nice, but they cost more than what we're using now. Our budget is tight.",tip:"Acknowledge the budget, then shift to the cost of the problem (a pressure injury or infection) versus the cost of prevention."},
+  {id:"brand",title:"\"We use another brand\"",setup:"Wound care nurse who's happy with a competitor.",open:"We already use another company's heel boots and they're fine.",tip:"Respect their choice, ask what they like about it and whether there's anything they'd change."},
+  {id:"busy",title:"\"I don't have time for this\"",setup:"A busy bedside nurse mid-shift.",open:"Look, I've got six patients right now. I really don't have time for a sales pitch.",tip:"Respect it immediately. Ask for a better time or offer to come to a huddle instead."}
+ ],
+ panel:[
+  {id:"p-mix",title:"Full mock panel interview",setup:"A district sales manager and a senior Sage rep interview you. They'll ask a mix of questions.",open:"Thanks for coming in. Let's start simple: tell us a little about yourself.",tip:"Present → Past → Future in about 60–90 seconds, and finish with why Stryker Sage."},
+  {id:"p-know",title:"\"What do you know about us?\"",setup:"The hiring manager is testing your homework.",open:"So, what do you know about Stryker Sage and what we do?",tip:"Use the 30-second pitch: Medical division, prevention of hospital-acquired conditions, 2–3 example products, caregiver safety."},
+  {id:"p-sell",title:"\"Sell me this AirTAP\"",setup:"The senior rep plays a skeptical ICU nurse manager.",open:"Okay, pretend I'm an ICU nurse manager. Sell me on AirTAP.",tip:"Ask discovery questions before pitching. Find the pain (heavy patients, staff injuries), then connect the features, then ask for a trial."},
+  {id:"p-why",title:"\"Why should we hire you?\"",setup:"End of the interview.",open:"We've got a lot of strong candidates. Why should we hire you over them?",tip:"Three reasons backed by evidence (results, drive, coachability), tie them to the role, then ask for the job."}
+ ],
+ explain:[
+  {id:"e-30",title:"Explain Stryker Sage in 30 seconds",setup:"Practice your elevator pitch. The coach grades accuracy, clarity and confidence.",open:"In about 30 seconds, explain what Stryker Sage is and what it does.",tip:"Medical division → single-use prevention products → the problems (pneumonia, SSI, pressure injuries, CAUTI, caregiver safety) → example products."},
+  {id:"e-why",title:"Why did Stryker buy Sage?",setup:"Show business understanding.",open:"Why do you think Stryker acquired Sage, and how does it fit the business?",tip:"$2.775B in 2016; consumables + capital equipment; recurring revenue; complete patient-safety solution in the Medical division."},
+  {id:"e-prod",title:"Match a product to a problem",setup:"The coach names a problem; you name the product and explain it.",open:"A hospital has rising heel pressure injuries and their staff are getting hurt turning patients. What Sage products would you talk about, and why?",tip:"Prevalon heel protectors for the heel; TAP / AirTAP for repositioning and caregiver safety. Explain how each one helps."}
+ ]
+};
+const MODES=[["nurse","Nurse role-play"],["panel","Mock panel interview"],["explain","Explain it"]];
+
+const QUIZ=[
+ {q:"When did Stryker acquire Sage, and for how much?",o:["2012, $1.2B","2016, $2.775B","2019, $4.7B","2021, $3.1B"],a:1},
+ {q:"Which Stryker division does Sage belong to?",o:["Orthopaedics","Medical","Neurovascular","Spine"],a:1},
+ {q:"Why was Sage a good fit for Stryker?",o:["It sells robots","It adds daily-use consumables to Medical's capital equipment","It replaces hospital beds","It sells only overseas"],a:1},
+ {q:"What does HAC stand for?",o:["Hospital-acquired condition","Health access charge","Home aide care","High acuity care"],a:0},
+ {q:"Q•Care is mainly used for…",o:["Ventilated patients' oral care","Pre-op skin prep","Heel offloading","Urine management"],a:0},
+ {q:"2% CHG cloths are mainly used to prevent…",o:["CAUTI","Surgical site infections","Falls","Pressure injuries"],a:1},
+ {q:"Which product protects both patients' skin and caregivers' backs?",o:["Comfort Bath","AirTAP","Corinz","Comfort Shield"],a:1},
+ {q:"PrimaFit is designed for…",o:["Male anatomy","Female anatomy","Ventilated patients","Heels"],a:1},
+ {q:"Comfort Shield helps prevent…",o:["Incontinence-associated dermatitis","VAP","SSI","CLABSI"],a:0},
+ {q:"The heel is the ___ most common site for pressure injuries.",o:["1st","2nd","5th","10th"],a:1},
+ {q:"Who formally approves new products in a hospital?",o:["The patient","The value analysis committee","The pharmacy","Housekeeping"],a:1},
+ {q:"Stryker's mission is…",o:["Innovation for all","Together with our customers, we make healthcare better","Patients first, always","Moving medicine forward"],a:1},
+ {q:"Best first move when a nurse says \"we already have a protocol\"?",o:["Explain why ours is better","Acknowledge it, then ask about challenges","Leave a brochure","Talk about price"],a:1},
+ {q:"Which competitor makes PureWick, which competes with PrimaFit?",o:["Medline","BD","Mölnlycke","HoverTech"],a:1}
+];
+
+// ---------------- STATE ----------------
+const KEY="sage-interview-v2";
+let st={done:{}};
+try{st=JSON.parse(localStorage.getItem(KEY))||st;}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}};
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const TRACK=["business","products","selling","interview","practice","quiz"];
+function progress(){
+  const n=TRACK.filter(k=>st.done[k]).length;
+  document.getElementById("progText").textContent=`${n} / ${TRACK.length} sections done`;
+  document.getElementById("progBar").style.width=(100*n/TRACK.length)+"%";
+}
+
+// ---------------- ROUTING ----------------
+function cur(){const h=location.hash.slice(1);return TABS.some(t=>t[0]===h)?h:"business";}
 function render(){
   const v=cur();
-  document.querySelectorAll("#tabs a").forEach(a=>{ if(a.getAttribute("href")==="#"+v) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
-  const view=document.getElementById("view");
-  view.innerHTML="";
+  document.getElementById("tabs").innerHTML=TABS.map(([id,l])=>`<a href="#${id}"${id===v?' aria-current="page"':''}>${l}${st.done[id]?" ✓":""}</a>`).join("");
+  const view=document.getElementById("view");view.innerHTML="";
   view.appendChild(document.getElementById("t-"+v).content.cloneNode(true));
-  const next=VIEWS[VIEWS.indexOf(v)+1];
-  if(next){const d=document.createElement("div");d.className="row";d.innerHTML=`<a class="btn primary" href="#${next}" style="text-decoration:none">Next: ${document.querySelector(`#tabs a[href="#${next}"]`).textContent.replace(/^\d · /,"")} →</a>`;view.appendChild(d);}
-  if(v==="practice") initPractice();
-  window.scrollTo(0,0);
+  const holder=view.querySelector("[data-done]");
+  if(holder) holder.outerHTML=doneBox(v);
+  ({products:initProducts,interview:initInterview,practice:initPractice,quiz:initQuiz})[v]?.();
+  view.querySelectorAll(".check input").forEach(cb=>cb.onchange=()=>{if(cb.checked)st.done[v]=true;else delete st.done[v];save();progress();render();});
+  const i=TABS.findIndex(t=>t[0]===v), nx=TABS[i+1];
+  if(nx){const d=document.createElement("div");d.className="row";d.style.marginTop="8px";d.innerHTML=`<a class="btn primary" href="#${nx[0]}">Next: ${nx[1].replace(/^\d · /,"")} →</a>`;view.appendChild(d);}
+  progress();window.scrollTo(0,0);
 }
+function doneBox(v){return `<label class="check"><input type="checkbox" ${st.done[v]?"checked":""}> I've got this section down</label>`;}
 window.addEventListener("hashchange",render);
 
-// ---------- practice ----------
-let sample=null, sampleReady=false;
-if(window.claude&&window.claude.use){ window.claude.use("sample").then(s=>{sample=s;sampleReady=true;}).catch(()=>{sampleReady=true;}); } else sampleReady=true;
+// ---------------- PRODUCTS ----------------
+function initProducts(){
+  document.getElementById("prodList").innerHTML=PRODUCTS.map(p=>`<details><summary>${esc(p.n)}</summary>
+   <div class="k">What it is</div><p>${esc(p.what)}</p><div class="k">Problem it solves</div><p>${esc(p.prob)}</p>
+   <div class="k">Talking point</div><p>${esc(p.talk)}</p><a href="${p.url}" target="_blank" rel="noopener">Stryker page →</a></details>`).join("");
+  let cards=PRODUCTS.map(p=>[p.n.split(":")[0],`${p.what} Problem: ${p.prob}.`]),i=0;
+  const el=document.getElementById("flash");
+  const show=()=>{el.classList.remove("flipped");document.getElementById("fFront").textContent=cards[i][0];document.getElementById("fBack").textContent=cards[i][1];document.getElementById("fCount").textContent=`${i+1} / ${cards.length} · tap to flip`;};
+  el.onclick=()=>el.classList.toggle("flipped");
+  document.getElementById("fNext").onclick=()=>{i=(i+1)%cards.length;show();};
+  document.getElementById("fPrev").onclick=()=>{i=(i-1+cards.length)%cards.length;show();};
+  document.getElementById("fShuf").onclick=()=>{cards.sort(()=>Math.random()-.5);i=0;show();};
+  show();
+}
 
-let S=null, history=[], busy=false;
-const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+// ---------------- INTERVIEW ----------------
+function initInterview(){
+  document.getElementById("qList").innerHTML=QUESTIONS.map(q=>`<details><summary>${esc(q.q)}</summary>
+   <div class="k">Framework</div><p>${esc(q.f)}</p><div class="k">Strong answer</div><p>${esc(q.a)}</p></details>`).join("")+
+   `<p class="muted" style="margin-top:10px">Want feedback on your answers? Go to <a href="#practice">Practice → Mock panel interview</a>.</p>`;
+}
+
+// ---------------- QUIZ ----------------
+function initQuiz(){
+  let right=0,answered=0;
+  const box=document.getElementById("quiz");
+  box.innerHTML=QUIZ.map((q,qi)=>`<div data-q="${qi}" style="margin-bottom:16px"><p><b>${qi+1}. ${esc(q.q)}</b></p>${q.o.map((o,oi)=>`<button class="opt" data-o="${oi}">${esc(o)}</button>`).join("")}</div>`).join("");
+  const score=()=>document.getElementById("qScore").textContent=answered?`Score: ${right} / ${QUIZ.length}`+(answered===QUIZ.length&&right===QUIZ.length?" — perfect!":""):"";
+  box.querySelectorAll("[data-q]").forEach(div=>div.onclick=e=>{
+    const b=e.target.closest(".opt");if(!b||div.dataset.done)return;div.dataset.done=1;answered++;
+    const q=QUIZ[div.dataset.q],pick=+b.dataset.o;
+    if(pick===q.a)right++;else b.classList.add("wrong");
+    div.querySelectorAll(".opt")[q.a].classList.add("correct");div.querySelectorAll(".opt").forEach(x=>x.disabled=true);
+    score();
+    if(answered===QUIZ.length&&right===QUIZ.length){st.done.quiz=true;save();progress();}
+  });
+  document.getElementById("qReset").onclick=initQuiz;score();
+}
+
+// ---------------- PRACTICE (AI coach) ----------------
+let sample=null;
+if(window.claude&&window.claude.use){window.claude.use("sample").then(s=>{sample=s;}).catch(()=>{});}
+let mode="nurse",S=null,hist=[],busy=false;
+
+const BASE=`Context: Stryker Sage (part of Stryker's Medical division; acquired from Madison Dearborn Partners for $2.775B, closed April 1 2016; Sage ~$430M sales in 2015; based in Cary, Illinois) makes single-use products that help prevent hospital-acquired conditions and protect caregivers: oral care (Q•Care for ventilated patients, Toothette, Continue Care, Self Oral Care, Corinz rinse) for VAP/HAP/NV-HAP; 2% CHG cloths for SSI; Comfort Bath bathing cloths; Comfort Shield barrier cream cloths for IAD; Prevalon heel protectors, TAP and AirTAP turn-and-position systems for pressure injuries and caregiver safety; MATS air transfer; PrimoFit (male) / PrimaFit (female) external urine management for CAUTI. Stryker mission: "Together with our customers, we make healthcare better." Values: Integrity, Accountability, People, Performance. Customers: nurses, CNAs, infection preventionists, WOC nurses, nurse educators, nurse managers/CNO, value analysis committees, GPOs.`;
+const ROLE={
+ nurse:"You are a friendly, honest sales coach training a candidate for a Stryker Sage sales job. You also play the nurse: realistic, busy, a bit skeptical but fair. Good rep behaviour: respect time, acknowledge what they already do, show empathy, ask ONE open discovery question before pitching, connect to patient safety AND caregiver safety and cost, avoid arguing and unsupported clinical claims, earn a small next step.",
+ panel:"You are a friendly, honest interview coach. You also play a Stryker Sage hiring panel (district sales manager and a senior rep). Good candidate answers are concise, specific, use STAR with measurable results for behavioral questions, show knowledge of Stryker Sage, show competitiveness, coachability and empathy for nurses, and ask for the job. The panel's next line should either probe deeper on the answer or ask the next realistic interview question.",
+ explain:"You are a friendly, honest interview coach checking whether a candidate can accurately and clearly explain Stryker Sage's business and products. Grade on accuracy (use ONLY the context facts; flag anything wrong), clarity, structure and confidence. Your next line should ask a related follow-up question that tests a different part of their knowledge."
+};
+const FORMAT=`Return ONLY JSON:
+{"score": number 1-10 (halves allowed; be honest, 9+ is excellent),
+ "summary": one short sentence verdict,
+ "did_well": array of 2-3 short strings,
+ "improve": 1-3 short sentences on how to make it stronger,
+ "stronger": an example stronger answer in natural spoken language, 2-5 sentences, no surrounding quotes,
+ "next_line": the other person's next line of dialogue,
+ "next_task": one sentence telling the candidate what to aim for in their next reply}`;
 
 function initPractice(){
-  document.getElementById("scenList").innerHTML=SCENARIOS.map(s=>`<button class="scen" data-id="${s.id}"><b>${esc(s.title)}</b><small>${esc(s.setup)}</small></button>`).join("");
-  document.getElementById("scenList").onclick=e=>{const b=e.target.closest(".scen"); if(b) start(SCENARIOS.find(s=>s.id===b.dataset.id));};
+  document.getElementById("modes").innerHTML=MODES.map(([id,l])=>`<button data-m="${id}" aria-pressed="${id===mode}">${l}</button>`).join("");
+  document.getElementById("modes").onclick=e=>{const b=e.target.closest("button");if(b){mode=b.dataset.m;initPractice();}};
+  document.getElementById("scenList").innerHTML=SCENARIOS[mode].map(s=>`<button class="scen" data-id="${s.id}"><b>${esc(s.title)}</b><small>${esc(s.setup)}</small></button>`).join("");
+  document.getElementById("scenList").onclick=e=>{const b=e.target.closest(".scen");if(b)start(SCENARIOS[mode].find(s=>s.id===b.dataset.id));};
   document.getElementById("back").onclick=()=>{document.getElementById("chat").hidden=true;document.getElementById("pick").hidden=false;};
-  document.getElementById("hint").onclick=()=>addTip(S.tipNow||S.tip);
+  document.getElementById("hint").onclick=()=>addTip(S.tipNow);
   document.getElementById("form").onsubmit=e=>{e.preventDefault();submit();};
 }
+const other=()=>mode==="nurse"?"Nurse":mode==="panel"?"Panel":"Coach";
 function start(s){
-  S={...s,tipNow:s.tip}; history=[{role:"nurse",text:s.open}];
-  document.getElementById("pick").hidden=true; document.getElementById("chat").hidden=false;
-  document.getElementById("chatTitle").textContent=s.title;
-  document.getElementById("chatSetup").textContent=s.setup;
-  document.getElementById("log").innerHTML="";
-  addBubble("nurse",s.open);
-  document.getElementById("answer").value="";
-  document.getElementById("answer").focus();
+  S={...s,tipNow:s.tip};hist=[{r:"o",t:s.open}];
+  document.getElementById("pick").hidden=true;document.getElementById("chat").hidden=false;
+  document.getElementById("chatTitle").textContent=s.title;document.getElementById("chatSetup").textContent=s.setup;
+  document.getElementById("log").innerHTML="";bubble("o",s.open);
+  document.getElementById("answer").value="";document.getElementById("answer").focus();
 }
-function addBubble(who,text){
-  const d=document.createElement("div");d.className="bubble "+(who==="nurse"?"nurse":"me");
-  d.innerHTML=`<div class="who">${who==="nurse"?"Nurse":"You"}</div>${esc(text)}`;
-  document.getElementById("log").appendChild(d); d.scrollIntoView({behavior:"smooth",block:"nearest"});
-}
+function bubble(r,t){const d=document.createElement("div");d.className="bubble "+(r==="o"?"other":"me");d.innerHTML=`<div class="who">${r==="o"?other():"You"}</div>${esc(t)}`;document.getElementById("log").appendChild(d);d.scrollIntoView({behavior:"smooth",block:"nearest"});}
 function addTip(t){const d=document.createElement("div");d.className="fb";d.innerHTML=`<h4 style="margin-top:0">Tip</h4>${esc(t)}`;document.getElementById("log").appendChild(d);d.scrollIntoView({behavior:"smooth",block:"nearest"});}
-function addFeedback(f){
+function feedback(f){
   const d=document.createElement("div");d.className="fb";
   d.innerHTML=`<div class="score">${esc(f.score)}/10</div><p>${esc(f.summary)}</p>
    <h4>What you did well</h4><ul>${(f.did_well||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
    <h4>How to make it stronger</h4><p>${esc(f.improve)}</p>
-   <h4>A stronger response could be</h4><div class="better">"${esc(f.stronger)}"</div>
+   <h4>A stronger answer could be</h4><div class="better">"${esc(f.stronger)}"</div>
    ${f.next_task?`<h4>Next</h4><p>${esc(f.next_task)}</p>`:""}`;
   document.getElementById("log").appendChild(d);
 }
-
 async function submit(){
-  const ta=document.getElementById("answer"), txt=ta.value.trim();
-  if(!txt||busy) return;
-  addBubble("me",txt); history.push({role:"rep",text:txt}); ta.value="";
-  const status=document.getElementById("status"), btn=document.getElementById("send");
-  if(!sample){
-    addTip("Live coaching isn't available in this view. Compare your answer with this tip: "+S.tipNow);
-    return;
-  }
-  busy=true; btn.disabled=true; status.textContent="Coach is reviewing…";
-  const transcript=history.map(h=>(h.role==="nurse"?"NURSE: ":"REP: ")+h.text).join("\n");
-  const prompt=`${COACH}\n\nScenario: ${S.title}. Setup: ${S.setup}\nCoaching focus for this scenario: ${S.tip}\n\nConversation so far:\n${transcript}\n\nScore and coach the REP's LAST reply, then give the nurse's next line.`;
+  const ta=document.getElementById("answer"),txt=ta.value.trim();if(!txt||busy)return;
+  bubble("me",txt);hist.push({r:"me",t:txt});ta.value="";
+  const status=document.getElementById("status"),btn=document.getElementById("send");
+  if(!sample){addTip("Live coaching isn't available in this view. Compare your answer with this tip: "+S.tipNow);return;}
+  busy=true;btn.disabled=true;status.textContent="Coach is reviewing…";
+  const convo=hist.map(h=>(h.r==="o"?other().toUpperCase():"CANDIDATE")+": "+h.t).join("\n");
+  const prompt=`${ROLE[mode]}\n\n${BASE}\n\nScenario: ${S.title}. ${S.setup}\nCoaching focus: ${S.tipNow}\n\nConversation so far:\n${convo}\n\nScore and coach the CANDIDATE's LAST reply, then give the next line.\n${FORMAT}`;
   try{
     let f;
-    try{ f=await sample.json(prompt,{cache:false}); }
-    catch(e){ if(e&&e.code) throw e; const r=await sample(prompt,{cache:false}); f=JSON.parse((r.text.match(/\{[\s\S]*\}/)||["{}"])[0]); }
-    addFeedback(f);
-    if(f.nurse_next){ history.push({role:"nurse",text:f.nurse_next}); addBubble("nurse",f.nurse_next); }
-    if(f.next_task) S.tipNow=f.next_task;
+    try{f=await sample.json(prompt,{cache:false});}
+    catch(e){if(e&&e.code)throw e;const r=await sample(prompt,{cache:false});f=JSON.parse((r.text.match(/\{[\s\S]*\}/)||["{}"])[0]);}
+    feedback(f);
+    if(f.next_line){hist.push({r:"o",t:f.next_line});bubble("o",f.next_line);}
+    if(f.next_task)S.tipNow=f.next_task;
     status.textContent="";
+    if(!st.done.practice){st.done.practice=true;save();progress();}
   }catch(e){
-    status.textContent = e&&e.code==="rate_limited" ? "Coach is busy, wait a moment and try again." : "Couldn't reach the coach. Try again.";
-    if(e&&e.code==="not_granted"){ sample=null; addTip("Live coaching wasn't allowed. Tip for this scenario: "+S.tipNow); status.textContent=""; }
-  }finally{ busy=false; btn.disabled=false; }
+    if(e&&e.code==="not_granted"){sample=null;addTip("Live coaching wasn't allowed. Tip: "+S.tipNow);status.textContent="";}
+    else status.textContent=e&&e.code==="rate_limited"?"Coach is busy. Wait a moment and try again.":"Couldn't reach the coach. Try again.";
+  }finally{busy=false;btn.disabled=false;}
 }
 
 render();
