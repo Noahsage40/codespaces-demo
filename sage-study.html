@@ -174,16 +174,33 @@ textarea{width:100%;min-height:110px;border:1px solid var(--border);border-radiu
     <div class="script">Prevent a costly hospital-acquired condition → better patient outcomes and fewer extra days → lower cost → build it into the protocol so it's done consistently.</div>
   </section>
 
-  <section class="card">
-    <h2>Competitors (know the names)</h2>
-    <ul>
-      <li><b>Medline:</b> broad competitor across bathing, skin care and incontinence.</li>
-      <li><b>BD:</b> PureWick external female catheter (competes with PrimaFit).</li>
-      <li><b>Mölnlycke:</b> pressure injury and positioning products.</li>
-      <li><b>HoverTech:</b> air transfer and repositioning (competes with MATS / AirTAP).</li>
-      <li><b>Solventum (formerly 3M Health Care):</b> skin prep and infection prevention.</li>
-    </ul>
-    <p class="muted">In an interview, never trash a competitor. Say "they make good products. Here's where we focus…"</p>
+  <section class="card" id="competitors">
+    <h2>Competitors (know them just in case)</h2>
+    <p class="muted">A panel may ask "Who are our competitors?" or a nurse may say "we use X." Know the name, what they sell, and how to respond <i>without criticizing</i>.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Sage category</th><th>Main competitors</th></tr></thead>
+      <tbody>
+        <tr><td><b>External urine management</b> (PrimaFit / PrimoFit+)</td><td><b>BD PureWick</b> (the best-known female external catheter; BD publishes bench comparisons against PrimaFit), <b>Medline Versette</b>, <b>Consure Qivi</b></td></tr>
+        <tr><td><b>Air transfer &amp; repositioning</b> (MATS, AirTAP)</td><td><b>HoverTech HoverMatt</b> (distributed by Etac), <b>Arjo AirPal</b></td></tr>
+        <tr><td><b>Turning, positioning &amp; heel offloading</b> (TAP, heel protectors)</td><td>Mölnlycke, Medline, HoverTech (positioning wedges and sheets), plus many smaller brands</td></tr>
+        <tr><td><b>Bathing, incontinence cloths, barrier creams</b></td><td>Medline (the biggest broad-line competitor), plus private-label / GPO-contracted products</td></tr>
+        <tr><td><b>CHG skin prep &amp; antiseptic cloths</b></td><td>Medline; Solventum (formerly 3M Health Care) and BD in skin prep and infection prevention more broadly</td></tr>
+        <tr><td><b>Oral care</b></td><td>Medline and other oral-care kit makers; hospitals' own toothbrush and swab supplies</td></tr>
+        <tr><td><b>Stryker Medical overall</b> (Stryker's own 10-K)</td><td>Hill-Rom (now part of Baxter), Zoll, Philips</td></tr>
+      </tbody>
+    </table></div>
+    <h3>The biggest competitor of all: "doing nothing"</h3>
+    <p>Often the real competition isn't a brand. It's a basin and soap, a pillow under the heels, an indwelling catheter, or "grab three more nurses." Your job is to show the cost of the status quo.</p>
+    <h3>How to talk about competitors</h3>
+    <ol>
+      <li><b>Never criticize.</b> "They make good products."</li>
+      <li><b>Get curious.</b> "What do you like about it? Where do you wish it worked better?"</li>
+      <li><b>Differentiate on the problem, not the product.</b> Tie Sage back to their specific gap.</li>
+      <li><b>Lean on Stryker's breadth.</b> Sage + Stryker Medical beds and stretchers + clinical education is one partner for patient safety.</li>
+      <li><b>Offer a side-by-side.</b> "Would your team be open to a demo so you can compare?"</li>
+    </ol>
+    <div class="script">Panel: "Who are our competitors?" → "In external urine management it's mainly BD's PureWick. In air transfer, HoverTech's HoverMatt and Arjo's AirPal. Across bathing and skin care, Medline is the big broad-line competitor. Honestly, the biggest competitor is often the status quo, like basin baths or pulling extra staff to turn patients. I'd never knock a competitor in front of a nurse. I'd ask what they like and where the gaps are, then show how Sage solves that specific problem."</div>
+    <p class="muted">Competitor names were checked through web searches of BD, Arjo, Etac and Stryker filings. The Mölnlycke, Medline and Solventum category fits are general industry knowledge, so confirm the details if they come up.</p>
   </section>
   <div data-done="business"></div>
 </template>
@@ -423,12 +440,15 @@ const QUESTIONS=[
  {q:"How would you get a product approved at a hospital?",f:"Show you understand the stakeholders and the VAC process.",a:"\"Start with the clinical champion, usually a nurse educator, wound care nurse or infection preventionist, who sees the problem. Build the clinical and financial case together: current rates, cost per event, and the evidence. Then bring it to the value analysis committee with supply chain, check the GPO contract, run a trial, and support adoption with in-services on every shift.\""},
  {q:"What would your first 30-60-90 days look like?",f:"Learn → Build relationships → Win.",a:"\"30 days: learn the products, complete training, shadow top reps, and map my accounts and key contacts. 60 days: meet nurse leaders, educators and infection prevention at every key account, and find two or three opportunities. 90 days: run my first trials and in-services and have a pipeline with clear next steps.\""},
  {q:"How do you handle a nurse who's too busy to talk?",f:"Respect, flexibility, persistence.",a:"\"Patients always come first, so I'd ask for a better time and come back when it works for her, for example at a huddle or a staff meeting. I'd be persistent but never pushy. Being helpful and showing up consistently is how you earn time with busy clinicians.\""},
+ {q:"Who are our competitors, and how would you sell against them?",f:"Name 2–3 by category, mention the status quo, and show you'd never trash-talk a competitor.",a:"\"In external urine management it's mainly BD's PureWick. In air transfer and repositioning, HoverTech's HoverMatt and Arjo's AirPal. Across bathing and skin care, Medline. But often the biggest competitor is the status quo. I'd never criticize a competitor. I'd ask what the customer likes and where the gaps are, then show how Sage, backed by Stryker's clinical support and broader Medical portfolio, solves that specific problem.\""},
  {q:"What's your biggest weakness?",f:"A real weakness + what you're doing about it.",a:"\"I can be impatient to see results, so I sometimes want to move faster than the customer. I've learned to slow down, ask more questions and let the customer set the pace. It's made me a better listener.\""}
 ];
 
 const SCENARIOS={
  nurse:[
   {id:"competitor",title:"⭐ Up next: \"We already use another repositioning product\"",setup:"From your practice: you've introduced Prevalon MATS and the nurse pushes back.",open:"Honestly, it sounds interesting, but we're already using another repositioning product. I'm not sure why we would switch.",tip:"Don't criticize their product. Acknowledge they have a solution, ask what they like about it, ask where they wish it worked better, and keep the door open to a demo."},
+  {id:"purewick",title:"\"We use PureWick\"",setup:"A med-surg nurse manager already uses BD's PureWick female external catheter.",open:"We switched to PureWick a couple of years ago and the nurses like it. Why would we look at PrimaFit?",tip:"Don't knock PureWick. Ask what they like, how it's going (skin, leaks, changes, cost), and whether any patients or situations are a challenge. Then offer a side-by-side trial."},
+  {id:"hover",title:"\"We have HoverMatts\"",setup:"An ICU nurse already uses HoverTech air transfer mattresses.",open:"We already have HoverMatts for transfers. I don't really see a need for another air system.",tip:"Acknowledge the investment, ask how it's working for repositioning (not just transfers), where it falls short, and keep the door open to a demo."},
   {id:"journey",title:"Full journey: pressure injuries → MATS demo",setup:"Replay your whole practice conversation with an ICU nurse, from discovery to asking for a demo.",open:"One of our biggest challenges is preventing pressure injuries in high-risk patients.",tip:"Ask open-ended 'walk me through' questions first. Find the impact (staff, time, delays), then connect a solution and ask for a demo."},
   {id:"costs",title:"\"We have to be careful about costs\"",setup:"A nurse manager raises cost early.",open:"We have to be careful about costs.",tip:"Agree it's important, connect prevention to longer stays and treatment costs, then ask about their current protocol and where it's hard to follow."},
   {id:"goodnums",title:"\"Our numbers are pretty good\"",setup:"The unit tracks pressure injuries and is doing well.",open:"We do track pressure injuries, but our numbers are pretty good. I think our biggest issue is just finding enough time and staff to reposition patients.",tip:"Congratulate them, empathize, then ask what happens when they can't find enough staff."},
@@ -471,6 +491,9 @@ const QUIZ=[
  {q:"Stryker's mission is…",o:["Innovation for all","Together with our customers, we make healthcare better","Patients first, always","Moving medicine forward"],a:1},
  {q:"Best first move when a nurse says \"we already have a protocol\"?",o:["Explain why ours is better","Acknowledge it, then ask about challenges","Leave a brochure","Talk about price"],a:1},
  {q:"Which competitor makes PureWick, which competes with PrimaFit?",o:["Medline","BD","Mölnlycke","HoverTech"],a:1},
+ {q:"HoverMatt and AirPal compete most directly with…",o:["Comfort Bath","Prevalon MATS / AirTAP","Q•Care","CHG cloths"],a:1},
+ {q:"A nurse says \"we use a competitor's product.\" Best response?",o:["Explain why it's worse","Ask what they like and where it could work better","Offer a discount","Leave"],a:1},
+ {q:"What's often the biggest \"competitor\"?",o:["Stryker Medical","The status quo (basins, pillows, extra staff)","GPOs","Nurses"],a:1},
  {q:"How is IAD different from a pressure injury?",o:["They're the same thing","IAD comes from moisture and irritants; pressure injuries come from pressure and/or shear","IAD only happens in surgery","Pressure injuries are caused by bacteria"],a:1},
  {q:"A hospital-acquired infection (HAI) is one that…",o:["The patient had on admission","Is associated with receiving healthcare and wasn't present or developing at admission","Only happens in the ICU","Is caught at home"],a:1},
  {q:"Prevalon MATS is designed to…",o:["Clean the mouth","Assist with repositioning and lateral transfers on a cushion of air","Prep skin before surgery","Manage urine"],a:1},
@@ -571,7 +594,7 @@ let sample=null;
 if(window.claude&&window.claude.use){window.claude.use("sample").then(s=>{sample=s;}).catch(()=>{});}
 let mode="nurse",S=null,hist=[],busy=false;
 
-const BASE=`Context: Stryker Sage (part of Stryker's Medical division; acquired from Madison Dearborn Partners for $2.775B, closed April 1 2016; Sage ~$430M sales in 2015; based in Cary, Illinois) makes single-use products that help prevent hospital-acquired conditions and protect caregivers: oral care (Q•Care for ventilated patients, Toothette, Continue Care, Self Oral Care, Corinz rinse) for VAP/HAP/NV-HAP; 2% CHG cloths for SSI; Comfort Bath bathing cloths; Comfort Shield barrier cream cloths for IAD; Prevalon heel protectors, TAP and AirTAP turn-and-position systems for pressure injuries and caregiver safety; MATS air transfer; PrimoFit+ (male) / PrimaFit (female) external urine management for CAUTI; also Incontinence Clean-up Cloths, Nose to Toes cleansing, Rinse-Free Shampoo Cap, Prevalon SPS, M² Microclimate Body Pads, Traptex Plumbing Protection System. Prevalon MATS assists with repositioning and lateral transfers on a cushion of air, reducing caregiver physical effort; never promise a fixed number of caregivers (depends on patient, procedure, protocol). Pressure injury risk depends on mobility, skin condition, health status and the repositioning plan. Coaching style the candidate likes: prefer open-ended 'walk me through' questions over yes/no; ask what happens when the problem occurs to uncover impact; don't jump to pricing before understanding financial impact; never criticize competitor products; sell the solution to the problem, connect clinical value to operational and financial value, and ask for a demo or trial. The candidate's name is Noah. Stryker mission: "Together with our customers, we make healthcare better." Values: Integrity, Accountability, People, Performance. Customers: nurses, CNAs, infection preventionists, WOC nurses, nurse educators, nurse managers/CNO, value analysis committees, GPOs.`;
+const BASE=`Context: Stryker Sage (part of Stryker's Medical division; acquired from Madison Dearborn Partners for $2.775B, closed April 1 2016; Sage ~$430M sales in 2015; based in Cary, Illinois) makes single-use products that help prevent hospital-acquired conditions and protect caregivers: oral care (Q•Care for ventilated patients, Toothette, Continue Care, Self Oral Care, Corinz rinse) for VAP/HAP/NV-HAP; 2% CHG cloths for SSI; Comfort Bath bathing cloths; Comfort Shield barrier cream cloths for IAD; Prevalon heel protectors, TAP and AirTAP turn-and-position systems for pressure injuries and caregiver safety; MATS air transfer; PrimoFit+ (male) / PrimaFit (female) external urine management for CAUTI; also Incontinence Clean-up Cloths, Nose to Toes cleansing, Rinse-Free Shampoo Cap, Prevalon SPS, M² Microclimate Body Pads, Traptex Plumbing Protection System. Prevalon MATS assists with repositioning and lateral transfers on a cushion of air, reducing caregiver physical effort; never promise a fixed number of caregivers (depends on patient, procedure, protocol). Pressure injury risk depends on mobility, skin condition, health status and the repositioning plan. Coaching style the candidate likes: prefer open-ended 'walk me through' questions over yes/no; ask what happens when the problem occurs to uncover impact; don't jump to pricing before understanding financial impact; never criticize competitor products; sell the solution to the problem, connect clinical value to operational and financial value, and ask for a demo or trial. The candidate's name is Noah. Competitors: BD PureWick, Medline Versette, Consure Qivi (external urine management); HoverTech HoverMatt and Arjo AirPal (air transfer/repositioning); Medline broadly (bathing, skin, CHG, incontinence); Mölnlycke (positioning/heel); Solventum (skin prep); Stryker Medical overall vs Hill-Rom/Baxter, Zoll, Philips; plus the status quo. Never criticize competitors; ask what they like and where gaps are, offer side-by-side demo. Stryker mission: "Together with our customers, we make healthcare better." Values: Integrity, Accountability, People, Performance. Customers: nurses, CNAs, infection preventionists, WOC nurses, nurse educators, nurse managers/CNO, value analysis committees, GPOs.`;
 const ROLE={
  nurse:"You are a friendly, honest sales coach training a candidate for a Stryker Sage sales job. You also play the nurse: realistic, busy, a bit skeptical but fair. Good rep behaviour: respect time, acknowledge what they already do, show empathy, ask ONE open discovery question before pitching, connect to patient safety AND caregiver safety and cost, avoid arguing and unsupported clinical claims, earn a small next step.",
  panel:"You are a friendly, honest interview coach. You also play a Stryker Sage hiring panel (district sales manager and a senior rep). Good candidate answers are concise, specific, use STAR with measurable results for behavioral questions, show knowledge of Stryker Sage, show competitiveness, coachability and empathy for nurses, and ask for the job. The panel's next line should either probe deeper on the answer or ask the next realistic interview question.",
