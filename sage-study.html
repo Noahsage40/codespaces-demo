@@ -460,11 +460,22 @@ textarea{width:100%;min-height:110px;border:1px solid var(--border);border-radiu
 
 <!-- ========== 6. QUIZ ========== -->
 <template id="t-quiz">
+  <section class="card" id="qSetup">
+    <h2>Quiz yourself on everything</h2>
+    <p class="muted">Study first, then test yourself. Pick a topic and length. Questions and answer choices are shuffled every time.</p>
+    <div class="k">Topic</div><div class="modes" id="qTopics"></div>
+    <div class="k">Length</div><div class="modes" id="qLens"></div>
+    <button class="btn primary" id="qStart">Start quiz →</button>
+    <p class="muted" id="qBest" style="margin-top:10px"></p>
+  </section>
+  <section class="card" id="qRun" hidden></section>
   <section class="card">
-    <h2>Knowledge check</h2>
-    <p class="muted">Get 100% before your interview.</p>
-    <div id="quiz"></div>
-    <div class="row"><strong id="qScore"></strong><button class="btn" id="qReset">Retake</button></div>
+    <h2>Explain it in your own words</h2>
+    <p class="muted">Like a real interview: type your answer, and the AI coach grades it out of 10 and shows what you missed. Or reveal the model answer and grade yourself. Uses the topic you picked above.</p>
+    <div class="bubble other"><div class="who">Question</div><span id="oQ"></span></div>
+    <textarea id="oA" placeholder="Type your answer like you'd say it out loud…"></textarea>
+    <div class="row" style="margin-top:8px"><button class="btn primary" id="oGrade">Grade my answer</button><button class="btn" id="oModel">Show model answer</button><button class="btn" id="oNew">New question</button><span class="muted" id="oStatus"></span></div>
+    <div id="oFb"></div>
   </section>
 </template>
 
@@ -587,31 +598,109 @@ const SCENARIOS={
 const MODES=[["nurse","Nurse role-play"],["panel","Mock panel interview"],["explain","Explain it"]];
 
 const QUIZ=[
- {q:"When did Stryker acquire Sage, and for how much?",o:["2012, $1.2B","2016, $2.775B","2019, $4.7B","2021, $3.1B"],a:1},
- {q:"Which Stryker division does Sage belong to?",o:["Orthopaedics","Medical","Neurovascular","Spine"],a:1},
- {q:"Why was Sage a good fit for Stryker?",o:["It sells robots","It adds daily-use consumables to Medical's capital equipment","It replaces hospital beds","It sells only overseas"],a:1},
- {q:"What does HAC stand for?",o:["Hospital-acquired condition","Health access charge","Home aide care","High acuity care"],a:0},
- {q:"Q•Care is mainly used for…",o:["Ventilated patients' oral care","Pre-op skin prep","Heel offloading","Urine management"],a:0},
- {q:"2% CHG cloths are mainly used to prevent…",o:["CAUTI","Surgical site infections","Falls","Pressure injuries"],a:1},
- {q:"Which product protects both patients' skin and caregivers' backs?",o:["Comfort Bath","AirTAP","Corinz","Comfort Shield"],a:1},
- {q:"PrimaFit is designed for…",o:["Male anatomy","Female anatomy","Ventilated patients","Heels"],a:1},
- {q:"Comfort Shield helps prevent…",o:["Incontinence-associated dermatitis","VAP","SSI","CLABSI"],a:0},
- {q:"The heel is the ___ most common site for pressure injuries.",o:["1st","2nd","5th","10th"],a:1},
- {q:"Who formally approves new products in a hospital?",o:["The patient","The value analysis committee","The pharmacy","Housekeeping"],a:1},
- {q:"Stryker's mission is…",o:["Innovation for all","Together with our customers, we make healthcare better","Patients first, always","Moving medicine forward"],a:1},
- {q:"Best first move when a nurse says \"we already have a protocol\"?",o:["Explain why ours is better","Acknowledge it, then ask about challenges","Leave a brochure","Talk about price"],a:1},
- {q:"Which competitor makes PureWick, which competes with PrimaFit?",o:["Medline","BD","Mölnlycke","HoverTech"],a:1},
- {q:"HoverMatt and AirPal compete most directly with…",o:["Comfort Bath","Prevalon MATS / AirTAP","Q•Care","CHG cloths"],a:1},
- {q:"A nurse says \"we use a competitor's product.\" Best response?",o:["Explain why it's worse","Ask what they like and where it could work better","Offer a discount","Leave"],a:1},
- {q:"What's often the biggest \"competitor\"?",o:["Stryker Medical","The status quo (basins, pillows, extra staff)","GPOs","Nurses"],a:1},
- {q:"How is IAD different from a pressure injury?",o:["They're the same thing","IAD comes from moisture and irritants; pressure injuries come from pressure and/or shear","IAD only happens in surgery","Pressure injuries are caused by bacteria"],a:1},
- {q:"A hospital-acquired infection (HAI) is one that…",o:["The patient had on admission","Is associated with receiving healthcare and wasn't present or developing at admission","Only happens in the ICU","Is caught at home"],a:1},
- {q:"Prevalon MATS is designed to…",o:["Clean the mouth","Assist with repositioning and lateral transfers on a cushion of air","Prep skin before surgery","Manage urine"],a:1},
- {q:"PrimoFit+ is designed for…",o:["Female anatomy","Male anatomy","Heels","Hair washing"],a:1},
- {q:"What does Traptex protect?",o:["Patient heels","Hospital plumbing","Ventilators","Surgical incisions"],a:1},
- {q:"The nurse says \"we have a limited budget.\" Best next move?",o:["Offer a payment plan right away","Ask whether they track the costs of pressure injuries or time spent repositioning","Drop your price","Move on to another product"],a:1},
- {q:"Which question uncovers the real impact of a problem?",o:["\"Do you need more than two people?\"","\"What usually happens when your team can't find enough staff?\"","\"Want to buy MATS?\"","\"Is your protocol bad?\""],a:1},
- {q:"Which is the best order for a sales conversation?",o:["Pitch → price → close","Introduce → understand protocols → identify problems → ask about impact → connect solution → explain value → ask for demo/trial","Demo → introduce → price","Price → protocol → pitch"],a:1}
+ // ---- Business ----
+ {t:"Business",q:"When did Stryker acquire Sage, and for how much?",o:["2012, $1.2B","2016, $2.775B","2019, $4.7B","2021, $3.1B"],a:1,e:"Announced early 2016, closed April 1, 2016, for $2.775 billion in cash."},
+ {t:"Business",q:"Who sold Sage to Stryker?",o:["Medline","Madison Dearborn Partners","Johnson & Johnson","Hill-Rom"],a:1,e:"Private-equity firm Madison Dearborn Partners."},
+ {t:"Business",q:"Where is Sage headquartered?",o:["Kalamazoo, Michigan","Cary, Illinois","Mahwah, New Jersey","Chicago, Illinois"],a:1,e:"Cary, Illinois. (Stryker's corporate HQ is Kalamazoo.)"},
+ {t:"Business",q:"About how much were Sage's sales the year before the deal?",o:["$43M","$430M","$4.3B","$1.2B"],a:1,e:"About $430M in 2015, up about 13%."},
+ {t:"Business",q:"Which Stryker division does Sage belong to?",o:["Orthopaedics","Medical","Neurovascular","Spine"],a:1,e:"Medical, within the MedSurg & Neurotechnology segment."},
+ {t:"Business",q:"Stryker reports two business segments. They are…",o:["Hospital and Home","MedSurg & Neurotechnology, and Orthopaedics","Capital and Disposables","US and International"],a:1,e:"Sage sits in MedSurg & Neurotechnology."},
+ {t:"Business",q:"Why was Sage a good fit for Stryker?",o:["It sells robots","It adds daily-use consumables to Medical's capital equipment","It replaces hospital beds","It sells only overseas"],a:1,e:"Consumables bring recurring revenue and complete the patient-safety offering next to beds and stretchers."},
+ {t:"Business",q:"Stryker Sage focuses on…",o:["Joint replacement","Infection prevention and injury prevention","Cardiac devices","Imaging"],a:1,e:"From your notes: infection prevention and injury prevention."},
+ {t:"Business",q:"Which is NOT one of Sage's six focus areas?",o:["Oral care","Urinary management","Joint implants","Patient turning and repositioning"],a:2,e:"The six: oral care, patient cleansing, skin prep, skin protection, turning & repositioning, urinary management."},
+ {t:"Business",q:"Sage's overall goal is to help hospitals…",o:["Sell more beds","Reduce preventable complications, improve outcomes, protect caregivers and reduce costs","Hire more nurses","Shorten surgeries"],a:1,e:"That's the overall goal from your notes."},
+ {t:"Business",q:"Stryker's mission is…",o:["Innovation for all","Together with our customers, we make healthcare better","Patients first, always","Moving medicine forward"],a:1,e:"Say it word for word in your interview."},
+ {t:"Business",q:"Stryker's values are…",o:["Integrity, Accountability, People, Performance","Speed, Quality, Price, Service","Innovation, Growth, Profit, Scale","Trust, Teamwork, Talent, Time"],a:0,e:"Integrity, Accountability, People, Performance."},
+ {t:"Business",q:"About how large were Stryker's total sales in 2025?",o:["$2.5B","$9.5B","$25.1B","$100B"],a:2,e:"About $25.1B. MedSurg & Neurotechnology was about $15.6B."},
+ {t:"Business",q:"Who formally approves new products in a hospital?",o:["The patient","The value analysis committee","The pharmacy","Housekeeping"],a:1,e:"The VAC, often with supply chain and GPO contracts involved."},
+ {t:"Business",q:"Which is a decision maker (not just a user)?",o:["Bedside nurse","CNA","Chief Nursing Officer","Patient"],a:2,e:"CNO and nurse leaders, VAC, supply chain and GPOs decide; nurses and CNAs use the products."},
+ {t:"Business",q:"Which is a key influencer / clinical champion?",o:["Infection preventionist or wound care (WOC) nurse","Hospital CFO only","Patient's family","Parking staff"],a:0,e:"Infection preventionists, WOC nurses, educators and SPHM coordinators champion products."},
+ // ---- Terms ----
+ {t:"Terms",q:"What does HAC stand for?",o:["Hospital-acquired condition","Health access charge","Home aide care","High acuity care"],a:0,e:"Preventable harms patients pick up in the hospital."},
+ {t:"Terms",q:"A hospital-acquired infection (HAI) is one that…",o:["The patient had on admission","Is associated with receiving healthcare and wasn't present or developing at admission","Only happens in the ICU","Is caught at home"],a:1,e:"Your notes' definition."},
+ {t:"Terms",q:"SSI stands for…",o:["Skin surface irritation","Surgical site infection","Systemic sepsis infection","Safe surgery initiative"],a:1,e:"An infection in the area affected by surgery: incision or deeper tissue."},
+ {t:"Terms",q:"A pressure injury is caused by…",o:["Bacteria in the mouth","Sustained pressure, often combined with shear","Moisture only","A catheter"],a:1,e:"Pressure and/or shear damage skin and underlying tissue."},
+ {t:"Terms",q:"How is IAD different from a pressure injury?",o:["They're the same thing","IAD comes from moisture and irritants; pressure injuries come from pressure and/or shear","IAD only happens in surgery","Pressure injuries are caused by bacteria"],a:1,e:"A common interview trap. Know it cold."},
+ {t:"Terms",q:"VAP stands for…",o:["Vascular access procedure","Ventilator-associated pneumonia","Visual acuity problem","Viral airway pathogen"],a:1,e:"Pneumonia in patients on a ventilator. Q•Care oral care targets it."},
+ {t:"Terms",q:"NV-HAP is…",o:["Non-ventilator hospital-acquired pneumonia","New variant hospital allergy protocol","Nurse-verified hand antiseptic","Non-visible heel pressure"],a:0,e:"It can happen on any unit, not just the ICU."},
+ {t:"Terms",q:"How does oral care help prevent pneumonia?",o:["It sterilizes the lungs","It removes plaque and secretions that can contain microbes","It replaces antibiotics","It doesn't"],a:1,e:"It addresses one risk factor for pneumonia."},
+ {t:"Terms",q:"CAUTI stands for…",o:["Catheter-associated urinary tract infection","Central airway upper tract infection","Clinical audit of urinary therapy","Chronic acute urinary tissue injury"],a:0,e:"External urine management (PrimaFit / PrimoFit+) avoids an indwelling catheter."},
+ {t:"Terms",q:"CLABSI is…",o:["A central line-associated bloodstream infection","A cleaning standard","A lab test","A type of pressure injury"],a:0,e:"CHG bathing is used in many ICU protocols."},
+ {t:"Terms",q:"SPHM stands for…",o:["Safe patient handling & mobility","Surgical prep hygiene method","Skin pressure health monitoring","Sage product hospital management"],a:0,e:"Protecting caregivers when moving patients: AirTAP, MATS."},
+ {t:"Terms",q:"\"Shear\" is…",o:["Cutting hair","Skin and tissue pulled in opposite directions, like when a patient is dragged up the bed","A disinfectant","A type of catheter"],a:1,e:"Air-assisted and glide products help reduce it."},
+ // ---- Products ----
+ {t:"Products",q:"Q•Care is mainly used for…",o:["Ventilated patients' oral care","Pre-op skin prep","Heel offloading","Urine management"],a:0,e:"A 24-hour oral care system for ventilated patients."},
+ {t:"Products",q:"What is Corinz?",o:["A heel boot","An antiseptic oral rinse","A CHG cloth","A suction canister"],a:1,e:"An all-in-one antiseptic rinse used in Sage oral care."},
+ {t:"Products",q:"2% CHG cloths are mainly used to prevent…",o:["CAUTI","Surgical site infections","Falls","Pressure injuries"],a:1,e:"Used the night before and morning of surgery."},
+ {t:"Products",q:"How much CHG is in each Sage 2% CHG cloth, and how long does it stay active?",o:["50 mg, 1 hour","500 mg, up to 6 hours","5 g, 24 hours","No CHG"],a:1,e:"500 mg per cloth, active up to 6 hours."},
+ {t:"Products",q:"Is Comfort Bath a CHG product?",o:["Yes, 2% CHG","Yes, 4% CHG","No, it's a rinse-free bathing cloth that replaces basins","Only the ICU version"],a:2,e:"The CHG cloths are a separate line."},
+ {t:"Products",q:"Sage Bath Cloths help…",o:["Cleanse patients without reusable wash basins","Turn patients","Manage urine","Prep skin before surgery"],a:0,e:"Reusable basins can harbor germs."},
+ {t:"Products",q:"Comfort Shield helps prevent…",o:["Incontinence-associated dermatitis","VAP","SSI","CLABSI"],a:0,e:"Barrier cream cloths (3% dimethicone) that protect skin from moisture and irritants."},
+ {t:"Products",q:"Incontinence Clean-up Cloths are used…",o:["Before surgery","After incontinence episodes","For oral care","For hair washing"],a:1,e:"Cleaning patients after incontinence episodes."},
+ {t:"Products",q:"Prevalon Heel Protectors help protect against…",o:["Heel pressure injuries","Pneumonia","CAUTI","SSI"],a:0,e:"The heel is the 2nd most common pressure injury site."},
+ {t:"Products",q:"The heel is the ___ most common site for pressure injuries.",o:["1st","2nd","5th","10th"],a:1,e:"Second, after the sacrum/coccyx area."},
+ {t:"Products",q:"Why shouldn't a patient walk in a Prevalon heel protector?",o:["It voids the warranty","Fall risk","It deflates","It's single-use"],a:1,e:"In-bed use only."},
+ {t:"Products",q:"Prevalon TAP is for…",o:["Oral care","Patient turning and repositioning","Skin prep","Urine management"],a:1,e:"Turn and Position system, part of injury-prevention protocols."},
+ {t:"Products",q:"Which product protects both patients' skin and caregivers' backs using air?",o:["Comfort Bath","AirTAP","Corinz","Comfort Shield"],a:1,e:"Air-assisted repositioning reduces the force needed."},
+ {t:"Products",q:"Prevalon MATS is designed to…",o:["Clean the mouth","Assist with repositioning and lateral transfers on a cushion of air","Prep skin before surgery","Manage urine"],a:1,e:"Less physical exertion for caregivers."},
+ {t:"Products",q:"PrimaFit is designed for…",o:["Male anatomy","Female anatomy","Ventilated patients","Heels"],a:1,e:"PrimaFit = female; PrimoFit+ = male."},
+ {t:"Products",q:"PrimoFit+ is designed for…",o:["Female anatomy","Male anatomy","Heels","Hair washing"],a:1,e:"External urine management for male anatomy."},
+ {t:"Products",q:"External urine management mainly supports reducing…",o:["SSI","CAUTI","VAP","Falls"],a:1,e:"It's a non-invasive alternative to an indwelling catheter."},
+ {t:"Products",q:"The Rinse-Free Shampoo Cap lets staff…",o:["Wash hair without water-based washing","Prep skin","Do oral care","Turn patients"],a:0,e:"Quick, no basin, no water."},
+ {t:"Products",q:"Sage Nose to Toes is…",o:["A heel boot","A patient cleansing solution","An oral rinse","A transfer mat"],a:1,e:"Part of the patient-cleansing line."},
+ {t:"Products",q:"M² Microclimate Body Pads help manage…",o:["Blood pressure","The skin's microclimate (heat and moisture)","Urine flow","Oral bacteria"],a:1,e:"Moisture plus pressure is a bad combination for skin."},
+ {t:"Products",q:"What does Traptex protect?",o:["Patient heels","Hospital plumbing","Ventilators","Surgical incisions"],a:1,e:"Keeps inappropriate materials from damaging plumbing when flushed."},
+ {t:"Products",q:"Prevalon SPS is part of which portfolio?",o:["Oral care","Patient safety and injury prevention","Skin prep","Bathing"],a:1,e:"Look up its current Stryker page before your interview."},
+ // ---- Selling ----
+ {t:"Selling",q:"Which is the right order for a sales conversation?",o:["Pitch → price → close","Introduce → understand protocols → identify problems → ask about impact → connect solution → explain value → ask for demo/trial","Demo → introduce → price","Price → protocol → pitch"],a:1,e:"Your 7 steps."},
+ {t:"Selling",q:"The core rule of a Sage sales conversation:",o:["Pitch first, ask later","Discover the problem, understand its impact, then present a solution","Lead with price","Bring donuts"],a:1,e:"Don't walk in and pitch."},
+ {t:"Selling",q:"Which is the BETTER discovery question?",o:["\"Do you need more than two people?\"","\"Could you walk me through how your team repositions higher-risk patients?\"","\"Want to see our product?\"","\"Is your protocol bad?\""],a:1,e:"Open-ended questions get the nurse explaining their process."},
+ {t:"Selling",q:"Which question uncovers the real impact of a problem?",o:["\"Do you need more than two people?\"","\"What usually happens when your team can't find enough staff?\"","\"Want to buy MATS?\"","\"Is your protocol bad?\""],a:1,e:"Ask what happens when the problem occurs."},
+ {t:"Selling",q:"\"We already have a protocol and our team is trained.\" Best response?",o:["Explain why ours is better","Acknowledge it, then ask about challenges following it consistently","Leave a brochure","Talk about price"],a:1,e:"Having a protocol doesn't mean there are no workflow challenges."},
+ {t:"Selling",q:"\"We have a limited budget.\" Best next move?",o:["Offer a payment plan right away","Ask whether they track the costs of pressure injuries or time spent repositioning","Drop your price","Move on to another product"],a:1,e:"Understand the financial impact before talking pricing."},
+ {t:"Selling",q:"Staffing objection: what should you explore?",o:["Their salaries","How repositioning affects workflow and caregiver workload","Their vacation schedule","Nothing"],a:1,e:"From your objection notes."},
+ {t:"Selling",q:"When introducing MATS, what should you avoid saying?",o:["It reduces physical effort","It always only needs two caregivers","It helps with lateral transfers","Would you like a demo?"],a:1,e:"Never over-promise. Staffing depends on the patient, procedure and protocol."},
+ {t:"Selling",q:"Pressure injury risk depends on…",o:["Only time in bed","Mobility, skin condition, health status and the repositioning plan","The brand of bed","Nothing"],a:1,e:"Don't oversimplify the clinical picture."},
+ {t:"Selling",q:"Which is one of the three things to remember?",o:["Always lead with price","Sell the solution to the customer's problem, not just the product","Talk more than you listen","Never ask for a demo"],a:1,e:"Also: ask questions and listen; connect clinical value to operational and financial value."},
+ {t:"Selling",q:"The best way to end a good conversation is to…",o:["Say goodbye","Ask for a product demonstration or trial","Send a brochure later","Ask for the CFO"],a:1,e:"Always earn the next step."},
+ {t:"Selling",q:"A nurse is too busy to talk. You…",o:["Keep pitching","Respect it and ask for a better time or a spot at a huddle","Go to her manager","Leave forever"],a:1,e:"Patients come first. Be persistent but never pushy."},
+ // ---- Role-plays ----
+ {t:"Role-plays",q:"Nurse: \"Sometimes repositioning patients is physically demanding for our staff.\" What did your feedback say?",o:["Pitch TAP immediately","Good product awareness, but understand their workflow before recommending","Ignore it","Ask about budget"],a:1,e:"Sage supports patient AND caregiver safety, but discover first."},
+ {t:"Role-plays",q:"Nurse: \"We usually need two or three staff… but we have a limited budget.\" Your original mistake was…",o:["Being rude","Jumping straight to pricing and payment plans","Not saying hello","Mentioning a competitor"],a:1,e:"Ask whether they track costs first."},
+ {t:"Role-plays",q:"Nurse: \"Our numbers are pretty good. The issue is finding enough time and staff.\" Best follow-up?",o:["\"Great, bye!\"","\"When your team has trouble finding enough staff, what usually happens?\"","\"Our product is better.\"","\"Let's talk price.\""],a:1,e:"Ask what happens when the problem occurs."},
+ {t:"Role-plays",q:"Nurse: \"Patients sometimes wait 30–45 minutes.\" What's the right move?",o:["Ask another question about budget","Acknowledge the impact, introduce Prevalon MATS, and ask for a demo","Say that's normal","Leave"],a:1,e:"That was your strongest response. Just don't promise a fixed number of caregivers."},
+ {t:"Role-plays",q:"Nurse: \"We already use another repositioning product.\" What should you do?",o:["Explain why theirs is worse","Acknowledge, ask what they like, find gaps, keep the door open to a demo","Offer a discount","Walk away"],a:1,e:"Your next challenge: handle it without sounding pushy."},
+ // ---- Competitors ----
+ {t:"Competitors",q:"Which competitor makes PureWick, which competes with PrimaFit?",o:["Medline","BD","Mölnlycke","HoverTech"],a:1,e:"BD PureWick is the best-known female external catheter."},
+ {t:"Competitors",q:"HoverMatt and AirPal compete most directly with…",o:["Comfort Bath","Prevalon MATS / AirTAP","Q•Care","CHG cloths"],a:1,e:"HoverMatt is HoverTech's (distributed by Etac); AirPal is Arjo's."},
+ {t:"Competitors",q:"Which company is the biggest broad-line competitor in bathing and skin care?",o:["Medline","Philips","Zoll","Arjo"],a:0,e:"Medline also has Versette in external urine management."},
+ {t:"Competitors",q:"Stryker's 10-K lists which competitors for its Medical division?",o:["Hill-Rom (now Baxter), Zoll, Philips","Apple, Google, Amazon","Medtronic only","Pfizer, Merck"],a:0,e:"Those compete with Stryker Medical overall."},
+ {t:"Competitors",q:"What's often the biggest \"competitor\"?",o:["Stryker Medical","The status quo (basins, pillows, extra staff)","GPOs","Nurses"],a:1,e:"Show the cost of doing nothing."},
+ {t:"Competitors",q:"A nurse says \"we use a competitor's product.\" Best response?",o:["Explain why it's worse","Ask what they like and where it could work better","Offer a discount","Leave"],a:1,e:"Never criticize. Get curious, find the gap, offer a side-by-side demo."},
+ // ---- Interview ----
+ {t:"Interview",q:"Best structure for \"Tell me about yourself\"?",o:["Life story from birth","Present → Past → Future, ending on why this role","List your hobbies","Read your resume"],a:1,e:"60–90 seconds."},
+ {t:"Interview",q:"STAR stands for…",o:["Sell, Talk, Ask, Repeat","Situation, Task, Action, Result","Start, Teach, Act, Review","Smile, Thank, Ask, Respond"],a:1,e:"Use it for every behavioral question, with a number in the Result."},
+ {t:"Interview",q:"\"Sell me this heel protector.\" Your first move should be…",o:["List every feature","Ask discovery questions","Name the price","Compare to competitors"],a:1,e:"Discover, then connect features to their problem, then ask for a trial."},
+ {t:"Interview",q:"A 30-60-90 day plan follows which arc?",o:["Sell → Sell → Sell","Learn → Build relationships → Win (trials, pipeline)","Rest → Learn → Quit","Price → Discount → Close"],a:1,e:"Bring a printed one."},
+ {t:"Interview",q:"How should you end the interview?",o:["Just say thanks","Ask if they have any hesitations, then ask for the job","Ask about vacation","Ask how much the rep makes"],a:1,e:"And send a thank-you within 24 hours."}
+];
+const TOPICS=["All","Business","Terms","Products","Selling","Role-plays","Competitors","Interview"];
+
+const OPEN_QS=[
+ {t:"Business",q:"In about 30 seconds, explain what Stryker Sage is and what it does.",m:"Stryker Sage is part of Stryker's Medical division and focuses on infection and injury prevention. It makes products for everyday hospital care: oral care, patient cleansing, skin prep before surgery, skin protection, turning and repositioning, and urinary management. The goal is to help hospitals reduce preventable complications, improve patient outcomes, protect caregivers, and reduce the costs of hospital-acquired infections and injuries."},
+ {t:"Business",q:"Why did Stryker buy Sage, and how does it fit the business?",m:"Stryker bought Sage in 2016 for $2.775B. Sage's daily-use consumables complement Stryker Medical's capital equipment like beds and stretchers, adding recurring revenue and letting Stryker offer a more complete patient-safety solution."},
+ {t:"Terms",q:"Explain the difference between IAD and a pressure injury.",m:"IAD (incontinence-associated dermatitis) is skin damage mainly from moisture and irritants from incontinence. A pressure injury is damage to skin or underlying tissue from sustained pressure, often combined with shear."},
+ {t:"Terms",q:"What is a hospital-acquired infection, and name two examples Sage helps address.",m:"An infection associated with receiving healthcare that wasn't present or developing at admission. Examples: surgical site infections (CHG cloths), pneumonia (oral care), CAUTI (external urine management)."},
+ {t:"Products",q:"Introduce yourself to a nurse as a Stryker Sage rep.",m:"Hi, I'm Noah with Stryker Sage, working in infection and injury prevention. We provide products that support everyday hospital care, including oral care, patient cleansing, skin preparation, and patient turning and positioning. Our goal is to help healthcare teams prevent avoidable complications, improve patient outcomes, and reduce the costs associated with hospital-acquired infections and patient injuries."},
+ {t:"Products",q:"A unit has rising heel pressure injuries and staff getting hurt turning patients. What Sage products would you discuss and why?",m:"Prevalon Heel Protectors to offload the heel; Prevalon TAP to support consistent turning and repositioning; AirTAP or MATS to reduce the physical effort for caregivers during repositioning and lateral transfers. But first I'd ask about their current protocol and workflow."},
+ {t:"Products",q:"Explain Prevalon MATS to a nurse in two sentences, without over-promising.",m:"Prevalon MATS is designed to assist with patient repositioning and lateral transfers using a cushion of air, so patients can be moved with less physical exertion. It can help reduce the physical demands on your caregivers. Staffing needs still depend on the patient, procedure and your protocol."},
+ {t:"Products",q:"What's the difference between PrimaFit and PrimoFit+, and what problem do they help with?",m:"PrimaFit is external urine management designed for female anatomy, PrimoFit+ for male anatomy. They're non-invasive alternatives to indwelling catheters that help with CAUTI-reduction efforts and keep skin dry."},
+ {t:"Selling",q:"Walk through the 7 steps of a Sage sales conversation.",m:"1) Introduce yourself and Stryker Sage. 2) Understand the hospital's current protocols. 3) Identify problems or challenges. 4) Ask questions to understand the impact. 5) Connect a relevant Sage solution. 6) Explain the potential value. 7) Ask for a product demonstration or trial."},
+ {t:"Selling",q:"Nurse: \"We already have a pressure injury protocol and our team is trained on it.\" Respond.",m:"That's great, and it's good to hear your team already has a protocol in place. I'm curious, are there any challenges your team still faces when repositioning patients or consistently following that protocol?"},
+ {t:"Selling",q:"Nurse: \"We have a limited budget, so we can't just buy new products.\" Respond.",m:"I completely understand the budget concerns. At the same time, I know preventing pressure injuries and reducing physical strain on caregivers are important priorities. Does your team currently track the costs associated with pressure injuries or the time spent repositioning patients? That could help us see whether there are opportunities to improve care while managing costs."},
+ {t:"Competitors",q:"Nurse: \"We're already using another repositioning product. Why would we switch?\" Respond.",m:"That's great that you already have a solution in place. What do you like most about it? Are there any situations where you wish it worked better, like with heavier patients or when you're short-staffed? If there's ever a gap, I'd be happy to set up a demo so your team can compare."},
+ {t:"Competitors",q:"Panel: \"Who are our competitors, and how would you sell against them?\"",m:"In external urine management, mainly BD's PureWick. In air transfer and repositioning, HoverTech's HoverMatt and Arjo's AirPal. Across bathing and skin care, Medline. Often the biggest competitor is the status quo. I'd never criticize a competitor. I'd ask what the customer likes and where the gaps are, then show how Sage solves that specific problem."},
+ {t:"Interview",q:"Panel: \"Why Stryker Sage?\"",m:"The mission, 'Together with our customers, we make healthcare better': with Sage, prevention is measurable and helps real patients. The competitive, performance-driven culture, where I do my best work. And the role: working with nurses every day to solve real problems around infection and injury prevention."}
 ];
 
 // ---------------- STATE ----------------
@@ -683,20 +772,95 @@ function initInterview(){
 }
 
 // ---------------- QUIZ ----------------
+let QZ={topic:"All",len:20,list:[],i:0,right:0,missed:[],byT:{}};
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function initQuiz(){
-  let right=0,answered=0;
-  const box=document.getElementById("quiz");
-  box.innerHTML=QUIZ.map((q,qi)=>`<div data-q="${qi}" style="margin-bottom:16px"><p><b>${qi+1}. ${esc(q.q)}</b></p>${q.o.map((o,oi)=>`<button class="opt" data-o="${oi}">${esc(o)}</button>`).join("")}</div>`).join("");
-  const score=()=>document.getElementById("qScore").textContent=answered?`Score: ${right} / ${QUIZ.length}`+(answered===QUIZ.length&&right===QUIZ.length?" — perfect!":""):"";
-  box.querySelectorAll("[data-q]").forEach(div=>div.onclick=e=>{
-    const b=e.target.closest(".opt");if(!b||div.dataset.done)return;div.dataset.done=1;answered++;
-    const q=QUIZ[div.dataset.q],pick=+b.dataset.o;
-    if(pick===q.a)right++;else b.classList.add("wrong");
-    div.querySelectorAll(".opt")[q.a].classList.add("correct");div.querySelectorAll(".opt").forEach(x=>x.disabled=true);
-    score();
-    if(answered===QUIZ.length&&right===QUIZ.length){st.done.quiz=true;save();progress();}
+  const best=st.best||{};
+  document.getElementById("qBest").innerHTML=Object.keys(best).length?"Best scores: "+Object.entries(best).map(([k,v])=>`<span class="pill">${esc(k)}: ${v}%</span>`).join(""):"";
+  document.getElementById("qTopics").innerHTML=TOPICS.map(t=>{const n=t==="All"?QUIZ.length:QUIZ.filter(q=>q.t===t).length;return `<button data-t="${t}" aria-pressed="${t===QZ.topic}">${t} (${n})</button>`;}).join("");
+  document.getElementById("qTopics").onclick=e=>{const b=e.target.closest("button");if(b){QZ.topic=b.dataset.t;initQuiz();}};
+  document.getElementById("qLens").innerHTML=[10,20,0].map(n=>`<button data-n="${n}" aria-pressed="${n===QZ.len}">${n?n+" questions":"All of them"}</button>`).join("");
+  document.getElementById("qLens").onclick=e=>{const b=e.target.closest("button");if(b){QZ.len=+b.dataset.n;initQuiz();}};
+  document.getElementById("qStart").onclick=()=>{
+    let pool=QUIZ.filter(q=>QZ.topic==="All"||q.t===QZ.topic);pool=shuffle(pool);if(QZ.len)pool=pool.slice(0,QZ.len);
+    runQuiz(pool,QZ.topic);
+  };
+  document.getElementById("qSetup").hidden=false;document.getElementById("qRun").hidden=true;
+  initOpen();
+}
+function runQuiz(list,label){
+  Object.assign(QZ,{list,i:0,right:0,missed:[],byT:{},label});
+  document.getElementById("qSetup").hidden=true;document.getElementById("qRun").hidden=false;
+  showQ();
+}
+function showQ(){
+  const box=document.getElementById("qRun");
+  if(QZ.i>=QZ.list.length) return finishQuiz();
+  const q=QZ.list[QZ.i];
+  const order=shuffle(q.o.map((o,i)=>i));
+  box.innerHTML=`<div class="row" style="justify-content:space-between"><span class="pill">${esc(q.t)}</span><span class="muted">Question ${QZ.i+1} of ${QZ.list.length} · ${QZ.right} correct</span></div>
+   <div class="bar" style="margin:8px 0 14px"><div style="width:${100*QZ.i/QZ.list.length}%"></div></div>
+   <p class="big"><b>${esc(q.q)}</b></p>
+   ${order.map(oi=>`<button class="opt" data-o="${oi}">${esc(q.o[oi])}</button>`).join("")}
+   <div id="qExp" hidden></div>
+   <div class="row" style="margin-top:10px"><button class="btn primary" id="qNext" hidden>Next →</button><button class="btn" id="qQuit">End quiz</button></div>`;
+  box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    const pick=+b.dataset.o, ok=pick===q.a;
+    const t=QZ.byT[q.t]||(QZ.byT[q.t]={r:0,n:0});t.n++;
+    if(ok){QZ.right++;t.r++;}else{b.classList.add("wrong");QZ.missed.push(q);}
+    box.querySelector(`.opt[data-o="${q.a}"]`).classList.add("correct");
+    box.querySelectorAll(".opt").forEach(x=>x.disabled=true);
+    const ex=document.getElementById("qExp");ex.hidden=false;ex.className="fb";
+    ex.innerHTML=`<b>${ok?"✓ Correct.":"✗ Not quite."}</b> ${esc(q.e||"")}`;
+    const nx=document.getElementById("qNext");nx.hidden=false;nx.textContent=QZ.i+1<QZ.list.length?"Next →":"See results";nx.focus();
   });
-  document.getElementById("qReset").onclick=initQuiz;score();
+  document.getElementById("qNext").onclick=()=>{QZ.i++;showQ();};
+  document.getElementById("qQuit").onclick=()=>{QZ.list=QZ.list.slice(0,QZ.i+ (document.getElementById("qExp").hidden?0:1));finishQuiz();};
+}
+function finishQuiz(){
+  const n=QZ.list.length, pct=n?Math.round(100*QZ.right/n):0, box=document.getElementById("qRun");
+  if(n){st.best=st.best||{};const key=QZ.label;if(!(st.best[key]>=pct))st.best[key]=pct;}
+  if(QZ.label==="All"&&n>=20&&pct>=90)st.done.quiz=true;
+  save();progress();
+  const msg=pct===100?"Perfect. You're ready.":pct>=85?"Great job, almost there.":pct>=70?"Solid. Review what you missed and go again.":"Keep studying, then retry the ones you missed.";
+  box.innerHTML=`<p class="score" style="font-size:2rem;font-weight:800;color:var(--accent);margin:0">${QZ.right} / ${n} · ${pct}%</p><p>${msg}</p>
+   <h3>By topic</h3><ul>${Object.entries(QZ.byT).map(([k,v])=>`<li>${esc(k)}: ${v.r}/${v.n}</li>`).join("")}</ul>
+   ${QZ.missed.length?`<h3>Review what you missed</h3>${QZ.missed.map(q=>`<details><summary>${esc(q.q)}</summary><p><b>Answer:</b> ${esc(q.o[q.a])}</p><p class="muted">${esc(q.e||"")}</p></details>`).join("")}`:""}
+   <div class="row" style="margin-top:12px">${QZ.missed.length?`<button class="btn primary" id="qRetry">Retry the ${QZ.missed.length} I missed</button>`:""}<button class="btn" id="qAgain">New quiz</button></div>`;
+  const r=document.getElementById("qRetry");if(r)r.onclick=()=>runQuiz(shuffle(QZ.missed),QZ.label+" (retry)");
+  document.getElementById("qAgain").onclick=initQuiz;
+}
+
+// ---- Open-answer (explain it) ----
+let OQ=null;
+function initOpen(){
+  const pick=()=>{const pool=OPEN_QS.filter(q=>QZ.topic==="All"||q.t===QZ.topic);OQ=(pool.length?pool:OPEN_QS)[Math.floor(Math.random()*(pool.length||OPEN_QS.length))];
+    document.getElementById("oQ").textContent=OQ.q;document.getElementById("oA").value="";document.getElementById("oFb").innerHTML="";document.getElementById("oStatus").textContent="";};
+  document.getElementById("oNew").onclick=pick;
+  document.getElementById("oModel").onclick=()=>{document.getElementById("oFb").innerHTML=`<div class="fb"><h4 style="margin-top:0">Model answer</h4><div class="better">${esc(OQ.m)}</div><p class="muted" style="margin-top:8px">Did yours hit the same key points? Be honest with yourself.</p></div>`;};
+  document.getElementById("oGrade").onclick=gradeOpen;
+  pick();
+}
+async function gradeOpen(){
+  const txt=document.getElementById("oA").value.trim(), out=document.getElementById("oFb"), status=document.getElementById("oStatus"), btn=document.getElementById("oGrade");
+  if(!txt)return;
+  if(!sample){document.getElementById("oModel").click();status.textContent="AI grading isn't available here. Compare with the model answer.";return;}
+  btn.disabled=true;status.textContent="Grading…";
+  const prompt=`You are an honest, encouraging interview coach for a Stryker Sage sales candidate named Noah.\n\n${BASE}\n\nQuestion: ${OQ.q}\nModel answer (key points): ${OQ.m}\n\nCandidate's answer:\n${txt}\n\nGrade accuracy (flag anything factually wrong, using only the context and model answer), completeness of key points, clarity and confidence.\nReturn ONLY JSON: {"score": number 1-10 (halves ok), "summary": one sentence, "did_well": [2-3 short strings], "missing": [key points they missed, may be empty], "improve": 1-2 sentences, "stronger": a stronger answer in natural spoken language, 2-5 sentences}`;
+  try{
+    let f;
+    try{f=await sample.json(prompt,{cache:false});}
+    catch(e){if(e&&e.code)throw e;const r=await sample(prompt,{cache:false});f=JSON.parse((r.text.match(/\{[\s\S]*\}/)||["{}"])[0]);}
+    out.innerHTML=`<div class="fb"><div class="score">${esc(f.score)}/10</div><p>${esc(f.summary)}</p>
+     <h4>What you did well</h4><ul>${(f.did_well||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+     ${(f.missing||[]).length?`<h4>Key points you missed</h4><ul>${f.missing.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}
+     <h4>How to make it stronger</h4><p>${esc(f.improve)}</p>
+     <h4>A stronger answer could be</h4><div class="better">"${esc(f.stronger)}"</div></div>`;
+    status.textContent="";
+  }catch(e){
+    if(e&&e.code==="not_granted"){sample=null;document.getElementById("oModel").click();status.textContent="";}
+    else status.textContent=e&&e.code==="rate_limited"?"Coach is busy. Try again in a moment.":"Couldn't reach the coach. Try again.";
+  }finally{btn.disabled=false;}
 }
 
 // ---------------- PRACTICE (AI coach) ----------------
