@@ -37,6 +37,33 @@ function cardHTML(cat, [name, emoji]) {
   <div class="tag"><i>${t.tag}</i>${esc(cat.title)}</div></div></body></html>`;
 }
 
+const MANIFEST_PATH = path.join(ROOT, 'sources', 'manifest.json');
+const manifest = fs.existsSync(MANIFEST_PATH) ? JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8')) : {};
+const MIME = { '.jpg': 'jpeg', '.jpeg': 'jpeg', '.png': 'png', '.webp': 'webp', '.gif': 'gif' };
+
+// Real-photo card: photo fills the card (posters sit on a blurred copy of themselves), bold title on top.
+function photoHTML(cat, [name], file) {
+  const ext = path.extname(file).toLowerCase();
+  const src = `data:image/${MIME[ext] || 'jpeg'};base64,` + fs.readFileSync(file).toString('base64');
+  const len = name.length;
+  const fs_ = len <= 10 ? 58 : len <= 16 ? 48 : len <= 24 ? 40 : len <= 34 ? 33 : 28;
+  return `<!doctype html><html><head><meta charset="utf-8"><style>
+  *{margin:0;box-sizing:border-box}
+  body{width:512px;height:512px;overflow:hidden;font-family:'Inter',sans-serif;background:#111}
+  .card{position:relative;width:512px;height:512px;overflow:hidden;background:#222}
+  .blur{position:absolute;inset:-30px;background:url('${src}') center/cover;filter:blur(22px) brightness(.55)}
+  .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center 70%}
+  .ph.cover{object-fit:cover;object-position:center 40%}
+  .shade{position:absolute;left:0;right:0;top:0;height:170px;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,0))}
+  .title{position:absolute;left:0;right:0;top:0;padding:16px 18px;text-align:center;font-weight:900;font-size:${fs_}px;line-height:1.0;
+    text-transform:uppercase;color:#fff;letter-spacing:-.5px;-webkit-text-stroke:3px #111;paint-order:stroke fill;text-shadow:0 3px 0 rgba(0,0,0,.4)}
+  .frame{position:absolute;inset:0;border:8px solid #fff}
+  </style></head><body><div class="card"><div class="blur"></div>
+  <img class="ph" id="ph" src="${src}"><div class="shade"></div><div class="title">${esc(name)}</div><div class="frame"></div></div>
+  <script>const i=document.getElementById('ph');const f=()=>{if(i.naturalWidth/i.naturalHeight>=0.78)i.classList.add('cover')};i.complete?f():i.onload=f;</script>
+  </body></html>`;
+}
+
 function stripHTML() {
   let boxes = '';
   for (let i = 1; i <= 10; i++) boxes += `<div class="b">${i}</div>`;
@@ -54,9 +81,12 @@ function stripHTML() {
   for (const cat of cats) {
     const dir = path.join(ROOT, 'lenses', cat.id);
     fs.mkdirSync(dir, { recursive: true });
+    for (const f of fs.readdirSync(dir)) if (f.endsWith('.jpg')) fs.unlinkSync(path.join(dir, f));
     for (const [i, item] of cat.items.entries()) {
-      await page.setContent(cardHTML(cat, item));
-      await page.evaluate(() => document.fonts.ready);
+      const m = manifest[`${cat.id}/${String(i + 1).padStart(2, '0')}`];
+      const photo = m && fs.existsSync(path.join(ROOT, 'sources', m.file));
+      await page.setContent(photo ? photoHTML(cat, item, path.join(ROOT, 'sources', m.file)) : cardHTML(cat, item));
+      await page.evaluate(async () => { await document.fonts.ready; await Promise.all([...document.images].map(i => i.decode().catch(() => {}))); });
       const file = path.join(dir, `${String(i + 1).padStart(2, '0')}-${slug(item[0])}.jpg`);
       await page.screenshot({ path: file, type: 'jpeg', quality: 86 });
     }

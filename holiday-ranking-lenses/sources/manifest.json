@@ -1,0 +1,56 @@
+{
+ "christmas-movies/01": {
+  "file": "christmas-movies/01.jpg",
+  "item": "Home Alone",
+  "article": "Home Alone",
+  "url": "https://upload.wikimedia.org/wikipedia/en/7/76/Home_alone_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/05": {
+  "file": "christmas-movies/05.jpg",
+  "item": "A Christmas Story",
+  "article": "A Christmas Story",
+  "url": "https://upload.wikimedia.org/wikipedia/en/6/65/A_Christmas_Story_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/06": {
+  "file": "christmas-movies/06.jpg",
+  "item": "Love Actually",
+  "article": "Love Actually",
+  "url": "https://upload.wikimedia.org/wikipedia/en/e/eb/Love_Actually_movie.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/07": {
+  "file": "christmas-movies/07.jpg",
+  "item": "Die Hard",
+  "article": "Die Hard",
+  "url": "https://upload.wikimedia.org/wikipedia/en/c/ca/Die_Hard_%281988_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/08": {
+  "file": "christmas-movies/08.jpg",
+  "item": "Jingle All the Way",
+  "article": "Jingle All the Way",
+  "url": "https://upload.wikimedia.org/wikipedia/en/c/c4/Jingle_All_the_Way_poster.JPG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/09": {
+  "file": "christmas-movies/09.jpg",
+  "item": "The Santa Clause",
+  "article": "The Santa Clause",
+  "url": "https://upload.wikimedia.org/wikipedia/en/8/86/The_Santa_Clause.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/16": {
+  "file": "christmas-movies/16.jpg",
+  "item": "Nightmare Before Christmas",
+  "article": "The Nightmare Before Christmas",
+  "url": "https://upload.wikimedia.org/wikipedia/en/9/9a/The_nightmare_before_christmas_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/17": {
+  "file": "christmas-movies/17.png",
+  "item": "Four Christmases",
+  "article": "Four Christmases",
+  "url": "https://upload.wikimedia.org/wikipedia/en/c/ca/Four_Christmases-Movie_Poster.PNG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/18": {
+  "file": "christmas-movies/18.jpg",
+  "item": "Fred Claus",
+  "article": "Fred Claus",
+  "url": "https://upload.wikimedia.org/wikipedia/en/2/20/Fred_clausposter.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ }
+}
