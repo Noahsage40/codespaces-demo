@@ -33,13 +33,17 @@ def infobox_file(title):
     return m.group(1).strip() if m else None
 
 def file_url(name):
-    d = api(action="query", titles="File:" + name, prop="imageinfo", iiprop="url", iiurlwidth=800)
+    d = api(action="query", titles="File:" + name, prop="imageinfo", iiprop="url|size")
     pages = d["query"]["pages"]
     ii = pages[0].get("imageinfo") if pages else None
-    return (ii[0].get("thumburl") or ii[0]["url"]) if ii else None
+    if not ii: return None
+    ii = ii[0]
+    if ii.get("width", 0) <= 2000 and ii.get("size", 0) <= 4_000_000: return ii["url"]
+    d = api(action="query", titles="File:" + name, prop="imageinfo", iiprop="url", iiurlwidth=1280)
+    return d["query"]["pages"][0]["imageinfo"][0].get("thumburl") or ii["url"]
 
 def lead_url(title):
-    d = api(action="query", titles=title, prop="pageimages", piprop="thumbnail", pithumbsize=800, redirects=1)
+    d = api(action="query", titles=title, prop="pageimages", piprop="thumbnail", pithumbsize=1280, redirects=1)
     p = d["query"]["pages"][0]
     return p.get("thumbnail", {}).get("source")
 
@@ -60,14 +64,15 @@ for lens, items in mapping.items():
             f = infobox_file(article)
             url = file_url(f) if f else None
             url = url or lead_url(article)
-            if not url: print("MISS", lens, name, article); continue
+            if not url: print("MISS", lens, name, article, flush=True); continue
             ext = os.path.splitext(urllib.parse.urlparse(url).path)[1].lower() or ".jpg"
             if ext not in (".jpg", ".jpeg", ".png", ".webp", ".gif"): ext = ".jpg"
             fn = f"{lens}/{idx:02d}{ext}"
             open(os.path.join(ROOT, "sources", fn), "wb").write(get(url, raw=True))
             manifest[key] = {"file": fn, "item": name, "article": article, "url": url}
-            print("ok  ", lens, name)
+            json.dump(manifest, open(manifest_path, "w"), indent=1)
+            print("ok  ", lens, name, flush=True)
         except Exception as e:
-            print("ERR ", lens, name, article, e)
+            print("ERR ", lens, name, article, e, flush=True)
         time.sleep(1.5)
     json.dump(manifest, open(manifest_path, "w"), indent=1)

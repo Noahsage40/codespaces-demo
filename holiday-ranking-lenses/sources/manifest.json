@@ -52,5 +52,41 @@
   "item": "Fred Claus",
   "article": "Fred Claus",
   "url": "https://upload.wikimedia.org/wikipedia/en/2/20/Fred_clausposter.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/02": {
+  "file": "christmas-movies/02.jpg",
+  "item": "Elf",
+  "article": "Elf (film)",
+  "url": "https://upload.wikimedia.org/wikipedia/en/d/df/Elf_movie.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/03": {
+  "file": "christmas-movies/03.jpg",
+  "item": "The Polar Express",
+  "article": "The Polar Express (film)",
+  "url": "https://upload.wikimedia.org/wikipedia/en/2/24/The_Polar_Express_%282004%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/04": {
+  "file": "christmas-movies/04.jpg",
+  "item": "The Grinch",
+  "article": "The Grinch (film)",
+  "url": "https://upload.wikimedia.org/wikipedia/en/4/4f/The_Grinch%2C_final_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/10": {
+  "file": "christmas-movies/10.jpg",
+  "item": "Christmas Vacation",
+  "article": "National Lampoon's Christmas Vacation",
+  "url": "https://upload.wikimedia.org/wikipedia/en/5/53/NationalLampoonsChristmasVacationPoster.JPG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/12": {
+  "file": "christmas-movies/12.jpg",
+  "item": "The Holiday",
+  "article": "The Holiday",
+  "url": "https://upload.wikimedia.org/wikipedia/en/6/60/Theholidayposter.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/13": {
+  "file": "christmas-movies/13.jpeg",
+  "item": "Klaus",
+  "article": "Klaus (film)",
+  "url": "https://upload.wikimedia.org/wikipedia/en/2/26/Klaus_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
  }
 }
