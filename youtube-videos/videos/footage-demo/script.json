@@ -1,0 +1,43 @@
+{
+ "title": "footage demo",
+ "scenes": [
+  {
+   "slide": {
+    "type": "big",
+    "eyebrow": "2018 \u00b7 OKLAHOMA",
+    "big": "HEISMAN TROPHY",
+    "small": "Then the #1 overall pick in the 2019 NFL Draft",
+    "img": "Kyler_Murray.jpg"
+   },
+   "lines": [
+    "He transferred to Oklahoma, waited behind Baker Mayfield, then won the Heisman Trophy in 2018.",
+    "He was also a first-round pick in the MLB draft by the Oakland A's, but chose football.",
+    "The Cardinals took him first overall in 2019. Yes, that's the pick that pushed Josh Rosen out of Arizona."
+   ],
+   "broll": [
+    "g_420.mp4",
+    "g_600.mp4"
+   ]
+  },
+  {
+   "slide": {
+    "type": "now",
+    "name": "Kyler Murray",
+    "verdict": "MINNESOTA VIKINGS",
+    "points": [
+     "Offensive Rookie of the Year",
+     "2\u00d7 Pro Bowl",
+     "Released by Arizona, signed with Minnesota for 2026"
+    ],
+    "img": "Kyler_Murray.jpg"
+   },
+   "lines": [
+    "He was Offensive Rookie of the Year and a two-time Pro Bowler.",
+    "But after an injury-shortened 2025, Arizona released him, and he signed a one-year deal with the Minnesota Vikings."
+   ],
+   "broll": [
+    "g_780.mp4"
+   ]
+  }
+ ]
+}

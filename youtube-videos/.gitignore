@@ -4,3 +4,7 @@ slides-vertical/
 out/
 boards/
 broll/**/*.webm
+broll/**/*.mp4
+**/broll/**/*.mp4
+**/broll/**/*.webm
+**/broll/**/*.json
