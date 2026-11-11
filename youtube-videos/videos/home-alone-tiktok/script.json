@@ -1,0 +1,23 @@
+{
+  "title": "Kevin McCallister ran the greatest defensive game plan in history",
+  "format": "tiktok",
+  "hook_text": "Home Alone is a sports movie 🧠",
+  "beats": [
+    {"lines": ["Analysts are calling Home Alone a kids' movie.", "I'm calling it the greatest defensive performance of all time."],
+     "board": {"label": "GREATEST DEFENSE EVER?", "icon": "🏠🛡️", "sub": "Home Alone (1990)"}},
+    {"lines": ["Think about it. An eight-year-old, no coaching staff, no film study, left alone by his own front office."],
+     "board": {"label": "COACHING STAFF: 0", "icon": "🧒", "sub": "Front office: on a plane to Paris"}},
+    {"lines": ["Going up against two grown men with years of experience in breaking and entering."],
+     "board": {"label": "OPPONENT: WET BANDITS", "icon": "🦹🦹", "sub": "Harry & Marv · Veteran offense"}},
+    {"lines": ["And what does he do? He scouts them. He knows their tendencies. He knows they're coming at nine o'clock.", "That's elite preparation."],
+     "board": {"label": "SCOUTING REPORT", "icon": "📋🕘", "sub": "Kickoff: 9:00 PM"}},
+    {"lines": ["Then he builds a scheme around his personnel.", "Paint cans on the stairs. Ice on the steps. A blowtorch on the front door."],
+     "board": {"label": "THE PLAYBOOK", "icon": "🎨🧊🔥", "sub": "Paint cans · Ice · Blowtorch", "play": true}},
+    {"lines": ["That's not a house. That's a defensive coordinator's playbook."],
+     "board": {"label": "DEFENSIVE COORDINATOR", "icon": "🧠🏈", "sub": "Age 8"}},
+    {"lines": ["And the craziest part? He held them scoreless. They never got him."],
+     "board": {"label": "FINAL: 0 POINTS ALLOWED", "icon": "🚫🏆", "sub": "Kevin 1 · Wet Bandits 0"}},
+    {"lines": ["Say what you want about Rudolph.", "But Kevin McCallister is the most underrated coordinator in Christmas history."],
+     "board": {"label": "MOST UNDERRATED COORDINATOR", "icon": "🎄🐐", "sub": "Christmas history"}}
+  ]
+}
