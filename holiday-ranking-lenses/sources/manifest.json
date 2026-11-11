@@ -304,5 +304,53 @@
   "item": "Apple Cider",
   "article": "Apple cider",
   "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Cider_and_apple_juice.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-movies/15": {
+  "file": "christmas-movies/15.jpg",
+  "item": "Arthur Christmas",
+  "article": "Arthur Christmas",
+  "url": "https://upload.wikimedia.org/wikipedia/en/e/ed/Arthur_Christmas_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/02": {
+  "file": "christmas-characters/02.jpg",
+  "item": "Mrs. Claus",
+  "article": "Mrs. Claus",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Mr%26MrsSantaClaus.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/03": {
+  "file": "christmas-characters/03.jpg",
+  "item": "Rudolph",
+  "article": "Rudolph the Red-Nosed Reindeer",
+  "url": "https://upload.wikimedia.org/wikipedia/en/3/38/Rudolph%2C_The_Red-Nosed_Reindeer_Marion_Books.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/04": {
+  "file": "christmas-characters/04.png",
+  "item": "Frosty the Snowman",
+  "article": "Frosty the Snowman (TV special)",
+  "url": "https://upload.wikimedia.org/wikipedia/en/c/cc/FrostyTC69.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/06": {
+  "file": "christmas-characters/06.jpg",
+  "item": "Buddy the Elf",
+  "article": "Elf (film)",
+  "url": "https://upload.wikimedia.org/wikipedia/en/d/df/Elf_movie.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/12": {
+  "file": "christmas-characters/12.jpg",
+  "item": "Elf on the Shelf",
+  "article": "The Elf on the Shelf",
+  "url": "https://upload.wikimedia.org/wikipedia/en/5/5a/The_Elf_on_the_Shelf_%28book%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/13": {
+  "file": "christmas-characters/13.gif",
+  "item": "The Nutcracker",
+  "article": "Nutcracker",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Benutzung_eines_Nussknackers.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+ },
+ "christmas-characters/14": {
+  "file": "christmas-characters/14.jpg",
+  "item": "Gingerbread Man",
+  "article": "Gingerbread man",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Gingerbread_men.jpg/1280px-Gingerbread_men.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
  }
 }
