@@ -88,5 +88,221 @@
   "item": "Klaus",
   "article": "Klaus (film)",
   "url": "https://upload.wikimedia.org/wikipedia/en/2/26/Klaus_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "christmas-movies/11": {
+  "file": "christmas-movies/11.jpeg",
+  "item": "It's a Wonderful Life",
+  "article": "It's a Wonderful Life",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/2/25/It%27s_a_Wonderful_Life_%281946_poster%29.jpeg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/01": {
+  "file": "christmas-characters/01.jpg",
+  "item": "Santa Claus",
+  "article": "Santa Claus",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Merry_Old_Santa_Claus_by_Thomas_Nast.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/05": {
+  "file": "christmas-characters/05.png",
+  "item": "The Grinch",
+  "article": "Grinch",
+  "url": "https://upload.wikimedia.org/wikipedia/en/7/73/The_Grinch.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/07": {
+  "file": "christmas-characters/07.jpg",
+  "item": "Kevin McCallister",
+  "article": "Home Alone",
+  "url": "https://upload.wikimedia.org/wikipedia/en/7/76/Home_alone_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/08": {
+  "file": "christmas-characters/08.jpg",
+  "item": "Jack Frost",
+  "article": "Jack Frost",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Jack-frost.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/09": {
+  "file": "christmas-characters/09.jpg",
+  "item": "Ebenezer Scrooge",
+  "article": "Ebenezer Scrooge",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Marley%27s_Ghost-John_Leech%2C_1843.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/10": {
+  "file": "christmas-characters/10.jpg",
+  "item": "Cindy Lou Who",
+  "article": "How the Grinch Stole Christmas (2018 film)",
+  "url": "https://upload.wikimedia.org/wikipedia/en/4/4f/The_Grinch%2C_final_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/15": {
+  "file": "christmas-characters/15.png",
+  "item": "Jack Skellington",
+  "article": "Jack Skellington",
+  "url": "https://upload.wikimedia.org/wikipedia/en/e/ee/Jack_Skellington.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/16": {
+  "file": "christmas-characters/16.jpg",
+  "item": "Tiny Tim",
+  "article": "Tiny Tim (A Christmas Carol)",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Tiny-tim-dickens.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/17": {
+  "file": "christmas-characters/17.jpg",
+  "item": "Max the Dog",
+  "article": "The Grinch (film)",
+  "url": "https://upload.wikimedia.org/wikipedia/en/4/4f/The_Grinch%2C_final_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-characters/18": {
+  "file": "christmas-characters/18.jpg",
+  "item": "Hermey the Dentist Elf",
+  "article": "Rudolph the Red-Nosed Reindeer (TV special)",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Rudolph_the_Red-Nosed_Reindeer_defective_copyright_notice.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-songs/02": {
+  "file": "christmas-songs/02.png",
+  "item": "Last Christmas",
+  "article": "Last Christmas",
+  "url": "https://upload.wikimedia.org/wikipedia/en/3/3a/Last_Christmas_by_Wham_original_1984_artwork_UK_variant.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-songs/04": {
+  "file": "christmas-songs/04.jpg",
+  "item": "Rockin' Around the Christmas Tree",
+  "article": "Rockin' Around the Christmas Tree",
+  "url": "https://upload.wikimedia.org/wikipedia/en/6/6d/Single_Brenda_Lee-Rockin%27_Around_the_Christmas_Tree_cover.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-songs/05": {
+  "file": "christmas-songs/05.jpg",
+  "item": "Feliz Navidad",
+  "article": "Feliz Navidad (song)",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/R-5762920-1401970702-2196.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-songs/06": {
+  "file": "christmas-songs/06.jpg",
+  "item": "Santa Tell Me",
+  "article": "Santa Tell Me",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Ariana_Grande_-_Santa_Tell_Me.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-songs/07": {
+  "file": "christmas-songs/07.jpg",
+  "item": "Mistletoe",
+  "article": "Mistletoe (Justin Bieber song)",
+  "url": "https://upload.wikimedia.org/wikipedia/en/d/dc/Justin_Bieber_-_Mistletoe.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-songs/09": {
+  "file": "christmas-songs/09.jpg",
+  "item": "Silent Night",
+  "article": "Silent Night",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Stille_nacht.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-songs/11": {
+  "file": "christmas-songs/11.jpg",
+  "item": "Holly Jolly Christmas",
+  "article": "A Holly Jolly Christmas",
+  "url": "https://upload.wikimedia.org/wikipedia/en/5/55/A_Holly_Jolly_Christmas_-_Burl_Ives.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-songs/13": {
+  "file": "christmas-songs/13.jpg",
+  "item": "Underneath the Tree",
+  "article": "Underneath the Tree",
+  "url": "https://upload.wikimedia.org/wikipedia/en/5/59/Kelly_Clarkson_-_Underneath_the_Tree.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-songs/14": {
+  "file": "christmas-songs/14.jpg",
+  "item": "Santa Baby",
+  "article": "Santa Baby",
+  "url": "https://upload.wikimedia.org/wikipedia/en/a/af/Single_Eartha_Kitt-Santa_Baby_cover.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-songs/15": {
+  "file": "christmas-songs/15.jpeg",
+  "item": "Let It Snow",
+  "article": "Let It Snow! Let It Snow! Let It Snow!",
+  "url": "https://upload.wikimedia.org/wikipedia/en/f/fd/Let_It_Snow%21_Let_It_Snow%21_Let_It_Snow%21_%28Recording_Cover%29.jpeg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-songs/16": {
+  "file": "christmas-songs/16.jpg",
+  "item": "Grandma Got Run Over by a Reindeer",
+  "article": "Grandma Got Run Over by a Reindeer",
+  "url": "https://upload.wikimedia.org/wikipedia/en/0/04/Single_Elmo_%26_Patsy-Grandma_Got_Run_Over_by_a_Reindeer_cover.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-songs/17": {
+  "file": "christmas-songs/17.jpg",
+  "item": "Little Drummer Boy",
+  "article": "The Little Drummer Boy",
+  "url": "https://upload.wikimedia.org/wikipedia/en/3/3c/Carol_of_the_Drum_sheet_music.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-villains/01": {
+  "file": "christmas-villains/01.png",
+  "item": "The Grinch",
+  "article": "Grinch",
+  "url": "https://upload.wikimedia.org/wikipedia/en/7/73/The_Grinch.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-villains/02": {
+  "file": "christmas-villains/02.jpg",
+  "item": "The Wet Bandits",
+  "article": "Home Alone",
+  "url": "https://upload.wikimedia.org/wikipedia/en/7/76/Home_alone_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-villains/03": {
+  "file": "christmas-villains/03.jpeg",
+  "item": "Hans Gruber",
+  "article": "Hans Gruber",
+  "url": "https://upload.wikimedia.org/wikipedia/en/8/8b/HansGruber.jpeg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-villains/05": {
+  "file": "christmas-villains/05.jpg",
+  "item": "Ebenezer Scrooge",
+  "article": "Ebenezer Scrooge",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Marley%27s_Ghost-John_Leech%2C_1843.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-villains/06": {
+  "file": "christmas-villains/06.jpg",
+  "item": "Mr. Potter",
+  "article": "Henry F. Potter",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Lionel_Barrymore_as_Mr._Potter.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-villains/07": {
+  "file": "christmas-villains/07.jpg",
+  "item": "Oogie Boogie",
+  "article": "Oogie Boogie",
+  "url": "https://upload.wikimedia.org/wikipedia/en/8/88/Nightmare_Before_Christmas_Characters.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-villains/08": {
+  "file": "christmas-villains/08.png",
+  "item": "Heat Miser",
+  "article": "The Year Without a Santa Claus",
+  "url": "https://upload.wikimedia.org/wikipedia/en/b/b0/YearWUSC74_tc.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-villains/10": {
+  "file": "christmas-villains/10.jpg",
+  "item": "Scut Farkus",
+  "article": "A Christmas Story",
+  "url": "https://upload.wikimedia.org/wikipedia/en/6/65/A_Christmas_Story_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-villains/12": {
+  "file": "christmas-villains/12.jpg",
+  "item": "Burgermeister Meisterburger",
+  "article": "Santa Claus Is Comin' to Town (TV special)",
+  "url": "https://upload.wikimedia.org/wikipedia/en/7/78/Santa_Claus_is_Comin%27_to_Town_logo.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-treats/03": {
+  "file": "christmas-treats/03.jpg",
+  "item": "Candy Canes",
+  "article": "Candy cane",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Candy-Cane-Classic.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-treats/04": {
+  "file": "christmas-treats/04.jpg",
+  "item": "Peppermint Bark",
+  "article": "Peppermint bark",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/0/06/Peppermint_Bark_%283197351955%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-drinks/02": {
+  "file": "christmas-drinks/02.jpg",
+  "item": "Eggnog",
+  "article": "Eggnog",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Eggnog2.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+ },
+ "christmas-drinks/05": {
+  "file": "christmas-drinks/05.jpg",
+  "item": "Apple Cider",
+  "article": "Apple cider",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Cider_and_apple_juice.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
  }
 }
