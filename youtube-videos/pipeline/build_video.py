@@ -124,12 +124,16 @@ def main():
             parts.append((wav, d))
             t += d + GAP
         scene_len = t - GAP + TAIL
+        last = si == len(script["scenes"]) - 1
         # scene audio
         audio = os.path.join(work, f"scene{si:02d}.wav")
         inputs, filt = [], []
         for k, (wav, d) in enumerate(parts):
             inputs += ["-i", wav]
-            filt.append(f"[{k}]aresample=44100,aformat=channel_layouts=mono,apad=pad_dur={GAP if k < len(parts) - 1 else TAIL}[a{k}]")
+            tail = TAIL
+            if last and k == len(parts) - 1:  # keep Shorts/TikToks over the monetization minimum
+                tail = max(TAIL, script.get("min_seconds", 0) - (t0 + scene_len - TAIL))
+            filt.append(f"[{k}]aresample=44100,aformat=channel_layouts=mono,apad=pad_dur={GAP if k < len(parts) - 1 else tail}[a{k}]")
         filt.append("".join(f"[a{k}]" for k in range(len(parts))) + f"concat=n={len(parts)}:v=0:a=1[out]")
         sh(["ffmpeg", "-v", "error", "-y"] + inputs + ["-filter_complex", ";".join(filt), "-map", "[out]", audio])
         scene_len = duration(audio)

@@ -1,16 +1,26 @@
 {
-  "title": "The #1 QB recruit got replaced by his own classmate",
+  "title": "The #1 QB recruit lost his NFL job to his own classmate",
   "format": "short",
+  "min_seconds": 61,
   "scenes": [
-    {"slide": {"type": "big", "eyebrow": "CLASS OF 2015", "big": "#1 QB vs #3 QB", "small": "Same recruiting class. Same NFL team.", "img": "Josh_Rosen.jpg"},
-     "lines": ["The number one quarterback recruit in 2015 lost his NFL job to his own classmate."]},
+    {"slide": {"type": "big", "eyebrow": "CLASS OF 2015", "big": "#1 QB vs #3 QB", "small": "Same recruiting class. Same NFL team."},
+     "broll": ["nfl/c3.webm@0", "nfl/c1.webm@2"],
+     "lines": ["The number one quarterback recruit in 2015 lost his NFL job to his own classmate.", "And the way it happened is wild."]},
     {"slide": {"type": "recruit", "name": "Josh Rosen", "rank": "#1 QB", "stars": 5, "school": "St. John Bosco, CA", "commit": "UCLA", "img": "Josh_Rosen.jpg"},
-     "lines": ["Josh Rosen was the top QB in the class.", "He broke UCLA's passing record, and Arizona took him tenth overall in 2018."]},
+     "lines": ["Josh Rosen was the top QB in the whole class.", "Five stars, a 4.3 GPA, and a former top junior tennis player."]},
+    {"slide": {"type": "big", "eyebrow": "2018 NFL DRAFT", "big": "#10 OVERALL PICK", "small": "Arizona Cardinals", "img": "Josh_Rosen.jpg"},
+     "lines": ["At UCLA he started as a true freshman and broke the school's single-season passing record.", "Then Arizona took him tenth overall in 2018."]},
     {"slide": {"type": "recruit", "name": "Kyler Murray", "rank": "#3 QB", "stars": 5, "school": "Allen HS, Texas", "commit": "Texas A&M", "img": "Kyler_Murray.jpg"},
-     "lines": ["Kyler Murray was ranked third.", "But he went 43 and 0 in high school, then won the Heisman at Oklahoma."]},
+     "lines": ["Now meet the number three QB in that same class, Kyler Murray.", "He went 43 and 0 as a high school starter and won three state titles."]},
+    {"slide": {"type": "big", "eyebrow": "2018 · OKLAHOMA", "big": "HEISMAN TROPHY", "small": "Also a first-round MLB draft pick", "img": "Kyler_Murray.jpg"},
+     "broll": ["nfl/c5.webm@0"],
+     "lines": ["He transferred to Oklahoma, won the Heisman, and got drafted in the first round of the MLB draft too.", "He picked football."]},
     {"slide": {"type": "big", "eyebrow": "2019 NFL DRAFT", "big": "#1 OVERALL", "small": "Arizona drafts Kyler. Rosen is traded to Miami.", "img": "Kyler_Murray.jpg"},
-     "lines": ["One year after drafting Rosen, Arizona took Kyler first overall, and traded Rosen to Miami."]},
+     "broll": ["nfl/c2.webm@2"],
+     "lines": ["In 2019, just one year after drafting Rosen, Arizona took Kyler first overall, and traded Rosen to Miami."]},
     {"slide": {"type": "now", "name": "Josh Rosen", "verdict": "WALL STREET", "points": ["Out of the NFL after 2022", "Wharton School at Penn"], "img": "Josh_Rosen.jpg"},
-     "lines": ["Rosen was out of the NFL after 2022, and went to Wharton.", "Follow for part two: what happened to the rest of the 2015 class."]}
+     "lines": ["Rosen bounced around the league and was out of the NFL after 2022.", "He went to Wharton and reportedly moved into finance."]},
+    {"slide": {"type": "now", "name": "Kyler Murray", "verdict": "MINNESOTA VIKINGS", "points": ["Offensive Rookie of the Year", "2× Pro Bowl", "Vikings in 2026"], "img": "Kyler_Murray.jpg"},
+     "lines": ["Kyler became Rookie of the Year and a two-time Pro Bowler, and in 2026 he's with the Minnesota Vikings.", "Follow for part two: what happened to the rest of the 2015 class."]}
   ]
 }
