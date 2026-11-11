@@ -1,0 +1,16 @@
+{
+  "title": "The #1 QB recruit got replaced by his own classmate",
+  "format": "short",
+  "scenes": [
+    {"slide": {"type": "big", "eyebrow": "CLASS OF 2015", "big": "#1 QB vs #3 QB", "small": "Same recruiting class. Same NFL team.", "img": "Josh_Rosen.jpg"},
+     "lines": ["The number one quarterback recruit in 2015 lost his NFL job to his own classmate."]},
+    {"slide": {"type": "recruit", "name": "Josh Rosen", "rank": "#1 QB", "stars": 5, "school": "St. John Bosco, CA", "commit": "UCLA", "img": "Josh_Rosen.jpg"},
+     "lines": ["Josh Rosen was the top QB in the class.", "He broke UCLA's passing record, and Arizona took him tenth overall in 2018."]},
+    {"slide": {"type": "recruit", "name": "Kyler Murray", "rank": "#3 QB", "stars": 5, "school": "Allen HS, Texas", "commit": "Texas A&M", "img": "Kyler_Murray.jpg"},
+     "lines": ["Kyler Murray was ranked third.", "But he went 43 and 0 in high school, then won the Heisman at Oklahoma."]},
+    {"slide": {"type": "big", "eyebrow": "2019 NFL DRAFT", "big": "#1 OVERALL", "small": "Arizona drafts Kyler. Rosen is traded to Miami.", "img": "Kyler_Murray.jpg"},
+     "lines": ["One year after drafting Rosen, Arizona took Kyler first overall, and traded Rosen to Miami."]},
+    {"slide": {"type": "now", "name": "Josh Rosen", "verdict": "WALL STREET", "points": ["Out of the NFL after 2022", "Wharton School at Penn"], "img": "Josh_Rosen.jpg"},
+     "lines": ["Rosen was out of the NFL after 2022, and went to Wharton.", "Follow for part two: what happened to the rest of the 2015 class."]}
+  ]
+}

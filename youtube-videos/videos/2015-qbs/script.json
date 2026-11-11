@@ -1,0 +1,78 @@
+{
+  "title": "What Happened to the Top High School QBs of 2015?",
+  "format": "long",
+  "scenes": [
+    {"slide": {"type": "title", "kicker": "CLASS OF 2015", "title": "WHAT HAPPENED TO THE TOP HIGH SCHOOL QBs?", "sub": "Heisman winners. Busts. Super Bowl rings. Startups."},
+     "lines": ["In 2015, these were the most hyped high school quarterbacks in America.", "Five stars. Scholarship offers from every powerhouse in the country.", "One of them won a Heisman and went first overall. Another won a Super Bowl ring.", "And the kid once ranked number one in the entire country bounced between four different schools.", "So what actually happened to them?"]},
+
+    {"slide": {"type": "lineup", "players": [
+        {"name": "Josh Rosen", "tag": "#1 QB", "img": "Josh_Rosen.jpg"},
+        {"name": "Blake Barnett", "tag": "#2 QB"},
+        {"name": "Kyler Murray", "tag": "#3 QB", "img": "Kyler_Murray.jpg"},
+        {"name": "Jarrett Stidham", "tag": "#4 QB", "img": "Jarrett_Stidham.jpg"},
+        {"name": "Brandon Wimbush", "tag": "#5 QB", "img": "Brandon_Wimbush.jpg"},
+        {"name": "Deondre Francois", "tag": "Florida State"},
+        {"name": "Drew Lock", "tag": "Top 10 QB", "img": "Drew_Lock.jpg"},
+        {"name": "Ricky Town", "tag": "Once #1 overall"}]},
+     "lines": ["Here's the list.", "Josh Rosen. Blake Barnett. Kyler Murray. Jarrett Stidham. Brandon Wimbush. Deondre Francois. Drew Lock.", "And the guy who, early in 2014, was ranked the number one overall recruit in the country: Ricky Town.", "Let's start with him."]},
+
+    {"slide": {"type": "recruit", "name": "Ricky Town", "rank": "ONCE #1 OVERALL", "stars": 5, "school": "Ventura, California", "commit": "Alabama → USC"},
+     "lines": ["In early 2014, 247Sports ranked Ricky Town as the number one recruit in America.", "He committed to Alabama, then flipped to USC."]},
+    {"slide": {"type": "path", "name": "Ricky Town", "steps": ["USC", "Arkansas", "Ventura College", "Pitt"]},
+     "lines": ["But just one week into his first fall camp, Town decided to transfer.", "He landed at Arkansas, and never played a down for the Razorbacks.", "Then came Ventura College, his hometown junior college.", "And finally Pitt, his fourth school, where he was the backup to a quarterback named Kenny Pickett."]},
+    {"slide": {"type": "now", "name": "Ricky Town", "verdict": "4 SCHOOLS", "points": ["Once the #1 recruit in America", "Never became the star everyone expected"]},
+     "lines": ["Four schools. And the former number one recruit in America never became the star everyone expected."]},
+
+    {"slide": {"type": "recruit", "name": "Blake Barnett", "rank": "#2 QB", "stars": 5, "school": "Santiago HS, Corona, CA", "commit": "Alabama"},
+     "lines": ["Blake Barnett was a five-star from Santiago High School in Corona, California.", "Fun holiday fact: he was born on Christmas Eve.", "He signed with Nick Saban and Alabama."]},
+    {"slide": {"type": "big", "eyebrow": "2016 SEASON OPENER vs USC", "big": "BENCHED BEFORE HALFTIME", "small": "Replaced by a true freshman named Jalen Hurts"},
+     "lines": ["In 2016, Barnett won the starting job for the opener against USC.", "But before halftime, Saban pulled him for a true freshman named Jalen Hurts.", "Within a month, Barnett had left the team."]},
+    {"slide": {"type": "now", "name": "Blake Barnett", "verdict": "3 SCHOOLS", "points": ["Alabama → Arizona State → South Florida", "5 passes in his only season at ASU"]},
+     "lines": ["He transferred to Arizona State, where he threw just five passes as a backup.", "Then he finished his career at South Florida, a long way from the Alabama job he won and lost in a single half."]},
+
+    {"slide": {"type": "recruit", "name": "Deondre Francois", "rank": "TOP PRO-STYLE QB", "stars": 4, "school": "IMG Academy, Bradenton, FL", "commit": "Florida State"},
+     "lines": ["Deondre Francois grew up between Miami and Orlando, finished high school at IMG Academy, and signed with Florida State."]},
+    {"slide": {"type": "big", "eyebrow": "FIRST CAREER START vs OLE MISS", "big": "419 YARDS", "small": "Biggest comeback in Florida State history: 22 points"},
+     "lines": ["His first college start is still legendary in Tallahassee.", "Against Ole Miss, he threw for 419 yards and led the biggest comeback in Florida State history.", "That season ended with an Orange Bowl win over Michigan, played just after Christmas."]},
+    {"slide": {"type": "now", "name": "Deondre Francois", "verdict": "XFL", "points": ["Season-ending knee injury in 2017", "Removed from FSU in 2019", "Hampton, then the XFL"]},
+     "lines": ["But in the first game of 2017, against Alabama, he tore his patellar tendon and missed the season.", "In 2019, he was removed from the program after a video of a domestic dispute surfaced on social media.", "He finished college at Hampton, then played in the XFL for the Orlando Guardians and the DC Defenders."]},
+
+    {"slide": {"type": "recruit", "name": "Brandon Wimbush", "rank": "#5 QB", "stars": 4, "school": "St. Peter's Prep, Jersey City, NJ", "commit": "Notre Dame", "img": "Brandon_Wimbush.jpg"},
+     "lines": ["Brandon Wimbush was New Jersey's Gatorade Player of the Year, with 37 touchdown passes as a senior.", "He signed with Notre Dame."]},
+    {"slide": {"type": "big", "eyebrow": "2017 vs BOSTON COLLEGE", "big": "207 RUSHING YARDS", "small": "4 rushing touchdowns in one game", "img": "Brandon_Wimbush.jpg"},
+     "lines": ["As the starter in 2017, he ran for 207 yards and four touchdowns in one game against Boston College.", "But in the bowl game against LSU, he was benched for Ian Book.", "Early in 2018, Book took the job for good, and Wimbush finished his career at UCF."]},
+    {"slide": {"type": "now", "name": "Brandon Wimbush", "verdict": "FOUNDER", "points": ["Co-founded NIL company MOGL", "Forbes 30 Under 30", "Chief of staff, Real American Freestyle"], "img": "Brandon_Wimbush.jpg"},
+     "lines": ["Here's the twist. Off the field, Wimbush might be the biggest success on this list.", "In 2020, he co-founded MOGL, a company that connects college athletes with NIL deals.", "He made the Forbes 30 Under 30 list, and in 2025 he became chief of staff for Real American Freestyle, the wrestling league co-founded by Hulk Hogan."]},
+
+    {"slide": {"type": "recruit", "name": "Jarrett Stidham", "rank": "#4 QB", "stars": 4, "school": "Stephenville HS, Texas", "commit": "Baylor", "img": "Jarrett_Stidham.jpg"},
+     "lines": ["Jarrett Stidham was a dual-threat star from Stephenville, Texas.", "Almost 3,000 passing yards and 35 touchdowns as a senior.", "He started at Baylor, then transferred to Auburn."]},
+    {"slide": {"type": "big", "eyebrow": "2019 NFL DRAFT · ROUND 4", "big": "TOM BRADY'S BACKUP", "small": "New England Patriots", "img": "Jarrett_Stidham.jpg"},
+     "lines": ["At Auburn, he beat both Georgia and Alabama in 2017.", "Then the Patriots drafted him in the fourth round, and he spent his rookie year backing up Tom Brady."]},
+    {"slide": {"type": "now", "name": "Jarrett Stidham", "verdict": "STILL IN THE NFL", "points": ["Patriots → Raiders → Broncos", "Backup to Bo Nix in Denver"], "img": "Jarrett_Stidham.jpg"},
+     "lines": ["Since then: the Raiders, and now the Denver Broncos, where he's the backup to Bo Nix.", "Not a superstar. But eight seasons in the NFL is a career most players would kill for."]},
+
+    {"slide": {"type": "recruit", "name": "Josh Rosen", "rank": "#1 QB IN THE CLASS", "stars": 5, "school": "St. John Bosco, Bellflower, CA", "commit": "UCLA", "img": "Josh_Rosen.jpg"},
+     "lines": ["Josh Rosen was the number one quarterback in the class.", "A former top junior tennis player, with a 4.3 GPA, and the LA Times Player of the Year."]},
+    {"slide": {"type": "big", "eyebrow": "2018 NFL DRAFT", "big": "#10 OVERALL PICK", "small": "Arizona Cardinals", "img": "Josh_Rosen.jpg"},
+     "lines": ["At UCLA, he became the first true freshman to start a season opener at quarterback for the Bruins.", "In 2017 he set UCLA's single-season passing record, and the Arizona Cardinals took him tenth overall."]},
+    {"slide": {"type": "now", "name": "Josh Rosen", "verdict": "WALL STREET", "points": ["Traded after one season", "Out of the NFL after 2022", "Wharton School at Penn"], "img": "Josh_Rosen.jpg"},
+     "lines": ["Then it fell apart. After one rough season, Arizona used the first overall pick on another quarterback, and traded Rosen to Miami.", "After stints with the 49ers, the Falcons, and others, his NFL career was over after 2022.", "So Rosen went to the Wharton School at Penn, founded by his great-great-great-grandfather, and has reportedly moved into finance."]},
+
+    {"slide": {"type": "recruit", "name": "Drew Lock", "rank": "TOP 10 QB", "stars": 4, "school": "Lee's Summit HS, Missouri", "commit": "Missouri", "img": "Drew_Lock.jpg"},
+     "lines": ["Drew Lock was a two-sport athlete from Lee's Summit, Missouri, and he stayed home to play for Mizzou."]},
+    {"slide": {"type": "path", "name": "Drew Lock", "steps": ["Broncos", "Seahawks", "Giants", "Seahawks"], "img": "Drew_Lock.jpg"},
+     "lines": ["The Broncos drafted him in the second round in 2019.", "From there: Seattle, the New York Giants, and then back to Seattle."]},
+    {"slide": {"type": "now", "name": "Drew Lock", "verdict": "SUPER BOWL CHAMP", "points": ["Seahawks backup QB", "Won Super Bowl LX"], "img": "Drew_Lock.jpg"},
+     "lines": ["And in February 2026, Drew Lock won a Super Bowl ring as the Seahawks' backup in Super Bowl sixty.", "One of the lowest-ranked quarterbacks on this list is the one with the ring."]},
+
+    {"slide": {"type": "recruit", "name": "Kyler Murray", "rank": "#3 QB", "stars": 5, "school": "Allen HS, Texas", "commit": "Texas A&M", "img": "Kyler_Murray.jpg"},
+     "lines": ["Which brings us to Kyler Murray.", "At Allen High School in Texas, he went 43 and 0 as a starter and won three straight state titles.", "He signed with Texas A&M."]},
+    {"slide": {"type": "big", "eyebrow": "2018 · OKLAHOMA", "big": "HEISMAN TROPHY", "small": "Then the #1 overall pick in the 2019 NFL Draft", "img": "Kyler_Murray.jpg"},
+     "lines": ["He transferred to Oklahoma, waited behind Baker Mayfield, then won the Heisman Trophy in 2018.", "He was also a first-round pick in the MLB draft by the Oakland A's, but chose football.", "The Cardinals took him first overall in 2019. Yes, that's the pick that pushed Josh Rosen out of Arizona."]},
+    {"slide": {"type": "now", "name": "Kyler Murray", "verdict": "MINNESOTA VIKINGS", "points": ["Offensive Rookie of the Year", "2× Pro Bowl", "Released by Arizona, signed with Minnesota for 2026"], "img": "Kyler_Murray.jpg"},
+     "lines": ["He was Offensive Rookie of the Year and a two-time Pro Bowler.", "But after an injury-shortened 2025, Arizona released him, and he signed a one-year deal with the Minnesota Vikings."]},
+
+    {"slide": {"type": "outro", "title": "THE CLASS OF 2015", "points": ["1 Heisman + #1 overall pick", "1 Super Bowl ring", "1 startup founder", "1 Wharton grad", "4 schools for the former #1 recruit"], "sub": "Which class should I do next? 🎄"},
+     "lines": ["So from the top quarterbacks of 2015, we got a Heisman winner and number one pick, a Super Bowl ring, a startup founder, and a Wharton grad.", "And the kid once ranked number one in the country went through four schools.", "Which recruiting class should I do next? Let me know in the comments. And merry Christmas."]}
+  ]
+}
