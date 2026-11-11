@@ -136,15 +136,21 @@ def main():
         frames = int(round(scene_len * FPS))
         clip = os.path.join(work, f"scene{si:02d}.mp4")
         slide_png = os.path.join(slides, f"{si:02d}.png")
-        broll = [os.path.join(vdir, "broll", b) for b in sc.get("broll", []) if os.path.exists(os.path.join(vdir, "broll", b))]
+        # "nfl/c2.webm@8" = clip c2 starting 8 seconds in
+        broll = []
+        for b in sc.get("broll", []):
+            name, _, off = b.partition("@")
+            if os.path.exists(os.path.join(vdir, "broll", name)):
+                broll.append((os.path.join(vdir, "broll", name), float(off) if off else None))
         hold = min(3.5, scene_len * 0.4) if broll else scene_len  # graphic shown at the end of footage scenes
         foot_len = scene_len - hold if broll else 0
         parts_v = []
         if broll:
             seg = foot_len / len(broll)
-            for k, b in enumerate(broll):
+            for k, (b, off) in enumerate(broll):
                 d_src = duration(b)
-                start = min(1.0, max(d_src - seg, 0)) if d_src > seg else 0
+                start = off if off is not None else (min(1.0, max(d_src - seg, 0)) if d_src > seg else 0)
+                start = min(start, max(d_src - 1.0, 0))
                 pv = os.path.join(work, f"scene{si:02d}_f{k}.mp4")
                 n = int(round(seg * FPS))
                 sh(["ffmpeg", "-v", "error", "-y", "-stream_loop", "-1", "-ss", f"{start:.2f}", "-i", b, "-i", os.path.join(slides, f"{si:02d}_lower.png"),
