@@ -3,3 +3,4 @@ slides/
 slides-vertical/
 out/
 boards/
+broll/**/*.webm

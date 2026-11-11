@@ -133,14 +133,37 @@ def main():
         filt.append("".join(f"[a{k}]" for k in range(len(parts))) + f"concat=n={len(parts)}:v=0:a=1[out]")
         sh(["ffmpeg", "-v", "error", "-y"] + inputs + ["-filter_complex", ";".join(filt), "-map", "[out]", audio])
         scene_len = duration(audio)
-        # scene video: slow push-in on the slide, quick fade in/out
         frames = int(round(scene_len * FPS))
         clip = os.path.join(work, f"scene{si:02d}.mp4")
+        slide_png = os.path.join(slides, f"{si:02d}.png")
+        broll = [os.path.join(vdir, "broll", b) for b in sc.get("broll", []) if os.path.exists(os.path.join(vdir, "broll", b))]
+        hold = min(3.5, scene_len * 0.4) if broll else scene_len  # graphic shown at the end of footage scenes
+        foot_len = scene_len - hold if broll else 0
+        parts_v = []
+        if broll:
+            seg = foot_len / len(broll)
+            for k, b in enumerate(broll):
+                d_src = duration(b)
+                start = min(1.0, max(d_src - seg, 0)) if d_src > seg else 0
+                pv = os.path.join(work, f"scene{si:02d}_f{k}.mp4")
+                n = int(round(seg * FPS))
+                sh(["ffmpeg", "-v", "error", "-y", "-stream_loop", "-1", "-ss", f"{start:.2f}", "-i", b, "-i", os.path.join(slides, f"{si:02d}_lower.png"),
+                    "-filter_complex", f"[0:v]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps={FPS}[v];[v][1:v]overlay=0:0,format=yuv420p",
+                    "-an", "-frames:v", str(n), "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", pv])
+                parts_v.append(pv)
+        # graphic: slow push-in on the slide
+        n = int(round(hold * FPS))
         zoom = "min(1+0.00035*on,1.06)" if si % 2 == 0 else "max(1.06-0.00035*on,1)"
-        vf = (f"scale={W * 2}:{H * 2},zoompan=z='{zoom}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
-              f":d={frames}:s={W}x{H}:fps={FPS},fade=t=in:st=0:d=0.25,fade=t=out:st={max(scene_len - 0.25, 0):.2f}:d=0.25,format=yuv420p")
-        sh(["ffmpeg", "-v", "error", "-y", "-loop", "1", "-framerate", str(FPS), "-i", os.path.join(slides, f"{si:02d}.png"),
-            "-i", audio, "-vf", vf, "-frames:v", str(frames), "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+        pv = os.path.join(work, f"scene{si:02d}_slide.mp4")
+        sh(["ffmpeg", "-v", "error", "-y", "-loop", "1", "-framerate", str(FPS), "-i", slide_png,
+            "-vf", f"scale={W * 2}:{H * 2},zoompan=z='{zoom}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={n}:s={W}x{H}:fps={FPS},format=yuv420p",
+            "-frames:v", str(n), "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", pv])
+        parts_v.append(pv)
+        lst_s = os.path.join(work, f"scene{si:02d}_parts.txt")
+        open(lst_s, "w").write("".join(f"file '{x}'\n" for x in parts_v))
+        sh(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst_s, "-i", audio,
+            "-vf", f"fade=t=in:st=0:d=0.25,fade=t=out:st={max(scene_len - 0.25, 0):.2f}:d=0.25,format=yuv420p",
+            "-map", "0:v", "-map", "1:a", "-frames:v", str(frames), "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
             "-c:a", "aac", "-b:a", "192k", "-shortest", clip])
         clips.append(clip)
         t0 += scene_len

@@ -121,6 +121,18 @@ function slideHTML(s) {
   return `<!doctype html><html><head><meta charset="utf-8"><style>${CSS}</style></head><body><div class="field"></div>${body}</body></html>`;
 }
 
+// Transparent lower-third banner shown over game footage
+function lowerHTML(s) {
+  const title = s.name || s.big || s.title || '';
+  const sub = s.eyebrow || s.rank || s.verdict || '';
+  return `<!doctype html><html><head><meta charset="utf-8"><style>${CSS}
+  body{background:transparent!important}
+  .lt{position:absolute;left:${vertical ? 60 : 90}px;bottom:${vertical ? 520 : 170}px;display:flex;flex-direction:column;align-items:flex-start;gap:0}
+  .lt .t{background:#0b1020;color:#fff;font-weight:900;font-size:${vertical ? 64 : 58}px;padding:12px 26px;text-transform:uppercase;border-left:12px solid #f5c542}
+  .lt .s{background:#f5c542;color:#0b1020;font-weight:800;font-size:${vertical ? 32 : 28}px;padding:8px 26px;letter-spacing:3px;text-transform:uppercase}
+  </style></head><body><div class="lt"><div class="t">${esc(title)}</div>${sub ? `<div class="s">${esc(sub)}</div>` : ''}</div></body></html>`;
+}
+
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: W, height: H } });
@@ -128,6 +140,11 @@ function slideHTML(s) {
     await page.setContent(slideHTML(sc.slide));
     await page.evaluate(() => document.fonts.ready);
     await page.screenshot({ path: path.join(outDir, String(i).padStart(2, '0') + '.png') });
+    if (sc.broll) {
+      await page.setContent(lowerHTML(sc.slide));
+      await page.evaluate(() => document.fonts.ready);
+      await page.screenshot({ path: path.join(outDir, String(i).padStart(2, '0') + '_lower.png'), omitBackground: true });
+    }
   }
   await browser.close();
   console.log(`rendered ${script.scenes.length} slides → ${outDir}`);
