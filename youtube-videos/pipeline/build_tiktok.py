@@ -36,7 +36,7 @@ def caption_events(words, per=3):
     return ev
 
 
-def write_ass(events, path):
+def write_ass(events, path, y=960):
     head = """[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
@@ -50,7 +50,7 @@ Style: Cap,Inter Black,78,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,-1,0,0,0,1
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
-    body = "".join(f"Dialogue: 0,{ass_time(s)},{ass_time(e)},Cap,,0,0,0,,{{\\pos(540,960)}}{t}\n" for s, e, t in events)
+    body = "".join(f"Dialogue: 0,{ass_time(s)},{ass_time(e)},Cap,,0,0,0,,{{\\pos(540,{y})}}{t}\n" for s, e, t in events)
     open(path, "w").write(head + body)
 
 
@@ -157,16 +157,32 @@ def main():
         face_in = ["-i", cut]
         audio_in = ["-i", cut]
 
-    # bottom half: one slow-zoom clip per beat
+    # layout: --face 0.2 means your talking clip takes the top 20%, the movie clips the other 80%
+    face = float(a[a.index("--face") + 1]) if "--face" in a else 0.5
+    FH = int(round(1920 * face / 2)) * 2
+    BH = 1920 - FH
+
+    # bottom: per beat, a movie clip if you dropped one in clips/ (b00.mp4, b01.mp4 ...), else the chalkboard graphic
     clips = []
     for i, st in enumerate(starts):
         end = starts[i + 1] if i + 1 < len(starts) else T
         d = max(end - st, 0.5)
         n = int(round(d * FPS))
-        c = os.path.join(work, f"board{i:02d}.mp4")
-        sh(["ffmpeg", "-v", "error", "-y", "-loop", "1", "-framerate", str(FPS), "-i", os.path.join(boards, f"b{i:02d}.png"),
-            "-vf", f"scale=2160:1920,zoompan=z='1.04+0.03*sin(on/{FPS}*0.6)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={n}:s=1080x960:fps={FPS},format=yuv420p",
-            "-frames:v", str(n), "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", c])
+        c = os.path.join(work, f"bottom{i:02d}.mp4")
+        beat = script["beats"][i]
+        movie = beat.get("clip") or next((os.path.join(vdir, "clips", f) for f in sorted(os.listdir(os.path.join(vdir, "clips")))
+                                          if f.startswith(f"b{i:02d}")), None) if os.path.isdir(os.path.join(vdir, "clips")) or beat.get("clip") else None
+        if movie and not os.path.isabs(movie):
+            movie = os.path.join(vdir, movie)
+        if movie and os.path.exists(movie):
+            sh(["ffmpeg", "-v", "error", "-y", "-stream_loop", "-1", "-ss", str(beat.get("clip_start", 0)), "-i", movie,
+                "-vf", f"scale=1080:{BH}:force_original_aspect_ratio=increase,crop=1080:{BH},setsar=1,fps={FPS},format=yuv420p",
+                "-an", "-frames:v", str(n), "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", c])
+        else:
+            sh(["ffmpeg", "-v", "error", "-y", "-loop", "1", "-framerate", str(FPS), "-i", os.path.join(boards, f"b{i:02d}.png"),
+                "-vf", f"scale=1080:{BH}:force_original_aspect_ratio=increase,crop=1080:{BH},scale=2160:{BH * 2},"
+                       f"zoompan=z='1.04+0.03*sin(on/{FPS}*0.6)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={n}:s=1080x{BH}:fps={FPS},format=yuv420p",
+                "-frames:v", str(n), "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", c])
         clips.append(c)
     lst = os.path.join(work, "boards.txt")
     open(lst, "w").write("".join(f"file '{c}'\n" for c in clips))
@@ -174,11 +190,11 @@ def main():
     sh(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", bottom])
 
     ass = os.path.join(work, "captions.ass")
-    write_ass(caption_events(words), ass)
+    write_ass(caption_events(words), ass, y=FH)
     out_dir = os.path.join(vdir, "out")
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, os.path.basename(vdir) + ("-preview" if preview else "") + ".mp4")
-    top = (f"crop={crop}," if crop else "") + "scale=1080:960:force_original_aspect_ratio=increase,crop=1080:960,setsar=1,fps=30"
+    top = (f"crop={crop}," if crop else "") + f"scale=1080:{FH}:force_original_aspect_ratio=increase,crop=1080:{FH},setsar=1,fps=30"
     hook = os.path.join(boards, "hook.png")
     fc = (f"[0:v]{top}[top];[1:v]setsar=1[bot];[top][bot]vstack=inputs=2[v0];"
           f"[v0][3:v]overlay=x=(W-w)/2:y=110:enable='lt(t,3.2)'[v1];[v1]ass={ass}[v]")
