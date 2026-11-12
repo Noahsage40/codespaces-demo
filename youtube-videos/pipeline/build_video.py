@@ -34,6 +34,21 @@ def tts_espeak(text, out_wav):
     sh(["espeak-ng", "-v", "mb-us2", "-s", "170", "-w", out_wav, text])
 
 
+_KOKORO = None
+
+
+def tts_kokoro(text, out_wav):
+    """Free natural-sounding AI narrator (Kokoro). Model files live in $KOKORO_DIR."""
+    global _KOKORO
+    from kokoro_onnx import Kokoro
+    import soundfile as sf
+    if _KOKORO is None:
+        d = os.environ.get("KOKORO_DIR", os.path.expanduser("~/kokoro"))
+        _KOKORO = Kokoro(os.path.join(d, "kokoro-v1.0.onnx"), os.path.join(d, "voices-v1.0.bin"))
+    audio, sr = _KOKORO.create(text, voice=os.environ.get("KOKORO_VOICE", "am_michael"), speed=1.08, lang="en-us")
+    sf.write(out_wav, audio, sr)
+
+
 def tts_elevenlabs(text, out_wav):
     voice = os.environ["ELEVENLABS_VOICE_ID"]
     body = json.dumps({"text": text, "model_id": "eleven_multilingual_v2",
@@ -89,7 +104,7 @@ def main():
     vdir = os.path.abspath(args[0])
     vertical = "--vertical" in args
     voice = args[args.index("--voice") + 1] if "--voice" in args else "espeak"
-    tts = {"espeak": tts_espeak, "elevenlabs": tts_elevenlabs}[voice]
+    tts = {"espeak": tts_espeak, "kokoro": tts_kokoro, "elevenlabs": tts_elevenlabs}[voice]
     W, H = (1080, 1920) if vertical else (1920, 1080)
     script = json.load(open(os.path.join(vdir, "script.json")))
     tag = ("vertical" if vertical else "long") + "-" + voice
