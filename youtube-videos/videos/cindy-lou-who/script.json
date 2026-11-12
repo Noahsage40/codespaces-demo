@@ -1,0 +1,23 @@
+{
+  "title": "Where Is This Kid Now? Cindy Lou Who",
+  "format": "short",
+  "min_seconds": 61,
+  "scenes": [
+    {"slide": {"type": "photo", "tag": "CINDY LOU WHO · NOW", "img": "NOW"},
+     "lines": ["Remember Cindy Lou Who, the little girl who wasn't scared of the Grinch?", "This is her now."]},
+    {"slide": {"type": "photo", "tag": "TAYLOR MOMSEN", "img": "EARLY"},
+     "lines": ["Her name is Taylor Momsen, and she was just a little kid when she starred next to Jim Carrey in How the Grinch Stole Christmas, back in 2000.", "She's said she got bullied for years because of that role."]},
+    {"slide": {"type": "photo", "tag": "GOSSIP GIRL ERA", "img": "TEEN"},
+     "lines": ["As a teenager, she landed Gossip Girl, playing Jenny Humphrey."]},
+    {"slide": {"type": "photo", "tag": "THE PRETTY RECKLESS", "img": "BAND1"},
+     "lines": ["But while she was still a teenager, she started a rock band called The Pretty Reckless, and walked away from acting to do music full time."]},
+    {"slide": {"type": "photo", "tag": "5× #1 ROCK SINGLES", "img": "BAND2"},
+     "lines": ["And it worked. The Pretty Reckless became the first female-fronted band ever to get five number one songs on Billboard's mainstream rock chart."]},
+    {"slide": {"type": "photo", "tag": "2017 · DETROIT", "img": "BAND3"},
+     "lines": ["In 2017, they opened for Soundgarden at Chris Cornell's final show."]},
+    {"slide": {"type": "photo", "tag": "2024 · OPENING FOR AC/DC", "img": "BAND4"},
+     "lines": ["And in 2024, while opening for AC/DC in Spain, she got bitten by a bat on stage, and had to get rabies shots."]},
+    {"slide": {"type": "photo", "tag": "WHOVILLE → AC/DC", "img": "NOW2"},
+     "lines": ["From Whoville to opening for AC/DC.", "Follow for more where are they now, Christmas edition."]}
+  ]
+}

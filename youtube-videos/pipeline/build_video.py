@@ -93,8 +93,17 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     lines = []
     for start, end, text in cues:
-        t = text.upper() if vertical else text
-        lines.append(f"Dialogue: 0,{ass_time(start)},{ass_time(end)},Cap,,0,0,0,,{t}")
+        if vertical:  # one event per word, current word in yellow
+            ws = text.upper().split()
+            total = sum(len(w) + 1 for w in ws)
+            t = start
+            for j, w in enumerate(ws):
+                d = (end - start) * (len(w) + 1) / total
+                txt = " ".join(("{\\c&H00E6FF&}" if k == j else "{\\c&HFFFFFF&}") + x for k, x in enumerate(ws))
+                lines.append(f"Dialogue: 0,{ass_time(t)},{ass_time(t + d)},Cap,,0,0,0,,{txt}")
+                t += d
+        else:
+            lines.append(f"Dialogue: 0,{ass_time(start)},{ass_time(end)},Cap,,0,0,0,,{text}")
     open(path, "w").write(head + "\n".join(lines) + "\n")
 
 
