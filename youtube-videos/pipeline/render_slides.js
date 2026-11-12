@@ -112,7 +112,7 @@ function slideHTML(s) {
       // full-bleed real photo; only a small tag on top (used for "real photos only" videos)
       const src = img(s.img);
       body = `${src ? `<div style="position:absolute;inset:-40px;background:url('${src}') center/cover;filter:blur(30px) brightness(.45)"></div>
-        <div style="position:absolute;inset:0;background:url('${src}') center ${s.focus || '25%'}/${s.fit || 'cover'} no-repeat"></div>` : ''}
+        <div style="position:absolute;inset:0;background:url('${src}') ${s.focus || 'center 25%'}/${s.fit || 'cover'} no-repeat"></div>` : ''}
         <div style="position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 70%,rgba(0,0,0,.35) 100%)"></div>
         ${s.tag ? `<div style="position:absolute;top:${big(150, 70)}px;left:0;right:0;text-align:center"><span class="pill" style="font-size:${big(40, 34)}px;padding:12px 26px">${esc(s.tag)}</span></div>` : ''}`;
       break;
