@@ -1,0 +1,3 @@
+mashed-potato.jpg	Mashed potato	File:Sous_vide_mashed_potatoes.jpg
+stuffing.jpg	Stuffing	File:Stuffing_a_turkey.jpg
+tamale.jpg	Tamale	File:Tamal_oaxaqueño.jpg

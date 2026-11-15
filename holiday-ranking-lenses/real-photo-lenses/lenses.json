@@ -182,5 +182,51 @@
     "gifts-ov/candle/c1.jpg"
    ]
   ]
+ },
+ {
+  "id": "rank-christmas-dinner",
+  "title": "Rank Christmas Dinner",
+  "items": [
+   [
+    "Glazed Ham",
+    "dinner-ov/glazed-ham/c3.jpg"
+   ],
+   [
+    "Roast Turkey",
+    "dinner-ov/roast-turkey/c2.jpg"
+   ],
+   [
+    "Prime Rib",
+    "dinner-ov/prime-rib/c1.jpg"
+   ],
+   [
+    "Mac & Cheese",
+    "dinner-ov/mac-cheese/c1.jpg"
+   ],
+   [
+    "Mashed Potatoes",
+    "dinner-wiki/mashed-potato.jpg"
+   ],
+   [
+    "Deviled Eggs",
+    "dinner-ov/deviled-eggs/c2.jpg"
+   ],
+   [
+    "Green Bean Casserole",
+    "dinner-ov/green-bean-casserole/c1.jpg"
+   ],
+   [
+    "Tamales",
+    "dinner-ov/tamales/c1.jpg"
+   ],
+   [
+    "Lasagna",
+    "dinner-ov/lasagna/c3.jpg"
+   ],
+   [
+    "Dinner Rolls",
+    "dinner-ov/dinner-rolls/c2.jpg"
+   ]
+  ]
  }
 ]

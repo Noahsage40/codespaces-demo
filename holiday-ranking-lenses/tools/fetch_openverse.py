@@ -25,6 +25,7 @@ for arg in sys.argv[2:]:
     for r in (res or {}).get("results", []):
         if n >= 4: break
         if (r.get("width") or 0) < 600 or (r.get("height") or 0) < 450: continue
+        if "wikimedia" in r.get("url", ""): continue  # Wikimedia rate-limits us; Flickr-hosted copies download fine
         img = get(r["url"], raw=True)
         if not img or img[:3] != b"\xff\xd8\xff": continue
         n += 1
