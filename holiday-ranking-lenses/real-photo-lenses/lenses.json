@@ -1,13 +1,94 @@
 [
- {"id": "rank-christmas-movies", "title": "Rank Christmas Movies", "items": [
-  ["Home Alone", "christmas-movies/01.jpg"],
-  ["Elf", "christmas-movies/02.jpg"],
-  ["The Polar Express", "christmas-movies/03.jpg"],
-  ["The Grinch", "christmas-movies/04.jpg"],
-  ["A Christmas Story", "christmas-movies/05.jpg"],
-  ["Christmas Vacation", "christmas-movies/10.jpg"],
-  ["The Santa Clause", "christmas-movies/09.jpg"],
-  ["It's a Wonderful Life", "christmas-movies/11.jpeg"],
-  ["Die Hard", "christmas-movies/07.jpg"],
-  ["The Nightmare Before Christmas", "christmas-movies/16.jpg"]]}
+ {
+  "id": "rank-christmas-movies",
+  "title": "Rank Christmas Movies",
+  "items": [
+   [
+    "Home Alone",
+    "christmas-movies/01.jpg"
+   ],
+   [
+    "Elf",
+    "christmas-movies/02.jpg"
+   ],
+   [
+    "The Polar Express",
+    "christmas-movies/03.jpg"
+   ],
+   [
+    "The Grinch",
+    "christmas-movies/04.jpg"
+   ],
+   [
+    "A Christmas Story",
+    "christmas-movies/05.jpg"
+   ],
+   [
+    "Christmas Vacation",
+    "christmas-movies/10.jpg"
+   ],
+   [
+    "The Santa Clause",
+    "christmas-movies/09.jpg"
+   ],
+   [
+    "It's a Wonderful Life",
+    "christmas-movies/11.jpeg"
+   ],
+   [
+    "Die Hard",
+    "christmas-movies/07.jpg"
+   ],
+   [
+    "The Nightmare Before Christmas",
+    "christmas-movies/16.jpg"
+   ]
+  ]
+ },
+ {
+  "id": "rank-christmas-characters",
+  "title": "Rank Christmas Characters",
+  "items": [
+   [
+    "Santa Claus",
+    "christmas-characters/01.jpg"
+   ],
+   [
+    "The Grinch",
+    "christmas-characters/05.png"
+   ],
+   [
+    "Buddy the Elf",
+    "christmas-characters/06.jpg"
+   ],
+   [
+    "Kevin McCallister",
+    "christmas-characters/07.jpg"
+   ],
+   [
+    "Rudolph",
+    "christmas-characters/03.jpg"
+   ],
+   [
+    "Jack Skellington",
+    "christmas-characters/15.png"
+   ],
+   [
+    "Ebenezer Scrooge",
+    "christmas-characters/09.jpg"
+   ],
+   [
+    "Gingerbread Man",
+    "christmas-characters/14.jpg"
+   ],
+   [
+    "Elf on the Shelf",
+    "christmas-characters/12.jpg"
+   ],
+   [
+    "Hans Gruber",
+    "christmas-villains/03.jpeg"
+   ]
+  ]
+ }
 ]

@@ -14,15 +14,18 @@ function card(name, file) {
   const fsz = name.length <= 10 ? 66 : name.length <= 18 ? 54 : name.length <= 26 ? 44 : 38;
   return `<!doctype html><html><head><meta charset="utf-8"><style>
   *{margin:0;box-sizing:border-box}body{width:${S}px;height:${S}px;overflow:hidden;font-family:'Inter',sans-serif;background:#111}
-  .bg{position:absolute;inset:-40px;background:url('${src}') center/cover;filter:blur(24px) brightness(.5)}
+  .bg{position:absolute;inset:-40px;background:${path.extname(file).toLowerCase() === '.png'
+      ? 'radial-gradient(circle at 50% 55%,#ffffff 0%,#e9eef3 55%,#b9c6d3 100%)'   /* cut-out images: clean light background */
+      : `url('${src}') center/cover;filter:blur(24px) brightness(.5)`}}
+  .ph.png{object-fit:contain;padding:120px 30px 20px}
   .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
   .ph.cover{object-fit:cover;object-position:center 35%}
   .shade{position:absolute;left:0;right:0;top:0;height:160px;background:linear-gradient(rgba(0,0,0,.6),transparent)}
   .t{position:absolute;left:0;right:0;top:0;padding:16px 18px;text-align:center;font-weight:900;font-size:${fsz}px;line-height:1;text-transform:uppercase;
      color:#fff;-webkit-text-stroke:3px #111;paint-order:stroke fill;text-shadow:0 3px 0 rgba(0,0,0,.4)}
   .f{position:absolute;inset:0;border:8px solid #fff}</style></head><body>
-  <div class="bg"></div><img class="ph" id="p" src="${src}"><div class="shade"></div><div class="t">${esc(name)}</div><div class="f"></div>
-  <script>const i=document.getElementById('p');const f=()=>{if(i.naturalWidth/i.naturalHeight>=0.8)i.classList.add('cover')};i.complete?f():i.onload=f;</script>
+  <div class="bg"></div><img class="ph${path.extname(file).toLowerCase() === '.png' ? ' png' : ''}" id="p" src="${src}"><div class="shade"></div><div class="t">${esc(name)}</div><div class="f"></div>
+  <script>const i=document.getElementById('p');const f=()=>{if(!i.classList.contains('png')&&i.naturalWidth/i.naturalHeight>=0.8)i.classList.add('cover')};i.complete?f():i.onload=f;</script>
   </body></html>`;
 }
 
