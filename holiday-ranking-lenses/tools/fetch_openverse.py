@@ -20,7 +20,7 @@ for arg in sys.argv[2:]:
     slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
     d = os.path.join(out, slug); os.makedirs(d, exist_ok=True)
     res = get("https://api.openverse.org/v1/images/?" + urllib.parse.urlencode(
-        dict(q=q, license_type="commercial", page_size=12, mature="false", source="flickr")))
+        dict(q=q, license_type="commercial", page_size=12, mature="false")))
     credits, n = [], 0
     for r in (res or {}).get("results", []):
         if n >= 4: break

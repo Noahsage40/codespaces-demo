@@ -136,5 +136,51 @@
     "treats-ov/cinnamon-rolls/c1.jpg"
    ]
   ]
+ },
+ {
+  "id": "rank-christmas-gifts",
+  "title": "Rank Christmas Gifts",
+  "items": [
+   [
+    "Cash",
+    "gifts-ov/cash/c1.jpg"
+   ],
+   [
+    "Gift Card",
+    "gifts-ov/gift-card/c1.jpg"
+   ],
+   [
+    "Socks",
+    "gifts-ov/socks/c1.jpg"
+   ],
+   [
+    "AirPods",
+    "gifts-ov/airpods/c3.jpg"
+   ],
+   [
+    "PS5",
+    "gifts-ov/ps5w/ps5.png"
+   ],
+   [
+    "A Puppy",
+    "gifts-ov/a-puppy/c1.jpg"
+   ],
+   [
+    "A New iPhone",
+    "gifts-ov/a-new-iphone/c4.jpg"
+   ],
+   [
+    "Lump of Coal",
+    "gifts-ov/lump-of-coal/c3.jpg"
+   ],
+   [
+    "Ugly Christmas Sweater",
+    "gifts-ov/ugly-christmas-sweater/c3.jpg"
+   ],
+   [
+    "Candle",
+    "gifts-ov/candle/c1.jpg"
+   ]
+  ]
  }
 ]
