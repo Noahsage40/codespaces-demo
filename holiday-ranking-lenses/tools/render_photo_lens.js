@@ -39,7 +39,12 @@ function card(name, file) {
     for (const f of fs.readdirSync(out)) if (f.endsWith('.jpg')) fs.unlinkSync(path.join(out, f));
     for (const [i, [name, src]] of lens.items.entries()) {
       await page.setContent(card(name, path.join(ROOT, 'sources', src)));
-      await page.evaluate(async () => { await document.fonts.ready; await Promise.all([...document.images].map(i => i.decode().catch(() => {}))); });
+      await page.evaluate(async () => {
+        await document.fonts.ready;
+        await Promise.all([...document.images].map(i => i.decode().catch(() => {})));
+        // wide-ish photos fill the square; tall posters sit on a blurred copy of themselves
+        document.querySelectorAll('img.ph:not(.png)').forEach(i => { if (i.naturalWidth / i.naturalHeight >= 0.8) i.classList.add('cover'); });
+      });
       await page.screenshot({ path: path.join(out, `${String(i + 1).padStart(2, '0')}-${slug(name)}.jpg`), type: 'jpeg', quality: 88 });
     }
     console.log(lens.id, 'done');

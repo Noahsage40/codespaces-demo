@@ -1,0 +1,30 @@
+[
+ {
+  "file": "c1.jpg",
+  "title": "Eggnog",
+  "creator": "pburka",
+  "license": "CC BY-SA 2.0",
+  "source": "https://www.flickr.com/photos/30047235@N03/15898459569"
+ },
+ {
+  "file": "c2.jpg",
+  "title": "Essex Wine Glass",
+  "creator": "Didriks",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/49889671@N03/6554393889"
+ },
+ {
+  "file": "c3.jpg",
+  "title": "Egg Nog",
+  "creator": "izik",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/48889038283@N01/3141194799"
+ },
+ {
+  "file": "c4.jpg",
+  "title": "Eggnog",
+  "creator": "Konstantin Ryabitsev from Montr\u00e9al, Canada",
+  "license": "CC BY-SA 2.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=3229790"
+ }
+]

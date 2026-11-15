@@ -90,5 +90,51 @@
     "christmas-villains/03.jpeg"
    ]
   ]
+ },
+ {
+  "id": "rank-christmas-treats",
+  "title": "Rank Christmas Treats",
+  "items": [
+   [
+    "Sugar Cookies",
+    "treats-ov/sugar-cookies/c3.jpg"
+   ],
+   [
+    "Gingerbread Cookies",
+    "christmas-characters/14.jpg"
+   ],
+   [
+    "Candy Canes",
+    "christmas-treats/03.jpg"
+   ],
+   [
+    "Peppermint Bark",
+    "treats-ov/peppermint-bark/c1.jpg"
+   ],
+   [
+    "Hot Cocoa",
+    "treats-ov/hot-cocoa/c1.jpg"
+   ],
+   [
+    "Eggnog",
+    "treats-ov/eggnog/c3.jpg"
+   ],
+   [
+    "Fudge",
+    "treats-ov/fudge/c3.jpg"
+   ],
+   [
+    "Fruitcake",
+    "treats-ov/fruitcake/c1.jpg"
+   ],
+   [
+    "Yule Log Cake",
+    "treats-ov/yule-log-cake/c1.jpg"
+   ],
+   [
+    "Cinnamon Rolls",
+    "treats-ov/cinnamon-rolls/c1.jpg"
+   ]
+  ]
  }
 ]
