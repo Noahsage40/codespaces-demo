@@ -143,8 +143,7 @@ S.append(Scene("06_board", "01 · The claim", (
     "First, here's what the claim would mean. Here's the board. "
     "If that's true, a child would be one of the richest creators alive, richer than most movie stars, "
     "and every dollar of it would be his."), els=[
-        *board(["the board", ("the board", 0.6), ("the board", 1.2)], head_at=("the board", -0.3),
-               title_at=("the board", -0.3)),
+        *board(["the board", ("the board", 0.6), ("the board", 1.2)], head_at=0.15, title_at=0.15),
         Stamp("EVERY DOLLAR HIS?", 1440, row_y(0), at="every dollar", size=54, angle=-6),
     ]))
 
@@ -363,7 +362,9 @@ S.append(Scene("21_split", "03 · My test · Bucket 2: licensing", (
     "The split between pocket.watch and the family has never been made public. But a Forbes writer said Ryan's "
     "share of the licensing alone made up more than half of his $29.5 million."), src="Forbes, Dec 2020", els=[
         Text("SPLIT: NOT PUBLIC", W / 2, 220, size=72, color=MUTED, at=0.1),
-        Rect(260, 430, 1400, 200, fill=(30, 36, 48), at="Forbes writer", radius=16),
+        Rect(260, 430, 1400, 200, fill=(30, 36, 48), at=0.3, radius=16),
+        Text("FAMILY  vs  POCKET.WATCH", W / 2, 330, size=40, weight="Bold", color=MUTED, at=0.5, shadow=False,
+             out="Forbes writer"),
         Rect(260, 430, 760, 200, fill=YELLOW, at="more than half", grow="right", radius=16),
         Text("LICENSING: MORE THAN HALF", 640, 530, size=40, color=(20, 20, 20), shadow=False,
              at=("more than half", 0.5)),
