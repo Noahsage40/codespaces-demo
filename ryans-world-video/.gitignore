@@ -1,3 +1,5 @@
 build/
 out/
 audio/scratch/
+build_log.txt
+__pycache__/

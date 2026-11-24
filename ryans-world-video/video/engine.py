@@ -459,7 +459,7 @@ def background(glow=BLUE):
 @lru_cache(maxsize=1)
 def grain_frames():
     rng = np.random.default_rng(7)
-    return [rng.normal(0, 5.5, (H // 2, W // 2, 1)).astype(np.int16).repeat(2, 0).repeat(2, 1) for _ in range(6)]
+    return [rng.normal(0, 4.0, (H // 2, W // 2, 1)).astype(np.int16).repeat(2, 0).repeat(2, 1) for _ in range(6)]
 
 
 # --------------------------------------------------------------------------- scene
@@ -531,7 +531,7 @@ class Scene:
     def render(self, path):
         cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
                "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "veryfast",
-               "-crf", "18", "-pix_fmt", "yuv420p", path]
+               "-crf", "20", "-maxrate", "12M", "-bufsize", "24M", "-pix_fmt", "yuv420p", path]
         proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
         for i in range(self.nframes):
             proc.stdin.write(self.frame(i).tobytes())
