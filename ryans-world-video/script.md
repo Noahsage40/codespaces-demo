@@ -1,6 +1,7 @@
 # Did Ryan's World Really Make $100 Million?
 
 **Format:** faceless investigation, narrated in the cloned voice. Target length 8–10 minutes (about 1,400 spoken words at roughly 150 words per minute).
+**The exact voiceover text lives in `narration/` (generated from `video/scenes.py`). Use that for ElevenLabs, not this file.**
 **Text in [brackets] is a visual cue, not narration.** Numbers in `[S#]` point to the sources in `sources.md`. Every figure is also worked through in `numbers.md`.
 
 ---
